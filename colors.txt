@@ -1,0 +1,11 @@
+
+
+#003580  azul claro
+
+#00224f azul oscuro
+
+#ffffff maron claro 
+
+#F0A500  amarillo
+
+#FFC947 amarrillo 2
