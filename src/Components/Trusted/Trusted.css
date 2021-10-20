@@ -1,0 +1,44 @@
+.trusted-home {
+  background-color: #f7f7f7;
+  height: 10rem;
+}
+
+.trusted-home h3 {
+  font-size: 20px;
+}
+.airplane-icon {
+  /* padding-right: 10px; */
+  font-size: 2rem;
+  margin-right: 5px;
+  background-color: #f0a500;
+  width: 3rem;
+  border-radius: 50%;
+  height: 3rem;
+  padding: 5px;
+}
+
+.credit-card-icon {
+  font-size: 2rem;
+  margin-right: 5px;
+  background-color: #ffa6d5;
+  width: 3rem;
+  /* color: white; */
+  border-radius: 50%;
+  height: 3rem;
+  padding: 8px;
+  position: relative;
+}
+
+.credit-card-icon-top {
+  position: absolute;
+}
+
+.check-icon {
+  font-size: 2rem;
+  margin-right: 5px;
+  background-color: #6d9886;
+  width: 3rem;
+  border-radius: 50%;
+  height: 3rem;
+  padding: 5px;
+}

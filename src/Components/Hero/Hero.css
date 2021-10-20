@@ -37,6 +37,10 @@
 
   width: 18rem;
 }
+.search-input:hover {
+  /* border: none; */
+  /* color: #00224f; */
+}
 .search-form {
   border: 25px solid #f0a500;
 

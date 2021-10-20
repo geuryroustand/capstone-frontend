@@ -9,3 +9,5 @@
 #F0A500  amarillo
 
 #FFC947 amarrillo 2
+
+##f7f7f7  
