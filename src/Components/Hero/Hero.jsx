@@ -12,7 +12,7 @@ import {
   Col,
 } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
-import { AiOutlineUser } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
 
 export default function Hero() {
   const [startDate, setStartDate] = useState(new Date());
@@ -32,29 +32,48 @@ export default function Hero() {
 
         <Row>
           <Form inline>
-            <Row className="d-flex mt-5 search-form">
-              <Col xs={12} md="auto">
-                {/* <ImLocation /> */}
-                <input
-                  className="search-input"
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Enter pick-up location "
-                />
-              </Col>
-              <Col xs={12} md="auto">
-                {/* <ImLocation /> */}
-                <input
-                  className="search-input"
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Enter destination "
-                />
-              </Col>
-              <Col xs={12} md="auto">
-                {/* <DatePicker
+            <Row className="search-form mt-5 ">
+              <div className="d-flex search-form-selected">
+                <label htmlFor="one-way" for="one-way" className="radio-label">
+                  One-way
+                  <input
+                    type="radio"
+                    checked="checked"
+                    name="radio"
+                    id="one-way"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+                <label htmlFor="return" for="return" className="radio-label">
+                  <input type="radio" name="radio" id="return" />
+                  Return
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+
+              <div className="d-flex ">
+                <Col className="input-col">
+                  <input
+                    className="search-input"
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Enter pick-up location "
+                  />
+                  <ImLocation className="location-icon" />
+                </Col>
+                <Col className="input-col">
+                  <input
+                    className="search-input"
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Enter destination "
+                  />
+                  <ImLocation className="location-icon" />
+                </Col>
+                {/* <Col>
+                  <DatePicker
                   showTimeSelect
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -71,35 +90,36 @@ export default function Hero() {
                   timeIntervals={15}
                   // dateFormat="MMMM d, yyyy h:mm aa"
                   dateFormat="Pp"
-                /> */}
-              </Col>
-              <Col xs={12} md="auto">
-                <input
-                  className="date-pick"
-                  type="datetime-local"
-                  name=""
-                  id=""
                 />
-              </Col>
-              <Col xs={12} md="auto">
-                {/* {<AiOutlineUser style={{ color: "red" }} />} */}
-                <select
-                  name="passenger"
-                  id="passenger"
-                  className="select-passenger"
-                >
-                  {/* <option value="passenger">Passenger</option> */}
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
-              </Col>
-              <Col xs={12} md="auto">
-                <Button className="btn-search-button">Search</Button>{" "}
-              </Col>
+                </Col> */}
+                <Col>
+                  <input
+                    className="date-pick"
+                    type="datetime-local"
+                    name=""
+                    id=""
+                  />
+                </Col>
+                <Col className="input-col select-passenger-section">
+                  <select
+                    name="passenger"
+                    id="passenger"
+                    className="select-passenger"
+                  >
+                    {/* <option value="passenger">Passenger</option> */}
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                  <FaUserAlt className="user-icon" />
+                </Col>
+                <Col xs={12} md="auto">
+                  <Button className="btn-search-button">Search</Button>{" "}
+                </Col>
+              </div>
             </Row>
           </Form>
         </Row>
