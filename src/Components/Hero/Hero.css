@@ -28,7 +28,9 @@
 /* .form-border {
   border: 5px solid #f0a500;
 } */
-
+.formSearchTransfer {
+  position: relative;
+}
 .search-input {
   height: 4rem;
   margin-right: -24px;

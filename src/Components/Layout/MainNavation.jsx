@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import "./MainNavation.css";
 import logo from "../../../src/logo.svg";
+import { Link } from "react-router-dom";
 export default function MainNavation() {
   return (
     <>
@@ -22,13 +23,13 @@ export default function MainNavation() {
             id="basic-navbar-nav  "
           >
             <Nav className="mr-auto  ">
-              <Nav.Link className="btn-register" href="#home">
+              <Link className="btn-register nav-link" to="/register">
                 Register
-              </Nav.Link>
+              </Link>
 
-              <Nav.Link className="btn-sign-in" href="#link">
+              <Link className="btn-sign-in nav-link" to="/sign">
                 Sign in
-              </Nav.Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
