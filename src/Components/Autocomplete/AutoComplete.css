@@ -4,10 +4,10 @@
   display: inline-block;
 
   z-index: 50px;
-  margin-left: 13px;
+  margin-left: 0px;
   background-color: white;
   color: black;
-  width: 18.1rem;
+  width: 19.5rem;
   height: 10rem;
   border-radius: 9px;
 }

@@ -36,7 +36,7 @@
   margin-right: -24px;
   border-radius: 5px;
   border: none;
-
+  margin-left: 7px;
   width: 18rem;
 }
 .search-input:hover {
@@ -57,10 +57,18 @@
 }
 .input-col {
   position: relative;
+  background-color: white;
+  /* height: 4rem; */
+  /* margin-right: -24px; */
+  border-radius: 5px;
+  border: none;
+  margin-right: 15px;
+
+  /* width: 18rem; */
 }
 .location-icon {
   position: absolute;
-  left: 20px;
+  left: 0px;
   font-size: 1.4rem;
   top: 20px;
   color: #ccc;
@@ -137,7 +145,9 @@
   border: none;
   background-color: white;
   margin-left: 10px;
+  outline: none;
 }
+
 .user-icon {
   position: absolute;
   color: #ccc;

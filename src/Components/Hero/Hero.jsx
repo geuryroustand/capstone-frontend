@@ -24,9 +24,21 @@ const mapStateToProps = (state) => state;
 
 const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
   const state = useSelector((state) => state);
+  const [roundTrip, setRoundTrip] = useState("OneWay");
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
-  const [pickUpDate, setPickUpDate] = useState("");
+
+  const [dataToSend, setDataToSend] = useState({
+    pickUpLocation: pickupLocation,
+    selectedPickLocation: "",
+    selectedDropLocation: "",
+    dropLocation: dropLocation,
+    arrivalDate: "",
+    departureDate: "",
+    oneWay: "",
+    roundTrip: "",
+    passengers: "",
+  });
 
   // const [startDate, setStartDate] = useState(new Date());
 
@@ -40,7 +52,22 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
   const ref = useRef(pickupLocation);
   console.log(ref.current);
 
-  const handlerData = () => {};
+  const handlerData = (key, value) => {
+    setDataToSend({
+      ...dataToSend,
+      [key]: value,
+    });
+  };
+
+  const handlerSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(dataToSend);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // let handleColor = (time) => {
   //   return time.getHours() > 12 ? "text-success" : "text-error";
   // };
@@ -48,8 +75,6 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
   // useEffect(() => {
   //   fetchPickLocation();
   // }, []);
-
-  const [roundTrip, setRoundTrip] = useState("OneWay");
 
   return (
     <header className="hero">
@@ -61,7 +86,7 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
         </Row>
 
         <Row>
-          <Form inline>
+          <Form inline onSubmit={handlerSubmit}>
             <Row className="search-form mt-5 ">
               <div className="d-flex search-form-selected">
                 <label className="radio-label">
@@ -84,6 +109,8 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     onChange={(e) =>
                       setRoundTrip("roundTrip", e.target.checked)
                     }
+                    // defaultChecked={dataToSend.roundTrip}
+                    // onChange={(e) => handlerData("roundTrip")}
                   />
                   <span className="checkmark"></span>
                 </label>
@@ -98,17 +125,22 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                         type="text"
                         name=""
                         id=""
+                        disabled
                         placeholder="Enter pick-up location "
                         value={pickupLocation}
                         onChange={(e) => setPickupLocation(e.target.value)}
                       />
-                      <ImLocation className="location-icon" />
+
+                      {pickLocation.length > 0 && (
+                        <ImLocation className="location-icon" />
+                      )}
                     </Col>
                     <Col className="input-col">
                       <input
                         className="search-input"
                         type="text"
                         name=""
+                        disabled
                         id=""
                         placeholder="Enter destination "
                         value={dropLocation}
@@ -140,6 +172,10 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                       <input
                         className="date-pick"
                         type="datetime-local"
+                        value={dataToSend.departureDate}
+                        onChange={(e) =>
+                          handlerData("departureDate", e.target.value)
+                        }
                         name=""
                         id=""
                       />
@@ -149,6 +185,10 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                         name="passenger"
                         id="passenger"
                         className="select-passenger"
+                        value={dataToSend.passengers}
+                        onChange={(e) =>
+                          handlerData("passengers", e.target.value)
+                        }
                       >
                         {/* <option value="passenger">Passenger</option> */}
                         <option value="1">1</option>
@@ -186,6 +226,7 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     onChange={(e) => setPickupLocation(e.target.value)}
                     onChange={(e) => fetchPickLocation(e.target.value)}
                   />
+
                   <ImLocation className="location-icon" />
                 </Col>
                 {/* state.formSearchTransfer.selectedPickLocation? */}
@@ -212,6 +253,7 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     onChange={(e) => setDropLocation(e.target.value)}
                     onChange={(e) => fetchDropLocation(e.target.value)}
                   />
+
                   <ImLocation className="location-icon" />
                 </Col>
                 {state.formSearchTransfer.dropLocation.length > 1 ? (
@@ -227,10 +269,8 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     type="datetime-local"
                     name=""
                     id=""
-                    value={pickUpDate}
-                    onChange={(e) =>
-                      handlerData(" arrivalDate", e.target.value)
-                    }
+                    value={dataToSend.arrivalDate}
+                    onChange={(e) => handlerData("arrivalDate", e.target.value)}
                   />
                 </Col>
                 <Col className="input-col select-passenger-section">
@@ -238,6 +278,8 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     name="passenger"
                     id="passenger"
                     className="select-passenger"
+                    value={dataToSend.passengers}
+                    onChange={(e) => handlerData("passengers", e.target.value)}
                   >
                     {/* <option value="passenger">Passenger</option> */}
                     <option value="1">1</option>

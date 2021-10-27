@@ -1,0 +1,11 @@
+.main-booking-section {
+  height: 100%;
+  padding: 25px;
+}
+
+.main-taxi-option-section {
+  padding: 10px;
+  border: 2px solid #f0a500;
+  border-radius: 10px;
+  background-color: white;
+}
