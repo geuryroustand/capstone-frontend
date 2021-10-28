@@ -13,7 +13,13 @@ export default function getLocationReducer(
 
         // locations: state.locations.filter(location ),
       };
+    case "FETCH_PRICES":
+      return {
+        ...state,
+        prices: action.payload,
 
+        // locations: state.locations.filter(location ),
+      };
     case "LOCATION_NOT_FOUND":
       return {
         ...state,

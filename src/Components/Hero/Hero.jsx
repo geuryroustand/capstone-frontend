@@ -59,9 +59,9 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
       [key]: value,
     });
 
-    if (key === "pickUpLocation") {
+    if (key === "pickupLocation") {
       let matches = state.formSearchTransfer.locations.filter((lo) => {
-        const regex = new RegExp(`${value}`, "gi");
+        let regex = new RegExp(`${value}`, "gi");
 
         return lo.location.match(regex);
       });
@@ -164,6 +164,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         disabled
                         id=""
                         placeholder="Enter destination "
+                        required
                         value={dropLocation}
                         onChange={(e) => setDropLocation(e.target.value)}
                       />
@@ -206,6 +207,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         name="passenger"
                         id="passenger"
                         className="select-passenger"
+                        required
                         value={dataToSend.passengers}
                         onChange={(e) =>
                           handlerData("passengers", e.target.value)
@@ -235,6 +237,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                 <Col className="input-col">
                   <input
                     className="search-input"
+                    required
                     type="text"
                     name=""
                     id=""
@@ -245,7 +248,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         : dataToSend.pickupLocation
                     }
                     onChange={(e) =>
-                      handlerData("pickUpLocation", e.target.value)
+                      handlerData("pickupLocation", e.target.value)
                     }
                   />
 
@@ -269,6 +272,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     name=""
                     id=""
                     placeholder="Enter destination "
+                    required
                     value={
                       dropLocation ? dropLocation : dataToSend.dropLocation
                     }
@@ -294,6 +298,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   <input
                     className="date-pick"
                     type="datetime-local"
+                    required
                     name=""
                     id=""
                     value={dataToSend.arrivalDate}
@@ -305,6 +310,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     name="passenger"
                     id="passenger"
                     className="select-passenger"
+                    required
                     value={dataToSend.passengers}
                     onChange={(e) => handlerData("passengers", e.target.value)}
                   >

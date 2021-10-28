@@ -1,11 +1,31 @@
 .main-booking-section {
-  height: 100%;
-  padding: 25px;
+  /* height: 100%; */
+  padding: 15px;
 }
 
 .main-taxi-option-section {
   padding: 10px;
-  border: 2px solid #f0a500;
   border-radius: 10px;
+  border-left: 4px solid #f0a500;
   background-color: white !important;
+}
+
+.icon-fist-section {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.prices-section {
+  border-left: dotted 2px #f0a500;
+  padding-left: 15px;
+}
+
+.select-vehicle-btn {
+  width: 100%;
+  background-color: #003580;
+  border: none;
+  font-weight: bold;
+  height: 50px;
+  font-size: 18px;
+  /* border-bottom: 2px sold #f0a500; */
 }

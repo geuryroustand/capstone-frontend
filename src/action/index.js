@@ -1,17 +1,39 @@
-export const fetchLocations = (searchString) => {
+import ProgressBar from "@badrap/bar-of-progress";
+
+const progress = new ProgressBar({
+  // The size (height) of the progress bar.
+  // Numeric values get converted to px.
+  size: 7,
+
+  // Color of the progress bar.
+  // Also used for the glow around the bar.
+  color: "#F0A500",
+
+  // Class name used for the progress bar element.
+  className: "bar-of-progress",
+
+  // How many milliseconds to wait before the progress bar
+  // animation starts after calling .start().
+  delay: 80,
+});
+
+export const fetchLocations = () => {
   return async (dispatch, getState) => {
     try {
-      // ?location=${searchString}
-      let response = await fetch(`http://localhost:3001/locations`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        // body: JSON.stringify({ payload: searchString }),
-      });
+      let response = await fetch(
+        "http://localhost:3001/locations",
+
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          // body: JSON.stringify({ payload: searchString }),
+        }
+      );
 
       if (response.ok) {
         let locations = await response.json();
 
-        console.log(locations);
+        console.log("from action ", locations);
         dispatch({
           type: "FETCH_LOCATIONS",
           payload: locations,
@@ -31,6 +53,49 @@ export const fetchLocations = (searchString) => {
             payload: true,
           });
         }
+      } else {
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const fetchPrices = (queryPickupPlace, queryDropPlace) => {
+  return async (dispatch, getState) => {
+    try {
+      progress.start();
+      let response = await fetch(
+        `http://localhost:3001/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          // body: JSON.stringify({ payload: searchString }),
+        }
+      );
+
+      if (response.ok) {
+        setTimeout(() => {
+          progress.finish();
+        }, 1000);
+        let prices = await response.json();
+
+        console.log("from prices ", prices);
+        dispatch({
+          type: "FETCH_PRICES",
+          payload: prices,
+        });
+
+        // dispatch({
+        //   type: "LOCATION_NOT_FOUND",
+        //   payload: false,
+        // });
+        // if (locations.length === 0) {
+        //   dispatch({
+        //     type: "LOCATION_NOT_FOUND",
+        //     payload: true,
+        //   });
+        // }
       } else {
       }
     } catch (error) {

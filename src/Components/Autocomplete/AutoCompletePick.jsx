@@ -17,7 +17,7 @@ export const AutoCompletePick = (props) => {
 
   return (
     <div className="autoComplete">
-      {state.formSearchTransfer.pickUpLocation.map((lo, i) => (
+      {state.formSearchTransfer.pickUpLocation.slice(0, 5).map((lo, i) => (
         <li className="mt-1" key={i} onClick={() => handlerPickClick(lo)}>
           {lo.location}
         </li>

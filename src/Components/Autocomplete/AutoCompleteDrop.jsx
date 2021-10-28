@@ -16,7 +16,7 @@ export const AutoCompleteDrop = (props) => {
   };
   return (
     <div className="autoComplete-Drop">
-      {state.formSearchTransfer.dropLocation.map((lo, i) => (
+      {state.formSearchTransfer.dropLocation.slice(0, 5).map((lo, i) => (
         <li className="mt-1" key={i} onClick={() => handlerDropClick(lo)}>
           {lo.location}
         </li>

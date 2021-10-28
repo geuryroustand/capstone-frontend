@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./BookingDetails.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -10,8 +10,32 @@ import { BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
 import { MdFlight } from "react-icons/md";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { BookingFlightDetails } from "../../Components/BookingFlightDetails/BookingFlightDetails";
+import { useLocation } from "react-router";
+import { useDispatch } from "react-redux";
+import { fetchPrices } from "../../action";
+import { useSelector } from "react-redux";
 
 export const BookingDetails = () => {
+  const state = useSelector((state) => state);
+
+  const [prices] = state.formSearchTransfer.prices;
+  const dropPlace = prices?.dropPlace;
+  const pickupPlace = prices?.pickupPlace;
+
+  let query = new URLSearchParams(useLocation().search);
+  let passengers = query.get("passengers");
+  let arrivalDate = query.get("arrivalDate");
+  let departureDate = query.get("departureDate");
+  let journey = query.get("journey");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      fetchPrices(query.get("pickUpLocation"), query.get("dropLocation"))
+    );
+  }, []);
+
   return (
     <Container className="mt-5 main-booking-section">
       <Row>
@@ -30,40 +54,60 @@ export const BookingDetails = () => {
 
                 <div>
                   <div>
-                    <FaUserAlt />
+                    <FaUserAlt className="icon-fist-section" />
                     <span>Up to 4 passengers</span>
                   </div>
 
                   <div>
-                    <FaSuitcase />
+                    <FaSuitcase className="icon-fist-section" />
                     <span>Up to 4 suitcases</span>
                   </div>
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4}>
-              <p>Total Price One-Way</p>
-              <h3>149 $</h3>
+            <Col className="prices-section" xs={12} md={4}>
+              {journey === "OneWay" ? (
+                <>
+                  <p>Total Price One Way</p>
+                  <h3> {prices?.oneWayPriceTex1} $</h3>
+                </>
+              ) : (
+                <>
+                  <p>Total Price Round Trip</p>
+                  <h3> {prices?.roundTripPriceTaxi1} $</h3>
+                </>
+              )}
               <div>
                 <div>
-                  <BsCheckCircleFill />
+                  <BsCheckCircleFill
+                    style={{ color: "#003580", fontSize: "25px" }}
+                    className="mr-2"
+                  />
                   <span>FREE Cancellation</span>
                 </div>
                 <div>
-                  <BsCheckLg />
+                  <BsCheckLg
+                    style={{ color: "#147b22", fontSize: "25px" }}
+                    className="mr-2"
+                  />
                   <span>No hidden costs</span>
                 </div>
 
                 <div>
-                  <MdFlight />
+                  <MdFlight style={{ fontSize: "25px" }} className="mr-2" />
                   <span>Flight tracking</span>
                 </div>
                 <div>
-                  <VscWorkspaceTrusted />
+                  <VscWorkspaceTrusted
+                    style={{ color: "#003580", fontSize: "25px" }}
+                    className="mr-2"
+                  />
                   <span>Tried and trusted drivers</span>
                 </div>
               </div>
-              <Button>Select this vehicle </Button>
+              <Button className="mt-3 select-vehicle-btn ">
+                Select this vehicle{" "}
+              </Button>
             </Col>
           </Row>
 
@@ -78,40 +122,63 @@ export const BookingDetails = () => {
 
                 <div>
                   <div>
-                    <FaUserAlt />
-                    <span>Up to 4 passengers</span>
+                    <FaUserAlt className="icon-fist-section" />
+                    <span>Up to 8 passengers</span>
                   </div>
 
                   <div>
-                    <FaSuitcase />
-                    <span>Up to 4 suitcases</span>
+                    <FaSuitcase className="icon-fist-section" />
+                    <span>Up to 8 suitcases</span>
                   </div>
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4}>
-              <p>Total Price One-Way</p>
-              <h3>149 $</h3>
+            <Col className="prices-section" xs={12} md={4}>
+              {journey === "roundTrip" ? (
+                <>
+                  <p>Total Price Round Trip</p>
+                  <h3> {prices?.oneWayPriceTex2} $</h3>
+                </>
+              ) : (
+                <>
+                  <p>Total Price Round Trip</p>
+                  <h3> {prices?.roundTripPriceTaxi2} $</h3>
+                </>
+              )}
               <div>
                 <div>
-                  <BsCheckCircleFill />
+                  <BsCheckCircleFill
+                    style={{ color: "#003580", fontSize: "25px" }}
+                    className="mr-2"
+                  />
                   <span>FREE Cancellation</span>
                 </div>
                 <div>
-                  <BsCheckLg />
+                  <BsCheckLg
+                    style={{ color: "#147b22", fontSize: "25px" }}
+                    className="mr-2"
+                  />
                   <span>No hidden costs</span>
                 </div>
 
                 <div>
-                  <MdFlight />
+                  <MdFlight
+                    style={{ fontSize: "25px" }}
+                    className="mr-2 mb-1"
+                  />
                   <span>Flight tracking</span>
                 </div>
                 <div>
-                  <VscWorkspaceTrusted />
+                  <VscWorkspaceTrusted
+                    style={{ color: "#003580", fontSize: "25px" }}
+                    className="mr-2 mb-1"
+                  />
                   <span>Tried and trusted drivers</span>
                 </div>
               </div>
-              <Button>Select this vehicle </Button>
+              <Button className="mt-3 select-vehicle-btn ">
+                Select this vehicle{" "}
+              </Button>
             </Col>
           </Row>
         </Col>
