@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { selectDropDestination, selectPickedLocation } from "../../action";
+import { selectedDropLocation } from "../../action";
 
 import "./AutoCompleteDrop.css";
 
@@ -11,8 +11,8 @@ export const AutoCompleteDrop = (props) => {
   const dispatch = useDispatch();
 
   const handlerDropClick = (lo) => {
-    props.getDropLocation(lo);
-    dispatch(selectDropDestination([lo]));
+    props.handlerDropLocationAutoComplete(lo);
+    dispatch(selectedDropLocation([lo]));
   };
   return (
     <div className="autoComplete-Drop">

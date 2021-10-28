@@ -1,5 +1,5 @@
 import "./Hero.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 // import "react-datepicker/dist/react-datepicker-cssmodules.css";
@@ -7,32 +7,32 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
 import {
-  fetchDropLocations,
   fetchLocations,
-  selectPickedLocation,
+  selectedDropLocation,
+  selectedPickLocation,
 } from "../../action";
 import { connect, useSelector } from "react-redux";
-import { AutoComplete } from "../Autocomplete/AutoComplete";
+import { AutoCompletePick } from "../Autocomplete/AutoCompletePick";
 import { AutoCompleteDrop } from "../Autocomplete/AutoCompleteDrop";
+import { useHistory } from "react-router";
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPickLocation: (searchPick) => dispatch(fetchLocations(searchPick)),
-  fetchDropLocation: (searchDrop) => dispatch(fetchDropLocations(searchDrop)),
+  sendPickLocation: (location) => dispatch(selectedPickLocation(location)),
+  sendDropLocation: (location) => dispatch(selectedDropLocation(location)),
 });
 
 const mapStateToProps = (state) => state;
 
-const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
+const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
   const state = useSelector((state) => state);
   const [roundTrip, setRoundTrip] = useState("OneWay");
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
 
   const [dataToSend, setDataToSend] = useState({
-    pickUpLocation: pickupLocation,
-    selectedPickLocation: "",
-    selectedDropLocation: "",
-    dropLocation: dropLocation,
+    pickUpLocation: "",
+    dropLocation: "",
     arrivalDate: "",
     departureDate: "",
     oneWay: "",
@@ -42,26 +42,53 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
 
   // const [startDate, setStartDate] = useState(new Date());
 
-  const pickLocation = (lo) => {
+  const handlerPickLocationAutoComplete = (lo) => {
     setPickupLocation(lo.location);
   };
 
-  const getDropLocation = (lo) => {
+  const handlerDropLocationAutoComplete = (lo) => {
     setDropLocation(lo.location);
   };
-  const ref = useRef(pickupLocation);
-  console.log(ref.current);
+
+  useEffect(() => {
+    fetchPickLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handlerData = (key, value) => {
     setDataToSend({
       ...dataToSend,
       [key]: value,
     });
+    console.log(key);
+    if (key === "pickUpLocation") {
+      let matches = state.formSearchTransfer.locations.filter((lo) => {
+        const regex = new RegExp(`${value}`, "gi");
+
+        return lo.location.match(regex);
+      });
+      sendPickLocation(matches);
+    }
+
+    if (key === "dropLocation") {
+      let matches = state.formSearchTransfer.locations.filter((lo) => {
+        const regex = new RegExp(`${value}`, "gi");
+
+        return lo.location.match(regex);
+      });
+      sendDropLocation(matches);
+    }
   };
+  const history = useHistory();
 
   const handlerSubmit = async (e) => {
     try {
       e.preventDefault();
+
+      history.push(
+        `/bookingDetails?pickUpLocation=${dataToSend.pickUpLocation}&dropLocation=${dataToSend.dropLocation}&arrivalDate${dataToSend.arrivalDate}`
+      );
+
       console.log(dataToSend);
     } catch (error) {
       console.log(error);
@@ -131,9 +158,7 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                         onChange={(e) => setPickupLocation(e.target.value)}
                       />
 
-                      {pickLocation.length > 0 && (
-                        <ImLocation className="location-icon" />
-                      )}
+                      <ImLocation className="location-icon" />
                     </Col>
                     <Col className="input-col">
                       <input
@@ -218,26 +243,29 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     name=""
                     id=""
                     placeholder="Enter pick-up location "
-                    value={pickupLocation}
-                    // ref={ref}
-                    // defaultValue={
-                    //   state.formSearchTransfer.pickUpLocation.location
-                    // }
-                    onChange={(e) => setPickupLocation(e.target.value)}
-                    onChange={(e) => fetchPickLocation(e.target.value)}
+                    value={
+                      pickupLocation
+                        ? pickupLocation
+                        : dataToSend.pickUpLocation
+                    }
+                    onChange={(e) =>
+                      handlerData("pickUpLocation", e.target.value)
+                    }
                   />
 
                   <ImLocation className="location-icon" />
                 </Col>
-                {/* state.formSearchTransfer.selectedPickLocation? */}
                 {state.formSearchTransfer.pickUpLocation.length > 1 ? (
-                  <AutoComplete pickLocation={pickLocation} />
+                  <AutoCompletePick
+                    handlerPickLocationAutoComplete={
+                      handlerPickLocationAutoComplete
+                    }
+                  />
                 ) : state.formSearchTransfer.selectedPickLocation ? (
                   ""
                 ) : (
                   ""
                 )}
-                {/* pickupLocation={pickLocation} */}
                 <Col className="input-col">
                   <input
                     className="search-input"
@@ -245,19 +273,22 @@ const Hero = ({ fetchPickLocation, fetchDropLocation }) => {
                     name=""
                     id=""
                     placeholder="Enter destination "
-                    // ref={ref}
-                    // defaultValue={
-                    //   state.formSearchTransfer.pickUpLocation.location
-                    // }
-                    value={dropLocation}
-                    onChange={(e) => setDropLocation(e.target.value)}
-                    onChange={(e) => fetchDropLocation(e.target.value)}
+                    value={
+                      dropLocation ? dropLocation : dataToSend.dropLocation
+                    }
+                    onChange={(e) =>
+                      handlerData("dropLocation", e.target.value)
+                    }
                   />
 
                   <ImLocation className="location-icon" />
                 </Col>
                 {state.formSearchTransfer.dropLocation.length > 1 ? (
-                  <AutoCompleteDrop getDropLocation={getDropLocation} />
+                  <AutoCompleteDrop
+                    handlerDropLocationAutoComplete={
+                      handlerDropLocationAutoComplete
+                    }
+                  />
                 ) : state.formSearchTransfer.selectedPickLocation ? (
                   ""
                 ) : (

@@ -1,4 +1,3 @@
-import React from "react";
 import { initialState } from "../store";
 
 export default function getLocationReducer(
@@ -6,21 +5,12 @@ export default function getLocationReducer(
   action
 ) {
   switch (action.type) {
-    case "FETCH_LOCATIONS_PICKUP":
-      console.log(action.payload);
+    case "FETCH_LOCATIONS":
       return {
         ...state,
 
-        pickUpLocation: action.payload,
+        locations: action.payload,
 
-        // locations: state.locations.filter(location ),
-      };
-
-    case "FETCH_LOCATIONS_DROP":
-      console.log(action.payload);
-      return {
-        ...state,
-        dropLocation: action.payload,
         // locations: state.locations.filter(location ),
       };
 
@@ -30,19 +20,22 @@ export default function getLocationReducer(
         locationNotFound: action.payload,
       };
 
-    case "SET_PICK_UP":
+    case "SELECTED_PICK_UP_LOCATION":
+      console.log("pick from reducer", action.payload);
       return {
         ...state,
         pickUpLocation: action.payload,
-        selectedPickLocation: true,
+        // selectedPickLocation: true,
       };
 
-    case "SET_DROP_DESTINATION":
+    case "SELECTED_DROP_LOCATION":
+      console.log("drop", state);
       return {
         ...state,
         dropLocation: action.payload,
-        selectedDropLocation: true,
+        // locations: state.locations.filter(location ),
       };
+
     default:
       return state;
   }

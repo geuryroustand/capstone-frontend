@@ -1,19 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { selectPickedLocation } from "../../action";
+import { selectedPickLocation } from "../../action";
 
-import "./AutoComplete.css";
+import "./AutoCompletePick.css";
 
-export const AutoComplete = (props) => {
+export const AutoCompletePick = (props) => {
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
   const handlerPickClick = (lo) => {
-    // console.log(props.pickLocation);
-    props.pickLocation(lo);
-    dispatch(selectPickedLocation([lo]));
+    props.handlerPickLocationAutoComplete(lo);
+    dispatch(selectedPickLocation([lo]));
   };
 
   return (
