@@ -31,12 +31,10 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
   const [dropLocation, setDropLocation] = useState("");
 
   const [dataToSend, setDataToSend] = useState({
-    pickUpLocation: "",
-    dropLocation: "",
+    pickupLocation: pickupLocation,
+    dropLocation: dropLocation,
     arrivalDate: "",
     departureDate: "",
-    oneWay: "",
-    roundTrip: "",
     passengers: "",
   });
 
@@ -60,7 +58,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
       ...dataToSend,
       [key]: value,
     });
-    console.log(key);
+
     if (key === "pickUpLocation") {
       let matches = state.formSearchTransfer.locations.filter((lo) => {
         const regex = new RegExp(`${value}`, "gi");
@@ -86,10 +84,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
       e.preventDefault();
 
       history.push(
-        `/bookingDetails?pickUpLocation=${dataToSend.pickUpLocation}&dropLocation=${dataToSend.dropLocation}&arrivalDate${dataToSend.arrivalDate}`
+        `/bookingDetails?pickUpLocation=${pickupLocation}&dropLocation=${dropLocation}&arrivalDate=${dataToSend.arrivalDate}&departureDate=${dataToSend.departureDate}&journey=${roundTrip}&passengers=${dataToSend.passengers}`
       );
-
-      console.log(dataToSend);
     } catch (error) {
       console.log(error);
     }
@@ -246,7 +242,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     value={
                       pickupLocation
                         ? pickupLocation
-                        : dataToSend.pickUpLocation
+                        : dataToSend.pickupLocation
                     }
                     onChange={(e) =>
                       handlerData("pickUpLocation", e.target.value)

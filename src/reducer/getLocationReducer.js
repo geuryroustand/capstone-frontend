@@ -21,7 +21,6 @@ export default function getLocationReducer(
       };
 
     case "SELECTED_PICK_UP_LOCATION":
-      console.log("pick from reducer", action.payload);
       return {
         ...state,
         pickUpLocation: action.payload,
@@ -29,11 +28,9 @@ export default function getLocationReducer(
       };
 
     case "SELECTED_DROP_LOCATION":
-      console.log("drop", state);
       return {
         ...state,
         dropLocation: action.payload,
-        // locations: state.locations.filter(location ),
       };
 
     default:
