@@ -1,0 +1,79 @@
+.main-steps-section {
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+}
+.first-step-section {
+  position: relative;
+}
+
+.first-step {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #003580;
+  color: white;
+  text-align: center;
+}
+
+.border-line {
+  position: absolute;
+  left: 35px;
+  top: 15px;
+  height: 4px;
+  border-bottom: solid 2px#F0A500;
+  width: 18.6rem;
+}
+
+.second-step-section {
+  position: relative;
+}
+
+.second-step {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #003580;
+  opacity: 0.4;
+  color: white;
+  text-align: center;
+}
+
+.border-line-second-step {
+  position: absolute;
+  left: 35px;
+  top: 15px;
+  height: 4px;
+  border-bottom: solid 2px#726c6c;
+  width: 18.6rem;
+}
+
+.third-step-section {
+  position: relative;
+}
+
+.third-step {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #003580;
+  opacity: 0.4;
+  color: white;
+  text-align: center;
+}
+
+.border-line-third-step {
+  position: absolute;
+  left: 35px;
+  top: 15px;
+  height: 4px;
+  /* border-bottom: solid 2px#726c6c; */
+  /* width: 16.3rem; */
+}

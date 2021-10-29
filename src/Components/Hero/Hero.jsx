@@ -200,6 +200,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         }
                         name=""
                         id=""
+                        required
                       />
                     </Col>
                     <Col className="input-col select-passenger-section">
@@ -242,6 +243,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     name=""
                     id=""
                     placeholder="Enter pick-up location "
+                    required
                     value={
                       pickupLocation
                         ? pickupLocation

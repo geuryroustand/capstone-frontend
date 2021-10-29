@@ -14,6 +14,7 @@ import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { fetchPrices } from "../../action";
 import { useSelector } from "react-redux";
+import { BookingSteps } from "../../Components/BookingSteps/BookingSteps";
 
 export const BookingDetails = () => {
   const state = useSelector((state) => state);
@@ -37,8 +38,9 @@ export const BookingDetails = () => {
   }, []);
 
   return (
-    <Container className="mt-5 main-booking-section">
+    <Container className="mt-3 main-booking-section">
       <Row>
+        <BookingSteps />
         <Col xs={12} md={5}>
           <BookingFlightDetails />
         </Col>
