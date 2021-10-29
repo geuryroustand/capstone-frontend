@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register/Register";
 import { BookingDetails } from "./pages/BookingDetails/BookingDetails";
+import { PassengerDetails } from "./pages/PassengerDetails/PassengerDetails";
 
 function App() {
   return (
@@ -15,8 +16,11 @@ function App() {
         <Route path="/register" exact>
           <Register />
         </Route>
-        <Route path="/bookingDetails">
+        <Route path="/bookingDetails" exact>
           <BookingDetails />
+        </Route>
+        <Route path="/passengerDetails/:step2" exact>
+          <PassengerDetails />
         </Route>
       </Switch>
     </Layout>

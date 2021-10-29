@@ -143,7 +143,7 @@ export const BookingDetails = () => {
                 </>
               ) : (
                 <>
-                  <p>Total Price Round Trip</p>
+                  <p>Total Price One Way</p>
                   <h3> {prices?.roundTripPriceTaxi2} $</h3>
                 </>
               )}

@@ -1,0 +1,57 @@
+.form-passenger {
+  background-color: white !important;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.flight-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.heading-location {
+  background-color: #163b6e;
+  font-size: 17px;
+  height: 40px;
+  margin-bottom: 0px;
+  padding: 10px;
+  color: white;
+  /* border-radius: 10px; */
+}
+
+.add-return {
+  color: black;
+  padding: 10px;
+}
+
+.add-btn {
+  background-color: #f0a500;
+  border: none;
+  margin-left: 410px;
+  height: 3.6rem;
+  width: 20rem;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-btn:hover {
+  background-color: #163b6e;
+}
+
+.continue-btn {
+  background-color: #003580;
+  border: none;
+  margin-left: 410px;
+  margin-top: 35px;
+  height: 3.6rem;
+  width: 20rem;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.continue-btn:hover {
+  background-color: #f0a500;
+}
