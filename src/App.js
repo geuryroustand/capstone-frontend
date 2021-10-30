@@ -19,7 +19,7 @@ function App() {
         <Route path="/bookingDetails" exact>
           <BookingDetails />
         </Route>
-        <Route path="/passengerDetails/:step2" exact>
+        <Route path="/passengerDetails" exact>
           <PassengerDetails />
         </Route>
       </Switch>

@@ -123,3 +123,12 @@ export const selectedDropLocation = (drop) => {
     });
   };
 };
+
+export const taxiOptionSelected = (taxiSelected) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "TAXI_SELECTED",
+      payload: taxiSelected,
+    });
+  };
+};

@@ -10,9 +10,9 @@ import { BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
 import { MdFlight } from "react-icons/md";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { BookingFlightDetails } from "../../Components/BookingFlightDetails/BookingFlightDetails";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
-import { fetchPrices } from "../../action";
+import { fetchPrices, taxiOptionSelected } from "../../action";
 import { useSelector } from "react-redux";
 import { BookingSteps } from "../../Components/BookingSteps/BookingSteps";
 
@@ -24,11 +24,15 @@ export const BookingDetails = () => {
   const pickupPlace = prices?.pickupPlace;
 
   let query = new URLSearchParams(useLocation().search);
-  let passengers = query.get("passengers");
+
+  let pickUpLocation = query.get("pickUpLocation");
+  let dropLocation = query.get("dropLocation");
   let arrivalDate = query.get("arrivalDate");
   let departureDate = query.get("departureDate");
   let journey = query.get("journey");
+  let passengers = query.get("passengers");
 
+  console.log(departureDate);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,6 +40,24 @@ export const BookingDetails = () => {
       fetchPrices(query.get("pickUpLocation"), query.get("dropLocation"))
     );
   }, []);
+
+  const history = useHistory();
+
+  const handlerTaxiPickOption = (taxiOption) => {
+    dispatch(
+      taxiOptionSelected({
+        pickUpLocation,
+        dropLocation,
+        arrivalDate,
+        departureDate,
+        journey,
+        passengers,
+        taxiOption,
+      })
+    );
+
+    history.push(`/passengerDetails?step2=true`);
+  };
 
   return (
     <Container className="mt-3 main-booking-section">
@@ -67,7 +89,7 @@ export const BookingDetails = () => {
                 </div>
               </div>
             </Col>
-            <Col className="prices-section" xs={12} md={4}>
+            <Col className="prices-section" xs={12} lg={4}>
               {journey === "OneWay" ? (
                 <>
                   <p>Total Price One Way</p>
@@ -107,7 +129,10 @@ export const BookingDetails = () => {
                   <span>Tried and trusted drivers</span>
                 </div>
               </div>
-              <Button className="mt-3 select-vehicle-btn ">
+              <Button
+                onClick={(e) => handlerTaxiPickOption("taxiOneOption")}
+                className="mt-3 select-vehicle-btn "
+              >
                 Select this vehicle{" "}
               </Button>
             </Col>
@@ -135,16 +160,16 @@ export const BookingDetails = () => {
                 </div>
               </div>
             </Col>
-            <Col className="prices-section" xs={12} md={4}>
+            <Col className="prices-section" xs={12} lg={4}>
               {journey === "roundTrip" ? (
                 <>
                   <p>Total Price Round Trip</p>
-                  <h3> {prices?.oneWayPriceTex2} $</h3>
+                  <h3> {prices?.roundTripPriceTaxi2} $</h3>
                 </>
               ) : (
                 <>
                   <p>Total Price One Way</p>
-                  <h3> {prices?.roundTripPriceTaxi2} $</h3>
+                  <h3> {prices?.oneWayPriceTex2} $</h3>
                 </>
               )}
               <div>
@@ -178,7 +203,10 @@ export const BookingDetails = () => {
                   <span>Tried and trusted drivers</span>
                 </div>
               </div>
-              <Button className="mt-3 select-vehicle-btn ">
+              <Button
+                onClick={(e) => handlerTaxiPickOption("taxiTwoOption")}
+                className="mt-3 select-vehicle-btn "
+              >
                 Select this vehicle{" "}
               </Button>
             </Col>

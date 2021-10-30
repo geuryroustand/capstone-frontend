@@ -39,6 +39,12 @@ export default function getLocationReducer(
         dropLocation: action.payload,
       };
 
+    case "TAXI_SELECTED":
+      return {
+        ...state,
+        taxiSelected: action.payload,
+      };
+
     default:
       return state;
   }

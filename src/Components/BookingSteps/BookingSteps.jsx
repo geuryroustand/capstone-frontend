@@ -1,12 +1,17 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useLocation } from "react-router";
 import "./BookingSteps.css";
 
 export const BookingSteps = () => {
-  const { step2 } = useParams();
+  let query = new URLSearchParams(useLocation().search);
 
+  let step2 = query.get("step2");
+
+  console.log(step2);
   // console.log(step2);
+  // let step2 = "step2";
+
   return (
     <Container>
       <div className="d-flex mb-3 main-steps-section">
@@ -15,7 +20,7 @@ export const BookingSteps = () => {
             <p>1</p>
           </div>
           <p
-            style={step2 && { borderBottom: "solid 2px#726c6c" }}
+            style={step2 && { borderBottom: "solid 3px#726c6c" }}
             className="border-line"
           ></p>
           {/* <p>Choose your taxi</p> */}
@@ -26,7 +31,7 @@ export const BookingSteps = () => {
             <p>2</p>
           </div>
           <p
-            style={step2 && { borderBottom: "solid 2px#F0A500" }}
+            style={step2 && { borderBottom: "solid 3px#F0A500" }}
             className="border-line-second-step"
           ></p>
         </div>
