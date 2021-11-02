@@ -1,21 +1,54 @@
 import React, { useState } from "react";
 import { Col, Container, Row, Form, Button, Modal } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { BookingFlightDetails } from "../../Components/BookingFlightDetails/BookingFlightDetails";
 import { BookingSteps } from "../../Components/BookingSteps/BookingSteps";
 import "./PassengerDetails.css";
+import { taxiOptionSelected } from "../../action";
+
 export const PassengerDetails = () => {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const history = useHistory();
   const [addReturnTaxi, setAddReturnTaxi] = useState();
 
-  const state = useSelector((state) => state);
   const { taxiSelected, prices } = state.formSearchTransfer;
   const [pricesTaxi] = prices;
 
-  console.log(addReturnTaxi);
+  const [transferDetails, setTransfersDetails] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    phoneNumber: "",
+
+    arrivalAirlineName: "",
+    arrivalFlightNumber: "",
+    arrivalDepartureAirport: "",
+
+    departureAirlineName: "",
+    departureFlightNumber: "",
+    departureDepartureAirport: "",
+
+    taxiSelectedInfo: taxiSelected,
+  });
 
   const handlerReturnTransferAndModal = (e) => {
     e.preventDefault();
     setAddReturnTaxi(!addReturnTaxi);
+  };
+
+  const handlerFlightInfoAndPassengerDetails = (key, value) => {
+    setTransfersDetails({ ...transferDetails, [key]: value });
+  };
+
+  const handlerSubmit = (e) => {
+    console.log(e);
+    e.preventDefault();
+    dispatch(taxiOptionSelected(transferDetails));
+
+    history.push("/paymentDetails?step3=true");
   };
 
   return (
@@ -28,23 +61,53 @@ export const PassengerDetails = () => {
 
         <Col xs={12} md={8}>
           <h3 className="mb-5 mt-3">Passenger details</h3>
-          <Form>
+          <Form onSubmit={handlerSubmit}>
             <div className="form-passenger">
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter name" />
+                  <Form.Control
+                    value={transferDetails.name}
+                    onChange={(e) =>
+                      handlerFlightInfoAndPassengerDetails(
+                        "name",
+                        e.target.value
+                      )
+                    }
+                    type="text"
+                    placeholder="Enter name"
+                  />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Surname</Form.Label>
-                  <Form.Control type="text" placeholder="surname" />
+                  <Form.Control
+                    value={transferDetails.surname}
+                    type="text"
+                    placeholder="surname"
+                    onChange={(e) =>
+                      handlerFlightInfoAndPassengerDetails(
+                        "surname",
+                        e.target.value
+                      )
+                    }
+                  />
                 </Form.Group>
               </Form.Row>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control
+                  value={transferDetails.email}
+                  onChange={(e) =>
+                    handlerFlightInfoAndPassengerDetails(
+                      "email",
+                      e.target.value
+                    )
+                  }
+                  type="email"
+                  placeholder="Enter email"
+                />
                 <Form.Text className="text-muted">
                   We'll send your booking voucher here.
                 </Form.Text>
@@ -56,17 +119,27 @@ export const PassengerDetails = () => {
                 <Form.Control type="text" placeholder="Enter email" /> */}
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Group as={Col}>
                   <Form.Label>Mobile number</Form.Label>
-                  <Form.Control type="number" placeholder="Mobile number" />
+                  <Form.Control
+                    value={transferDetails.phoneNumber}
+                    type="number"
+                    onChange={(e) =>
+                      handlerFlightInfoAndPassengerDetails(
+                        "phoneNumber",
+                        e.target.value
+                      )
+                    }
+                    placeholder="Mobile number"
+                  />
                 </Form.Group>
               </Form.Row>
             </div>
             <h3 className="mb-5 mt-5">Add flight details</h3>
             <h5 className=" heading-location ">
-              FROM: {taxiSelected?.pickUpLocation.toUpperCase()}{" "}
+              FROM: {taxiSelected?.pickUpLocation?.toUpperCase()}{" "}
               <span className="pr-1">TO</span>
-              {taxiSelected?.dropLocation.toUpperCase()}
+              {taxiSelected?.dropLocation?.toUpperCase()}
             </h5>
             <div className="flight-info">
               <Row>
@@ -81,6 +154,13 @@ export const PassengerDetails = () => {
                     <Form.Control
                       type="text"
                       placeholder="Enter Airline Name"
+                      value={transferDetails.arrivalAirlineName}
+                      onChange={(e) =>
+                        handlerFlightInfoAndPassengerDetails(
+                          "arrivalAirlineName",
+                          e.target.value
+                        )
+                      }
                     />
                   </Form.Group>
                   <Form.Group controlId="formGroupPassword">
@@ -88,6 +168,13 @@ export const PassengerDetails = () => {
                     <Form.Control
                       type="text"
                       placeholder="Enter Flight number"
+                      value={transferDetails.arrivalFlightNumber}
+                      onChange={(e) =>
+                        handlerFlightInfoAndPassengerDetails(
+                          "arrivalFlightNumber",
+                          e.target.value
+                        )
+                      }
                     />
                   </Form.Group>
 
@@ -96,6 +183,13 @@ export const PassengerDetails = () => {
                     <Form.Control
                       type="text"
                       placeholder="Where are you flying from?"
+                      value={transferDetails.arrivalDepartureAirport}
+                      onChange={(e) =>
+                        handlerFlightInfoAndPassengerDetails(
+                          "arrivalDepartureAirport",
+                          e.target.value
+                        )
+                      }
                     />
                   </Form.Group>
                 </Col>
@@ -104,7 +198,10 @@ export const PassengerDetails = () => {
             {/* ADDING RETURN FLIGHT   */}
             {taxiSelected?.journey === "OneWay" && (
               <div className=" mt-4 heading-location  ">
-                <h5>RETURNING BACK TO SAMANÁ EL CATEY AIRPORT(AZS) ?</h5>
+                <h5>
+                  RETURNING BACK TO{" "}
+                  {taxiSelected?.pickUpLocation?.toUpperCase()} ?
+                </h5>
 
                 <p className="add-return ">
                   Make it a return journey for an additional
@@ -131,6 +228,13 @@ export const PassengerDetails = () => {
                           <Form.Control
                             type="text"
                             placeholder="Enter Airline Name"
+                            value={transferDetails.departureAirlineName}
+                            onChange={(e) =>
+                              handlerFlightInfoAndPassengerDetails(
+                                "departureAirlineName",
+                                e.target.value
+                              )
+                            }
                           />
                         </Form.Group>
                         <Form.Group controlId="formGroupPassword">
@@ -138,6 +242,15 @@ export const PassengerDetails = () => {
                           <Form.Control
                             type="text"
                             placeholder="Enter Flight number"
+                            value={
+                              transferDetails.departureDepartureFlightNumber
+                            }
+                            onChange={(e) =>
+                              handlerFlightInfoAndPassengerDetails(
+                                "departureDepartureFlightNumber",
+                                e.target.value
+                              )
+                            }
                           />
                         </Form.Group>
 
@@ -146,6 +259,13 @@ export const PassengerDetails = () => {
                           <Form.Control
                             type="text"
                             placeholder="Where are you flying from?"
+                            value={transferDetails.departureDepartureAirport}
+                            onChange={(e) =>
+                              handlerFlightInfoAndPassengerDetails(
+                                "departureDepartureAirport",
+                                e.target.value
+                              )
+                            }
                           />
                         </Form.Group>
                       </Col>
@@ -153,7 +273,9 @@ export const PassengerDetails = () => {
                   </div>
                 )}
 
-                <Button className="continue-btn"> Continue</Button>
+                <Button type="submit" className="continue-btn">
+                  Continue
+                </Button>
               </div>
             )}
             {/* RETURN FLIGHT INFORMATION  */}
@@ -161,9 +283,9 @@ export const PassengerDetails = () => {
             {taxiSelected?.journey === "roundTrip" ? (
               <>
                 <h5 className=" mt-4 heading-location ">
-                  RETURN: {taxiSelected?.dropLocation.toUpperCase()}
+                  RETURN: {taxiSelected?.dropLocation?.toUpperCase()}
                   <span className="pl-1 pr-1">TO</span>
-                  {taxiSelected?.pickUpLocation.toUpperCase()}
+                  {taxiSelected?.pickUpLocation?.toUpperCase()}
                 </h5>
 
                 <div className="flight-info ">
@@ -179,6 +301,13 @@ export const PassengerDetails = () => {
                         <Form.Control
                           type="text"
                           placeholder="Enter Airline Name"
+                          value={transferDetails.departureAirlineName}
+                          onChange={(e) =>
+                            handlerFlightInfoAndPassengerDetails(
+                              "departureAirlineName",
+                              e.target.value
+                            )
+                          }
                         />
                       </Form.Group>
                       <Form.Group controlId="formGroupPassword">
@@ -186,6 +315,13 @@ export const PassengerDetails = () => {
                         <Form.Control
                           type="text"
                           placeholder="Enter Flight number"
+                          value={transferDetails.departureFlightNumber}
+                          onChange={(e) =>
+                            handlerFlightInfoAndPassengerDetails(
+                              "departureFlightNumber",
+                              e.target.value
+                            )
+                          }
                         />
                       </Form.Group>
 
@@ -194,6 +330,13 @@ export const PassengerDetails = () => {
                         <Form.Control
                           type="text"
                           placeholder="Where are you flying from?"
+                          value={transferDetails.departureDepartureAirport}
+                          onChange={(e) =>
+                            handlerFlightInfoAndPassengerDetails(
+                              "departureDepartureAirport",
+                              e.target.value
+                            )
+                          }
                         />
                       </Form.Group>
                     </Col>
@@ -214,7 +357,10 @@ export const PassengerDetails = () => {
                 Add your return{" "}
               </Button>
             ) : (
-              <Button className=" continue-btn"> Continue</Button>
+              <Button type="submit" className=" continue-btn">
+                {" "}
+                Continue
+              </Button>
             )}
           </Form>
         </Col>
