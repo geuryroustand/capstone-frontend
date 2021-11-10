@@ -1,3 +1,10 @@
+# Capstone Frotend
+
+### This is the frontend of the final project of my coding Bootcamp course at Strive School, it is not finished yet I am working to finish it and add the features that it needs.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
