@@ -1,3 +1,10 @@
+#### Capstone Frotend
+
+##Please note that this project is still developing it and there are a lot of missing features that I'm going to implement it
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
