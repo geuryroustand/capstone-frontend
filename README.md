@@ -1,6 +1,6 @@
-#### Capstone Frotend
+# Capstone Frotend
 
-##Please note that this project is still developing it and there are a lot of missing features that I'm going to implement it
+## Please note that this project is still developing it and there are a lot of missing features that I'm going to implement it
 
 
 
