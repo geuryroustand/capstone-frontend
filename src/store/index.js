@@ -11,6 +11,7 @@ export const initialState = {
     prices: [],
     pickUpLocation: [],
     dropLocation: [],
+
     taxiSelected: {
       passengers: "1",
     },

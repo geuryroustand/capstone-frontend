@@ -1,11 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { format, parseISO } from "date-fns";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router";
+
+import { parseISO, format } from "date-fns";
 import "./BookingFlightDetails.css";
 
 export const BookingFlightDetails = () => {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const [taxiPrice, setTaxiPrice] = useState("");
 
   const [prices] = state.formSearchTransfer.prices;
   const taxiSelected = state.formSearchTransfer.taxiSelected;
@@ -21,7 +25,24 @@ export const BookingFlightDetails = () => {
   let step2 = query.get("step2");
   let step3 = query.get("step3");
 
-  console.log(taxiSelected.taxiSelectedInfo?.taxiOption);
+  // console.log(
+  //   "sss",
+  //   taxiSelected.taxiOption === "taxiOneOption" &&
+  //     taxiSelected.journey === "OneWay"
+  //     ? prices?.oneWayPriceTex1
+  //     : ""
+  // );
+
+  // dispatch(
+  //   taxiPriceSelected({
+  //     price:
+  //       taxiSelected.taxiOption === "taxiOneOption" &&
+  //       taxiSelected.journey === "OneWay"
+  //         ? prices?.oneWayPriceTex1
+  //         : "",
+  //   })
+  // );
+
   return (
     <div className="main-flight-details">
       <h3 className="mb-5">Your booking details</h3>
@@ -46,31 +67,29 @@ export const BookingFlightDetails = () => {
         {step2
           ? format(
               parseISO(
-                taxiSelected.arrivalDate
-                  ? taxiSelected.arrivalDate
-                  : taxiSelected.taxiSelectedInfo?.arrivalDate
+                taxiSelected?.arrivalDate
+                  ? taxiSelected?.arrivalDate
+                  : taxiSelected?.arrivalDate
               ),
-              "PPPP"
+
+              "EEEE d, MMM  yyyy"
             )
           : format(
-              parseISO(
-                arrivalDate
-                  ? arrivalDate
-                  : taxiSelected.taxiSelectedInfo?.arrivalDate
-              ),
-              "PPPP"
+              parseISO(arrivalDate ? arrivalDate : taxiSelected?.arrivalDate),
+              " EEEE d, MMM  yyyy"
             )}
       </h3>
+
       {step2 ? (
         <h3>
           At{" "}
           {format(
             parseISO(
-              taxiSelected.arrivalDate
-                ? taxiSelected.arrivalDate
-                : taxiSelected.taxiSelectedInfo?.arrivalDate
+              taxiSelected?.arrivalDate
+                ? taxiSelected?.arrivalDate
+                : taxiSelected?.arrivalDate
             ),
-            "p"
+            "k : mm"
           )}
         </h3>
       ) : (
@@ -78,19 +97,15 @@ export const BookingFlightDetails = () => {
           {" "}
           At{" "}
           {format(
-            parseISO(
-              arrivalDate
-                ? arrivalDate
-                : taxiSelected.taxiSelectedInfo?.arrivalDate
-            ),
-            "p"
+            parseISO(arrivalDate ? arrivalDate : taxiSelected?.arrivalDate),
+            "k : mm"
           )}
         </h3>
       )}
 
       {departureDate ||
-      taxiSelected.departureDate ||
-      taxiSelected.taxiSelectedInfo?.departureDate ? (
+      taxiSelected?.departureDate ||
+      taxiSelected?.departureDate ? (
         <>
           <hr />
           <p>Departure Date</p>
@@ -98,22 +113,20 @@ export const BookingFlightDetails = () => {
             <h3>
               {format(
                 parseISO(
-                  taxiSelected.departureDate
-                    ? taxiSelected.departureDate
-                    : taxiSelected.taxiSelectedInfo?.departureDate
+                  taxiSelected?.departureDate
+                    ? taxiSelected?.departureDate
+                    : taxiSelected?.departureDate
                 ),
-                "PPPP-p"
+                "EEEE d, MMM  yyyy"
               )}
             </h3>
           ) : (
             <h3>
               {format(
                 parseISO(
-                  departureDate
-                    ? departureDate
-                    : taxiSelected.taxiSelectedInfo?.departureDate
+                  departureDate ? departureDate : taxiSelected?.departureDate
                 ),
-                "PPPP-p"
+                "EEEE d, MMM  yyyy"
               )}
             </h3>
           )}
@@ -123,11 +136,11 @@ export const BookingFlightDetails = () => {
               At{" "}
               {format(
                 parseISO(
-                  taxiSelected.departureDate
-                    ? taxiSelected.departureDate
-                    : taxiSelected.taxiSelectedInfo?.departureDate
+                  taxiSelected?.departureDate
+                    ? taxiSelected?.departureDate
+                    : taxiSelected?.departureDate
                 ),
-                "p"
+                "k : mm"
               )}
             </h3>
           ) : (
@@ -135,11 +148,9 @@ export const BookingFlightDetails = () => {
               At{" "}
               {format(
                 parseISO(
-                  departureDate
-                    ? departureDate
-                    : taxiSelected.taxiSelectedInfo?.departureDate
+                  departureDate ? departureDate : taxiSelected?.departureDate
                 ),
-                "p"
+                "k : mm"
               )}
             </h3>
           )}
@@ -183,7 +194,9 @@ export const BookingFlightDetails = () => {
           {taxiSelected.taxiSelectedInfo?.taxiOption && <p>Total Price</p>}
           {taxiSelected.taxiSelectedInfo?.taxiOption === "taxiOneOption" &&
             taxiSelected.taxiSelectedInfo?.journey === "OneWay" && (
-              <h3>$ {prices?.oneWayPriceTex1}</h3>
+              <>
+                <h3>$ {prices?.oneWayPriceTex1}</h3>
+              </>
             )}
 
           {taxiSelected?.taxiSelectedInfo?.taxiOption === "taxiTwoOption" &&

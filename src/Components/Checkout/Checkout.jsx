@@ -12,7 +12,24 @@ export const Checkout = () => {
   const stripe = useStripe();
   const { taxiSelected } = state?.formSearchTransfer;
 
-  console.log("hiiii", taxiSelected.email);
+  console.log(taxiSelected.email);
+  const {
+    name,
+    surname,
+    email,
+    phoneNumber,
+    arrivalAirlineName,
+    arrivalFlightNumber,
+    arrivalDepartureAirport,
+    departureAirlineName,
+    departureFlightNumber,
+    departureDepartureAirport,
+    arrivalDate,
+    departureDate,
+    journey,
+    passengers,
+    taxiOption,
+  } = taxiSelected;
 
   const handlerPayment = async (dataTo) => {
     const res = await fetch(
@@ -37,10 +54,10 @@ export const Checkout = () => {
         quantity: 1,
         price_data: {
           currency: "eur",
-          unit_amount: 10 * 100,
+          unit_amount: `${taxiSelected.price}` * 100,
           product_data: {
             name: `Private Airport Transfers`,
-            description: `Transfer from ${taxiSelected.taxiSelectedInfo.pickUpLocation} To ${taxiSelected.taxiSelectedInfo.dropLocation}`,
+            description: `Transfer from ${taxiSelected.pickUpLocation} To ${taxiSelected.dropLocation}`,
           },
         },
       },
@@ -49,6 +66,22 @@ export const Checkout = () => {
     const response = await handlerPayment({
       line_items,
       customer_email: taxiSelected.email,
+      ...taxiSelected,
+
+      // name,
+      // surname,
+      // phoneNumber,
+      // arrivalAirlineName,
+      // arrivalFlightNumber,
+      // arrivalDepartureAirport,
+      // departureAirlineName,
+      // departureFlightNumber,
+      // departureDepartureAirport,
+      // arrivalDate,
+      // departureDate,
+      // journey,
+      // passengers,
+      // taxiOption,
     });
 
     console.log(response);

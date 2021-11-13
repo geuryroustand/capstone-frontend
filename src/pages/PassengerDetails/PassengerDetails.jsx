@@ -31,7 +31,8 @@ export const PassengerDetails = () => {
     departureFlightNumber: "",
     departureDepartureAirport: "",
 
-    taxiSelectedInfo: taxiSelected,
+    // taxiSelectedInfo: taxiSelected,
+    ...taxiSelected,
   });
 
   const handlerReturnTransferAndModal = (e) => {

@@ -32,7 +32,6 @@ export const BookingDetails = () => {
   let journey = query.get("journey");
   let passengers = query.get("passengers");
 
-  console.log(departureDate);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +42,7 @@ export const BookingDetails = () => {
 
   const history = useHistory();
 
-  const handlerTaxiPickOption = (taxiOption) => {
+  const handlerTaxiPickOption = ({ taxiOption, price }) => {
     dispatch(
       taxiOptionSelected({
         pickUpLocation,
@@ -53,6 +52,7 @@ export const BookingDetails = () => {
         journey,
         passengers,
         taxiOption,
+        price,
       })
     );
 
@@ -130,7 +130,15 @@ export const BookingDetails = () => {
                 </div>
               </div>
               <Button
-                onClick={(e) => handlerTaxiPickOption("taxiOneOption")}
+                onClick={(e) =>
+                  handlerTaxiPickOption({
+                    taxiOption: "taxiOneOption",
+                    price:
+                      journey === "OneWay"
+                        ? prices?.oneWayPriceTex1
+                        : prices?.roundTripPriceTaxi1,
+                  })
+                }
                 className="mt-3 select-vehicle-btn "
               >
                 Select this vehicle{" "}
@@ -204,7 +212,15 @@ export const BookingDetails = () => {
                 </div>
               </div>
               <Button
-                onClick={(e) => handlerTaxiPickOption("taxiTwoOption")}
+                onClick={(e) =>
+                  handlerTaxiPickOption({
+                    taxiOption: "taxiTwoOption",
+                    price:
+                      journey === "roundTrip"
+                        ? prices?.roundTripPriceTaxi2
+                        : prices?.oneWayPriceTex2,
+                  })
+                }
                 className="mt-3 select-vehicle-btn "
               >
                 Select this vehicle{" "}
