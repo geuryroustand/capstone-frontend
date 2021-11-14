@@ -62,13 +62,13 @@ export const Checkout = () => {
             description: `Transfer from ${taxiSelected.pickUpLocation} To ${taxiSelected.dropLocation}`,
           },
         },
+        taxiSelected,
       },
     ];
 
     const response = await handlerPayment({
       line_items,
       customer_email: taxiSelected.email,
-      taxiSelected,
 
       // name,
       // surname,
