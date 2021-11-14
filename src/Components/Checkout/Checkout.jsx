@@ -33,9 +33,7 @@ export const Checkout = () => {
 
   const handlerPayment = async (dataTo) => {
     const res = await fetch(
-      `${
-        process.env.REACT_APP_API_DEV_URL || process.env.REACT_APP_API_PROD_URL
-      }/bookings/create-checkout-session`,
+      `https://enigmatic-inlet-91990.herokuapp.com/bookings/create-checkout-session`,
       {
         method: "POST",
         body: JSON.stringify(dataTo),
