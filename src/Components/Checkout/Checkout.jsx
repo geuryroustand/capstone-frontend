@@ -12,7 +12,6 @@ export const Checkout = () => {
   const stripe = useStripe();
   const { taxiSelected } = state?.formSearchTransfer;
 
-  console.log(taxiSelected.email);
   const {
     name,
     surname,
@@ -69,7 +68,7 @@ export const Checkout = () => {
     const response = await handlerPayment({
       line_items,
       customer_email: taxiSelected.email,
-      ...taxiSelected,
+      taxiSelected,
 
       // name,
       // surname,
