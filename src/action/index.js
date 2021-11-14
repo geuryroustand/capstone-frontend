@@ -22,7 +22,7 @@ export const fetchLocations = () => {
     try {
       // process.env.REACT_APP_API_DEV_URL || REACT_APP_API_PROD_URL
       let response = await fetch(
-        `${REACT_APP_API_PROD_URL}/locations`,
+        `${process.env.REACT_APP_API_PROD_URL}/locations`,
 
         {
           method: "GET",
