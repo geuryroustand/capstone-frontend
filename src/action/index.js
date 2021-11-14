@@ -67,7 +67,7 @@ export const fetchPrices = (queryPickupPlace, queryDropPlace) => {
     try {
       progress.start();
       let response = await fetch(
-        `http://localhost:3001/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
+        `${process.env.REACT_APP_API_PROD_URL}/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
