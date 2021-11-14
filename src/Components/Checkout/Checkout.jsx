@@ -12,23 +12,23 @@ export const Checkout = () => {
   const stripe = useStripe();
   const { taxiSelected } = state?.formSearchTransfer;
 
-  const {
-    name,
-    surname,
-    email,
-    phoneNumber,
-    arrivalAirlineName,
-    arrivalFlightNumber,
-    arrivalDepartureAirport,
-    departureAirlineName,
-    departureFlightNumber,
-    departureDepartureAirport,
-    arrivalDate,
-    departureDate,
-    journey,
-    passengers,
-    taxiOption,
-  } = taxiSelected;
+  // const {
+  //   name,
+  //   surname,
+  //   email,
+  //   phoneNumber,
+  //   arrivalAirlineName,
+  //   arrivalFlightNumber,
+  //   arrivalDepartureAirport,
+  //   departureAirlineName,
+  //   departureFlightNumber,
+  //   departureDepartureAirport,
+  //   arrivalDate,
+  //   departureDate,
+  //   journey,
+  //   passengers,
+  //   taxiOption,
+  // } = taxiSelected;
 
   const handlerPayment = async (dataTo) => {
     // ${
@@ -68,7 +68,7 @@ export const Checkout = () => {
     const response = await handlerPayment({
       line_items,
       customer_email: taxiSelected.email,
-      taxiSelected,
+      // taxiSelected,
       // name,
       // surname,
       // phoneNumber,
