@@ -21,7 +21,10 @@ export const fetchLocations = () => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        "http://localhost:3001/locations",
+        `${
+          process.env.REACT_APP_API_DEV_URL ||
+          process.env.REACT_APP_API_PROD_URL
+        }/locations`,
 
         {
           method: "GET",

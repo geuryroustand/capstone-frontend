@@ -33,7 +33,9 @@ export const Checkout = () => {
 
   const handlerPayment = async (dataTo) => {
     const res = await fetch(
-      `http://localhost:3001/bookings/create-checkout-session`,
+      `${
+        process.env.REACT_APP_API_DEV_URL || process.env.REACT_APP_API_PROD_URL
+      }/bookings/create-checkout-session`,
       {
         method: "POST",
         body: JSON.stringify(dataTo),
