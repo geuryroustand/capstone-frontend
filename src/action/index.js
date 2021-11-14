@@ -66,6 +66,8 @@ export const fetchPrices = (queryPickupPlace, queryDropPlace) => {
   return async (dispatch, getState) => {
     try {
       progress.start();
+      console.log("hiii");
+      console.log(process.env);
       let response = await fetch(
         `${process.env.REACT_APP_API_PROD_URL}/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
         {
