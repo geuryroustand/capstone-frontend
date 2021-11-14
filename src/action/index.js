@@ -21,6 +21,8 @@ export const fetchLocations = () => {
   return async (dispatch, getState) => {
     try {
       // process.env.REACT_APP_API_DEV_URL || REACT_APP_API_PROD_URL
+      console.log("hiii");
+      console.log(process.env);
       let response = await fetch(
         `${process.env.REACT_APP_API_PROD_URL}/locations`,
 
@@ -66,8 +68,7 @@ export const fetchPrices = (queryPickupPlace, queryDropPlace) => {
   return async (dispatch, getState) => {
     try {
       progress.start();
-      console.log("hiii");
-      console.log(process.env);
+
       let response = await fetch(
         `${process.env.REACT_APP_API_PROD_URL}/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
         {
