@@ -20,8 +20,9 @@ const progress = new ProgressBar({
 export const fetchLocations = () => {
   return async (dispatch, getState) => {
     try {
+      // process.env.REACT_APP_API_DEV_URL || REACT_APP_API_PROD_URL
       let response = await fetch(
-        `${process.env.REACT_APP_API_PROD_URL}/locations`,
+        `${REACT_APP_API_PROD_URL}/locations`,
 
         {
           method: "GET",
