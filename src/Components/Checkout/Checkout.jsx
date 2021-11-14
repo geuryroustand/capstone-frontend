@@ -45,7 +45,6 @@ export const Checkout = () => {
       }
     );
 
-    console.log("fffffffff", res);
     return await res.json();
   };
 
