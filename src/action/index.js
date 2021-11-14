@@ -21,10 +21,12 @@ export const fetchLocations = () => {
   return async (dispatch, getState) => {
     try {
       // process.env.REACT_APP_API_DEV_URL || REACT_APP_API_PROD_URL
-      console.log("hiii");
-      console.log(process.env.REACT_APP_API_PROD_URL);
+
       let response = await fetch(
-        `${process.env.REACT_APP_API_PROD_URL}/locations`,
+        `${
+          process.env.REACT_APP_API_PROD_URL ||
+          process.env.REACT_APP_API_DEV_URL
+        }/locations`,
 
         {
           method: "GET",
@@ -70,7 +72,10 @@ export const fetchPrices = (queryPickupPlace, queryDropPlace) => {
       progress.start();
 
       let response = await fetch(
-        `${process.env.REACT_APP_API_PROD_URL}/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
+        `${
+          process.env.REACT_APP_API_PROD_URL ||
+          process.env.REACT_APP_API_DEV_URL
+        }/locations/addPrices?pickupPlace=${queryPickupPlace}&dropPlace=${queryDropPlace}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
