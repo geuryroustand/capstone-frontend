@@ -45,6 +45,7 @@ export const Checkout = () => {
       }
     );
 
+    console.log("fffffffff", res);
     return await res.json();
   };
 
@@ -86,7 +87,7 @@ export const Checkout = () => {
       // taxiOption,
     });
 
-    console.log(response);
+    console.log("after fetch", response);
 
     const { sessionId } = await response;
 
