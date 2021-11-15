@@ -1,0 +1,15 @@
+.btn-check-out {
+  background-color: #f0a500;
+  border: none;
+
+  margin-top: 50px;
+  /* margin-left: 410px; */
+  height: 3.6rem;
+  width: 90%;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.btn-check-out:hover {
+  background-color: #163b6e;
+}

@@ -5,7 +5,6 @@ import HomePage from "./pages/HomePage";
 import Register from "./pages/Register/Register";
 import { BookingDetails } from "./pages/BookingDetails/BookingDetails";
 import { PassengerDetails } from "./pages/PassengerDetails/PassengerDetails";
-import { Stripe } from "./Components/Stripe/Stripe";
 import { Checkout } from "./Components/Checkout/Checkout";
 
 function App() {

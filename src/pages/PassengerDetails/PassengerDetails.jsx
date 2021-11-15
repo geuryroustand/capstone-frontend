@@ -49,7 +49,7 @@ export const PassengerDetails = () => {
     e.preventDefault();
     dispatch(taxiOptionSelected(transferDetails));
 
-    history.push("/paymentDetails?step3=true");
+    history.push("/paymentDetails?step3=true&&step2=true");
   };
 
   return (

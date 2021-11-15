@@ -52,14 +52,6 @@ export const BookingFlightDetails = () => {
 
       <p>To Location</p>
       <h3>{dropPlace?.location}</h3>
-      <p>Passengers</p>
-
-      <h3>{passengers === "" ? 1 : passengers}</h3>
-
-      {step2 && (
-        <h3>{taxiSelected.passengers === "" ? 1 : taxiSelected.passengers}</h3>
-      )}
-
       <hr />
 
       <p>Arrival Date</p>
@@ -158,6 +150,15 @@ export const BookingFlightDetails = () => {
       ) : (
         ""
       )}
+      <hr />
+      <p>Passengers</p>
+      <h3>{passengers === "" ? 1 : passengers}</h3>
+
+      {step2 || step3 ? (
+        <h3>{taxiSelected.passengers === "" ? 1 : taxiSelected.passengers}</h3>
+      ) : (
+        ""
+      )}
 
       {taxiSelected.taxiOption ? (
         <>
@@ -215,6 +216,17 @@ export const BookingFlightDetails = () => {
             taxiSelected?.taxiSelectedInfo?.journey === "roundTrip" && (
               <h3>$ {prices?.roundTripPriceTaxi2}</h3>
             )}
+        </>
+      )}
+      {step3 && (
+        <>
+          <hr />
+          <p>Passenger name</p>
+          <h3>
+            {taxiSelected.name} {taxiSelected.surname}
+          </h3>
+          <p>Passenger mobile</p>
+          <h3>{taxiSelected.phoneNumber}</h3>
         </>
       )}
 

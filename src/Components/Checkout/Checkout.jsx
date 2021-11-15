@@ -3,7 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { BookingFlightDetails } from "../BookingFlightDetails/BookingFlightDetails";
 import { BookingSteps } from "../BookingSteps/BookingSteps";
 import { useStripe } from "@stripe/react-stripe-js";
-
+import stripePayments from "../../images/stripe.png";
 import "./Checkout.css";
 import { useSelector } from "react-redux";
 
@@ -12,29 +12,7 @@ export const Checkout = () => {
   const stripe = useStripe();
   const { taxiSelected } = state?.formSearchTransfer;
 
-  console.log("email", taxiSelected.email);
-  // const {
-  //   name,
-  //   surname,
-  //   email,
-  //   phoneNumber,
-  //   arrivalAirlineName,
-  //   arrivalFlightNumber,
-  //   arrivalDepartureAirport,
-  //   departureAirlineName,
-  //   departureFlightNumber,
-  //   departureDepartureAirport,
-  //   arrivalDate,
-  //   departureDate,
-  //   journey,
-  //   passengers,
-  //   taxiOption,
-  // } = taxiSelected;
-
   const handlerPayment = async (dataTo) => {
-    // ${
-    //   process.env.REACT_APP_API_PROD_URL || process.env.REACT_APP_API_DEV_URL
-    // }
     const res = await fetch(
       `${process.env.REACT_APP_API_PROD_URL}/create-checkout-session`,
       {
@@ -70,20 +48,6 @@ export const Checkout = () => {
       line_items,
       customer_email: taxiSelected.email,
       taxiSelected,
-      // name,
-      // surname,
-      // phoneNumber,
-      // arrivalAirlineName,
-      // arrivalFlightNumber,
-      // arrivalDepartureAirport,
-      // departureAirlineName,
-      // departureFlightNumber,
-      // departureDepartureAirport,
-      // arrivalDate,
-      // departureDate,
-      // journey,
-      // passengers,
-      // taxiOption,
     });
 
     console.log("after fetch", response);
@@ -106,9 +70,20 @@ export const Checkout = () => {
         <Col xs={12} md={5}>
           <BookingFlightDetails />
         </Col>
-        <Col xs={12} md={7}>
+        <Col xs={12} className="mt-3" md={7}>
+          <h2>How would you like to pay?</h2>
+          <p>You can pay with debit or credit card.</p>
+          <p>
+            We going to be redirect to stripe , once the payment its done you
+            going to be redirect to our website again.{" "}
+          </p>
+
+          <img style={{ width: "90%" }} src={stripePayments} alt="" />
+
           <Form onSubmit={handleCheckOutPayment}>
-            <Button type="submit">Continue</Button>
+            <Button className="btn-check-out" type="submit">
+              Continue
+            </Button>
           </Form>
         </Col>
       </Row>
