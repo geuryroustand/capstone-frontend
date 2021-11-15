@@ -62,9 +62,9 @@ export const Checkout = () => {
             name: `Private Airport Transfers`,
             description: `Transfer from ${taxiSelected.pickUpLocation} To ${taxiSelected.dropLocation}`,
           },
-        },
-        metadata: {
-          taxiSelected,
+          metadata: {
+            test: "Hu",
+          },
         },
       },
     ];
