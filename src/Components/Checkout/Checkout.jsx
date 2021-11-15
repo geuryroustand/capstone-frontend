@@ -62,6 +62,9 @@ export const Checkout = () => {
             name: `Private Airport Transfers`,
             description: `Transfer from ${taxiSelected.pickUpLocation} To ${taxiSelected.dropLocation}`,
           },
+          metadata: {
+            test: "Hu",
+          },
         },
       },
     ];
@@ -69,9 +72,7 @@ export const Checkout = () => {
     const response = await handlerPayment({
       line_items,
       customer_email: taxiSelected.email,
-      metadata: {
-        test: "Hu",
-      },
+
       // name,
       // surname,
       // phoneNumber,
