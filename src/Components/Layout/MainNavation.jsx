@@ -8,15 +8,9 @@ export default function MainNavation() {
     <>
       <Navbar className="navbar-bg" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">
-            <img
-              src={logo}
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
-          </Navbar.Brand>{" "}
+          <Navbar.Brand className="logo-main" href="#home">
+            <span className="logo-vacations-text">Vacations</span>Taxi.com
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav  " />
           <Navbar.Collapse
             className="navbar-collapse-n"

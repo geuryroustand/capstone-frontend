@@ -1,7 +1,14 @@
 .navbar-bg {
   background-color: #003580;
 }
-
+.logo-main {
+  font-size: 30px;
+}
+.logo-vacations-text {
+  color: #f0a500;
+  font-size: 30px;
+  font-weight: bold;
+}
 .btn-register {
   background-color: #f0a500;
   /* background-color: transparent; */
