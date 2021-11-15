@@ -63,8 +63,9 @@ export const Checkout = () => {
             description: `Transfer from ${taxiSelected.pickUpLocation} To ${taxiSelected.dropLocation}`,
           },
         },
-
-        taxiSelected,
+        metadata: {
+          ...taxiSelected,
+        },
       },
     ];
 
