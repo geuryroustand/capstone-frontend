@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import "./MainNavation.css";
 import logo from "../../../src/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 export default function MainNavation() {
   return (
     <>
@@ -11,6 +11,27 @@ export default function MainNavation() {
           <Navbar.Brand className="logo-main" href="#home">
             <span className="logo-vacations-text">Vacations</span>Taxi.com
           </Navbar.Brand>
+
+          <Nav className="mr-auto ml-4">
+            <NavLink
+              className="nav-link-transfer-option nav-link "
+              activeClassName="active-link  "
+              to="/"
+              exact
+            >
+              Private Transfers
+            </NavLink>
+
+            <NavLink
+              activeClassName="active-link  "
+              className="nav-link-transfer-option ml-3  nav-link"
+              to="/sharedRide"
+              exact
+            >
+              Shared Ride
+            </NavLink>
+          </Nav>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav  " />
           <Navbar.Collapse
             className="navbar-collapse-n"

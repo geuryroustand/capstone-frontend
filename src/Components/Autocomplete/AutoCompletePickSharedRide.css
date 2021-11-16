@@ -1,0 +1,28 @@
+.autoComplete {
+  position: absolute;
+  bottom: 1.9rem;
+  display: inline-block;
+
+  z-index: 50px;
+  margin-left: 0px;
+  background-color: white;
+  color: black;
+  width: 19.5rem;
+  height: 15rem;
+  border-radius: 9px;
+}
+
+li {
+  list-style: none;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  margin-right: 70px;
+  height: 2.5rem;
+}
+
+li:hover {
+  background-color: #003580;
+  padding-top: 10px;
+  color: white;
+}

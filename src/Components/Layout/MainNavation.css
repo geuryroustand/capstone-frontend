@@ -9,6 +9,23 @@
   font-size: 30px;
   font-weight: bold;
 }
+.nav-link-transfer-option {
+  font-weight: 500;
+  padding: 10px;
+}
+
+/* .transfer-selected:hover {
+  background-color: rgba(228, 209, 170, 0.1);
+  border-radius: 15px;
+} */
+
+.active-link {
+  /* background-color: rgba(83, 82, 79, 0.4); */
+  border-radius: 15px;
+  border-bottom: solid 2px #f0a500;
+  border-top: solid 2px #f0a500;
+}
+
 .btn-register {
   background-color: #f0a500;
   /* background-color: transparent; */

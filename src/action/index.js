@@ -114,7 +114,6 @@ export const fetchPrices = (queryPickupPlace, queryDropPlace) => {
 };
 
 export const selectedPickLocation = (pickup) => {
-  console.log(pickup, "pickup action");
   return async (dispatch) => {
     dispatch({
       type: "SELECTED_PICK_UP_LOCATION",
@@ -138,6 +137,25 @@ export const taxiOptionSelected = (taxiSelected) => {
     dispatch({
       type: "TAXI_SELECTED",
       payload: taxiSelected,
+    });
+  };
+};
+
+export const selectedSharedRidePickLocation = (pickup) => {
+  console.log(pickup, "pickup action");
+  return async (dispatch) => {
+    dispatch({
+      type: "SELECTED_SHARED_RIDE_PICK_UP_LOCATION",
+      payload: pickup,
+    });
+  };
+};
+
+export const selectedSharedRideDropLocation = (drop) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "SELECTED_SHARED_RIDE_DROP_LOCATION",
+      payload: drop,
     });
   };
 };

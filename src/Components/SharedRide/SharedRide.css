@@ -1,0 +1,127 @@
+.hero {
+  background: url("../../../src/hero.JPG") no-repeat center center/cover;
+  height: 75vh;
+  position: relative;
+  color: white;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.hero * {
+  z-index: 10;
+}
+
+.heading-h1 {
+  font-size: 55px;
+  /* color: #f0a500; */
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+/* .form-border {
+  border: 5px solid #f0a500;
+} */
+.formSearchTransfer {
+  position: relative;
+}
+.search-input {
+  height: 4rem;
+  margin-right: -24px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 7px;
+  width: 18rem;
+}
+.search-input:hover {
+  /* border: none; */
+  /* color: #00224f; */
+}
+.search-form {
+  border: 25px solid #f0a500;
+
+  padding: 4px;
+  border-radius: 10px;
+  background-color: #f0a500;
+}
+.search-form-selected {
+  /* padding: 10px; */
+  margin-bottom: 1.5rem;
+  margin-left: 10px;
+}
+.input-col {
+  position: relative;
+  background-color: white;
+  /* height: 4rem; */
+  /* margin-right: -24px; */
+  border-radius: 5px;
+  border: none;
+  margin-right: 15px;
+
+  /* width: 18rem; */
+}
+.location-icon {
+  position: absolute;
+  left: 0px;
+  font-size: 1.4rem;
+  top: 20px;
+  color: #ccc;
+}
+
+.date-pick {
+  height: 4rem;
+  border-radius: 5px;
+  border: none;
+  /* margin-left: 5rem; */
+}
+.select-passenger-section {
+  height: 4rem;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+}
+.select-passenger {
+  height: 4rem;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  margin-left: 10px;
+  outline: none;
+}
+
+.user-icon {
+  position: absolute;
+  color: #ccc;
+  left: 6px;
+  top: 24px;
+  font-size: 1.2rem;
+}
+.btn-search-button {
+  background-color: #003580;
+  border: none;
+  width: 10rem;
+  height: 4rem;
+  font-weight: bold;
+  font-size: 20px;
+  /* margin-right: 5rem; */
+}
+.btn-search-button:hover {
+  background-color: #00224f;
+}
+input::placeholder {
+  color: rgb(91, 88, 88);
+  /* padding: 10px; */
+  padding-left: 40px;
+  font-weight: bold;
+}
+
+label,
+input {
+  font-family: sans-serif;
+}

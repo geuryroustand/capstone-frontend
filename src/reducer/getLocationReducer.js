@@ -45,6 +45,19 @@ export default function getLocationReducer(
         taxiSelected: action.payload,
       };
 
+    case "SELECTED_SHARED_RIDE_PICK_UP_LOCATION":
+      return {
+        ...state,
+        pickUpSharedRideLocation: action.payload,
+      };
+
+    case "SELECTED_SHARED_RIDE_DROP_LOCATION":
+      return {
+        ...state,
+        dropSharedRideLocation: action.payload,
+        // selectedPickLocation: true,
+      };
+
     default:
       return state;
   }

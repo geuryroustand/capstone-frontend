@@ -6,6 +6,7 @@ import Register from "./pages/Register/Register";
 import { BookingDetails } from "./pages/BookingDetails/BookingDetails";
 import { PassengerDetails } from "./pages/PassengerDetails/PassengerDetails";
 import { Checkout } from "./Components/Checkout/Checkout";
+import SharedRide from "./Components/sharedRide/SharedRide";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path="/paymentDetails" exact>
           <Checkout />
+        </Route>
+        <Route path="/sharedRide" exact>
+          <SharedRide />
         </Route>
       </Switch>
     </Layout>

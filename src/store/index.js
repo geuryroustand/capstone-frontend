@@ -15,14 +15,9 @@ export const initialState = {
     taxiSelected: {
       passengers: "1",
     },
-    // selectedPickLocation: "",
-    // selectedDropLocation: "",
-    // arrivalDate: "",
-    // departureDate: "",
-    // oneWay: "",
-    // roundTrip: "",
-    // passengers: "",
     locationNotFound: true,
+    pickUpSharedRideLocation: [],
+    dropSharedRideLocation: [],
   },
 };
 

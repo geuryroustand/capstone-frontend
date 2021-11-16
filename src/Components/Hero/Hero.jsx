@@ -2,7 +2,9 @@ import "./Hero.css";
 import React, { useState, useEffect } from "react";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
+
 // import "react-datepicker/dist/react-datepicker-cssmodules.css";
+
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
@@ -30,6 +32,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
 
+  // const [startDate, setStartDate] = useState(new Date());
+
   const [dataToSend, setDataToSend] = useState({
     pickupLocation: pickupLocation,
     dropLocation: dropLocation,
@@ -37,8 +41,6 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
     departureDate: "",
     passengers: "",
   });
-
-  // const [startDate, setStartDate] = useState(new Date());
 
   const handlerPickLocationAutoComplete = (lo) => {
     setPickupLocation(lo.location);
@@ -60,11 +62,16 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
     });
 
     if (key === "pickupLocation") {
-      let matches = state.formSearchTransfer.locations.filter((lo) => {
-        let regex = new RegExp(`${value}`, "gi");
+      // let matches = state.formSearchTransfer.locations.filter((lo) => {
+      //   let regex = new RegExp(`${value}`, "gi");
 
-        return lo.location.match(regex);
-      });
+      //   return lo.location.match(regex);
+      // });
+
+      let matches = state.formSearchTransfer.locations.filter((los) =>
+        los.location.toLowerCase().includes(value.toLowerCase())
+      );
+
       sendPickLocation(matches);
     }
 
@@ -90,14 +97,13 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchPickLocation();
+  }, []);
 
   // let handleColor = (time) => {
   //   return time.getHours() > 12 ? "text-success" : "text-error";
   // };
-  // console.log(pickupLocation);
-  // useEffect(() => {
-  //   fetchPickLocation();
-  // }, []);
 
   return (
     <header className="hero">
@@ -170,26 +176,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                       />
                       <ImLocation className="location-icon" />
                     </Col>
-                    {/* <Col>
-     <DatePicker
-     showTimeSelect
-     selected={startDate}
-     onChange={(date) => setStartDate(date)}
-     timeClassName={handleColor}
-     minDate={new Date()}
-     showPopperArrow={false}
-     showMonthDropdown
-     showYearDropdown
-     dropdownMode="select"
-     yearDropdownItemNumber={5}
-     // peekNextMonth
-     // scrollableYearDropdown
-     // strictParsing
-     timeIntervals={15}
-     // dateFormat="MMMM d, yyyy h:mm aa"
-     dateFormat="Pp"
-   />
-   </Col> */}
+
                     <Col>
                       <input
                         className="date-pick"
@@ -256,6 +243,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
 
                   <ImLocation className="location-icon" />
                 </Col>
+
                 {state.formSearchTransfer.pickUpLocation.length > 1 ? (
                   <AutoCompletePick
                     handlerPickLocationAutoComplete={
@@ -296,6 +284,36 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                 ) : (
                   ""
                 )}
+
+                {/* DATE PICKED */}
+
+                {/* <Col>
+                  <DatePicker
+                    showTimeSelect
+                    selected={startDate}
+                    // selected={dataToSend.arrivalDate}
+                    onChange={(date) => setStartDate(date)}
+                    // timeClassName={handleColor}
+                    minDate={new Date()}
+                    showPopperArrow={false}
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    yearDropdownItemNumber={5}
+                    // peekNextMonth
+                    // scrollableYearDropdown
+                    // strictParsing
+                    timeIntervals={15}
+                    // dateFormat="MMMM d, yyyy h:mm aa"
+                    dateFormat="Pp"
+                    withPortal
+                    className="date-pick"
+                    required
+                    // value={dataToSend.arrivalDate}
+                    // onChange={(e) => handlerData("arrivalDate", e.target.value)}
+                  />
+                </Col> */}
+
                 <Col>
                   <input
                     className="date-pick"
@@ -307,6 +325,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     onChange={(e) => handlerData("arrivalDate", e.target.value)}
                   />
                 </Col>
+
                 <Col className="input-col select-passenger-section">
                   <select
                     name="passenger"
@@ -326,6 +345,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   </select>
                   <FaUserAlt className="user-icon" />
                 </Col>
+
                 <Col xs={12} md="auto">
                   <Button type="submit" className="btn-search-button">
                     Search
