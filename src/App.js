@@ -6,7 +6,7 @@ import Register from "./pages/Register/Register";
 import { BookingDetails } from "./pages/BookingDetails/BookingDetails";
 import { PassengerDetails } from "./pages/PassengerDetails/PassengerDetails";
 import { Checkout } from "./Components/Checkout/Checkout";
-import SharedRide from "./Components/sharedRide/SharedRide";
+import SharedRide from "./Components/SharedRide/SharedRide";
 
 function App() {
   return (

@@ -11,7 +11,8 @@ export const AutoCompletePick = (props) => {
   const dispatch = useDispatch();
 
   const handlerPickClick = (lo) => {
-    props.handlerPickLocationAutoComplete(lo);
+    const { location } = lo;
+    props.handlerPickLocationAutoComplete("pickupLocation", location);
     dispatch(selectedPickLocation([lo]));
   };
 

@@ -29,26 +29,16 @@ const mapStateToProps = (state) => state;
 const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
   const state = useSelector((state) => state);
   const [roundTrip, setRoundTrip] = useState("OneWay");
-  const [pickupLocation, setPickupLocation] = useState("");
-  const [dropLocation, setDropLocation] = useState("");
 
   // const [startDate, setStartDate] = useState(new Date());
 
   const [dataToSend, setDataToSend] = useState({
-    pickupLocation: pickupLocation,
-    dropLocation: dropLocation,
+    pickupLocation: "",
+    dropLocation: "",
     arrivalDate: "",
     departureDate: "",
     passengers: "",
   });
-
-  const handlerPickLocationAutoComplete = (lo) => {
-    setPickupLocation(lo.location);
-  };
-
-  const handlerDropLocationAutoComplete = (lo) => {
-    setDropLocation(lo.location);
-  };
 
   useEffect(() => {
     fetchPickLocation();
@@ -62,12 +52,6 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
     });
 
     if (key === "pickupLocation") {
-      // let matches = state.formSearchTransfer.locations.filter((lo) => {
-      //   let regex = new RegExp(`${value}`, "gi");
-
-      //   return lo.location.match(regex);
-      // });
-
       let matches = state.formSearchTransfer.locations.filter((los) =>
         los.location.toLowerCase().includes(value.toLowerCase())
       );
@@ -76,11 +60,15 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
     }
 
     if (key === "dropLocation") {
-      let matches = state.formSearchTransfer.locations.filter((lo) => {
-        const regex = new RegExp(`${value}`, "gi");
+      let matches = state.formSearchTransfer.locations.filter((los) =>
+        los.location.toLowerCase().includes(value.toLowerCase())
+      );
 
-        return lo.location.match(regex);
-      });
+      // let matches = state.formSearchTransfer.locations.filter((lo) => {
+      //   const regex = new RegExp(`${value}`, "gi");
+      //   return lo.location.match(regex);
+      // });
+
       sendDropLocation(matches);
     }
   };
@@ -91,7 +79,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
       e.preventDefault();
 
       history.push(
-        `/bookingDetails?pickUpLocation=${pickupLocation}&dropLocation=${dropLocation}&arrivalDate=${dataToSend.arrivalDate}&departureDate=${dataToSend.departureDate}&journey=${roundTrip}&passengers=${dataToSend.passengers}`
+        `/bookingDetails?pickUpLocation=${dataToSend.pickupLocation}&dropLocation=${dataToSend.dropLocation}&arrivalDate=${dataToSend.arrivalDate}&departureDate=${dataToSend.departureDate}&journey=${roundTrip}&passengers=${dataToSend.passengers}`
       );
     } catch (error) {
       console.log(error);
@@ -156,8 +144,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         id=""
                         disabled
                         placeholder="Enter pick-up location "
-                        value={pickupLocation}
-                        onChange={(e) => setPickupLocation(e.target.value)}
+                        value={dataToSend.pickupLocation}
+                        // onChange={(e) => setPickupLocation(e.target.value)}
                       />
 
                       <ImLocation className="location-icon" />
@@ -171,8 +159,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         id=""
                         placeholder="Enter destination "
                         required
-                        value={dropLocation}
-                        onChange={(e) => setDropLocation(e.target.value)}
+                        value={dataToSend.dropLocation}
+                        // onChange={(e) => setDropLocation(e.target.value)}
                       />
                       <ImLocation className="location-icon" />
                     </Col>
@@ -231,11 +219,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     id=""
                     placeholder="Enter pick-up location "
                     required
-                    value={
-                      pickupLocation
-                        ? pickupLocation
-                        : dataToSend.pickupLocation
-                    }
+                    value={dataToSend.pickupLocation}
                     onChange={(e) =>
                       handlerData("pickupLocation", e.target.value)
                     }
@@ -246,9 +230,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
 
                 {state.formSearchTransfer.pickUpLocation.length > 1 ? (
                   <AutoCompletePick
-                    handlerPickLocationAutoComplete={
-                      handlerPickLocationAutoComplete
-                    }
+                    handlerPickLocationAutoComplete={handlerData}
                   />
                 ) : state.formSearchTransfer.selectedPickLocation ? (
                   ""
@@ -263,9 +245,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     id=""
                     placeholder="Enter destination "
                     required
-                    value={
-                      dropLocation ? dropLocation : dataToSend.dropLocation
-                    }
+                    value={dataToSend.dropLocation}
                     onChange={(e) =>
                       handlerData("dropLocation", e.target.value)
                     }
@@ -275,9 +255,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                 </Col>
                 {state.formSearchTransfer.dropLocation.length > 1 ? (
                   <AutoCompleteDrop
-                    handlerDropLocationAutoComplete={
-                      handlerDropLocationAutoComplete
-                    }
+                    handlerDropLocationAutoComplete={handlerData}
                   />
                 ) : state.formSearchTransfer.selectedPickLocation ? (
                   ""

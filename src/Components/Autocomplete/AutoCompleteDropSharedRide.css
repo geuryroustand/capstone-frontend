@@ -1,9 +1,10 @@
-.autoComplete-sharedRide {
+.AutoCompleteDropSharedRide {
   position: absolute;
   bottom: 5.2rem;
   display: inline-block;
+
   z-index: 50px;
-  margin-left: 0px;
+  margin-left: 20rem;
   background-color: white;
   color: black;
   width: 19.5rem;
@@ -11,16 +12,16 @@
   border-radius: 9px;
 }
 
-.autoComplete-sharedRide li {
+.AutoCompleteDropSharedRide li {
   list-style: none;
   cursor: pointer;
   padding: 15px;
   width: 100%;
-  /* margin-right: 60px; */
+  margin-right: 70px;
   height: 2.5rem;
 }
 
-.autoComplete-sharedRide li:hover {
+.AutoCompleteDropSharedRide li:hover {
   background-color: #003580;
   padding-top: 10px;
   color: white;

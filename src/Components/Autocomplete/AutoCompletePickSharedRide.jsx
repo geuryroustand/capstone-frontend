@@ -10,17 +10,23 @@ export const AutoCompletePickSharedRide = (props) => {
 
   const dispatch = useDispatch();
 
-  const handlerPickClick = (lo) => {
-    props.handlerPickLocationAutoComplete(lo);
+  const handlerClickDropSharedRide = (e, lo) => {
+    e.stopPropagation();
+    const { location } = lo;
+    props.handlerPickLocationAutoComplete("pickupLocation", location);
     dispatch(selectedSharedRidePickLocation([lo]));
   };
 
   return (
-    <div className="autoComplete">
+    <div className="autoComplete-sharedRide ">
       {state.formSearchTransfer.pickUpSharedRideLocation
         .slice(0, 5)
         .map((lo, i) => (
-          <li className="mt-1" key={i} onClick={() => handlerPickClick(lo)}>
+          <li
+            className="mt-1"
+            key={i}
+            onClick={(e) => handlerClickDropSharedRide(e, lo)}
+          >
             {lo.location}
           </li>
         ))}

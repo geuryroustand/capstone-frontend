@@ -11,7 +11,8 @@ export const AutoCompleteDrop = (props) => {
   const dispatch = useDispatch();
 
   const handlerDropClick = (lo) => {
-    props.handlerDropLocationAutoComplete(lo);
+    const { location } = lo;
+    props.handlerDropLocationAutoComplete("dropLocation", location);
     dispatch(selectedDropLocation([lo]));
   };
   return (
