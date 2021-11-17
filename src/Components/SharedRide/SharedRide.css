@@ -1,11 +1,16 @@
-.hero {
+.shared-ride-hero {
   background: url("../../../src/hero.JPG") no-repeat center center/cover;
   height: 75vh;
   position: relative;
   color: white;
 }
 
-.hero::before {
+@media (max-width: 575.98px) {
+  .shared-ride-hero {
+    width: 100% !important;
+  }
+}
+.shared-ride-hero::before {
   content: "";
   position: absolute;
   top: 0;
@@ -14,24 +19,21 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
 }
-.hero * {
+.shared-ride-hero * {
   z-index: 10;
 }
 
-.heading-h1 {
+.shared-ride-heading-h1 {
   font-size: 55px;
-  /* color: #f0a500; */
+
   padding-top: 30px;
   padding-bottom: 10px;
 }
 
-/* .form-border {
-  border: 5px solid #f0a500;
-} */
-.formSearchTransfer {
+.shared-ride-formSearchTransfer {
   position: relative;
 }
-.search-input {
+.shared-ride-search-input {
   height: 4rem;
   margin-right: -24px;
   border-radius: 5px;
@@ -39,34 +41,64 @@
   margin-left: 7px;
   width: 18rem;
 }
-.search-input:hover {
-  /* border: none; */
-  /* color: #00224f; */
-}
-.search-form {
+
+.shared-ride-search-form {
   border: 25px solid #f0a500;
 
   padding: 4px;
   border-radius: 10px;
   background-color: #f0a500;
 }
-.search-form-selected {
-  /* padding: 10px; */
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .form-shared-ride-search {
+    width: 100%;
+  }
+}
+
+.shared-ride-search-form-selected {
   margin-bottom: 1.5rem;
   margin-left: 10px;
 }
-.input-col {
+.shared-ride-input-col {
   position: relative;
   background-color: white;
-  /* height: 4rem; */
-  /* margin-right: -24px; */
+
   border-radius: 5px;
   border: none;
   margin-right: 15px;
-
-  /* width: 18rem; */
 }
-.location-icon {
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .shared-ride-media-queries {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    margin-left: 15px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .shared-ride-media-queries {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .shared-ride-media-queries {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+}
+
+.shared-ride-location-icon {
   position: absolute;
   left: 0px;
   font-size: 1.4rem;
@@ -74,19 +106,53 @@
   color: #ccc;
 }
 
-.date-pick {
+.shared-ride-date-pick {
   height: 4rem;
   border-radius: 5px;
   border: none;
-  /* margin-left: 5rem; */
 }
-.select-passenger-section {
+
+.shared-ride-select-passenger-section {
   height: 4rem;
   border-radius: 5px;
   border: none;
   background-color: white;
 }
-.select-passenger {
+
+@media (max-width: 575.98px) {
+  .date-picker-col {
+    width: 75%;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .date-picker-col {
+    width: 50%;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .shared-ride-select-passenger-section {
+    width: 20.4%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .shared-ride-select-passenger-section {
+    width: 20.4%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .shared-ride-select-passenger-section {
+    display: inline-block;
+  }
+}
+
+.shared-ride-select-passenger {
   height: 4rem;
   border-radius: 5px;
   border: none;
@@ -95,14 +161,14 @@
   outline: none;
 }
 
-.user-icon {
+.shared-ride-user-icon {
   position: absolute;
   color: #ccc;
   left: 6px;
   top: 24px;
   font-size: 1.2rem;
 }
-.btn-search-button {
+.shared-ride-btn-search-button {
   background-color: #003580;
   border: none;
   width: 10rem;
@@ -111,7 +177,36 @@
   font-size: 20px;
   /* margin-right: 5rem; */
 }
-.btn-search-button:hover {
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .shared-ride-btn-search-button {
+    margin-top: 6px;
+    background-color: #003580;
+    border: none;
+    width: 100%;
+    height: 4rem;
+    display: block;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .shared-ride-btn-search-button {
+    margin-top: 6px;
+    background-color: #003580;
+    border: none;
+    width: 100%;
+    height: 4rem;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+.shared-ride-btn-search-button:hover {
   background-color: #00224f;
 }
 input::placeholder {

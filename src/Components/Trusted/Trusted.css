@@ -2,6 +2,13 @@
   background-color: #f7f7f7;
   height: 10rem;
 }
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .trusted-home {
+    margin-top: 10rem;
+  }
+}
 
 .trusted-home h3 {
   font-size: 20px;

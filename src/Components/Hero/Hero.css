@@ -50,6 +50,15 @@
   border-radius: 10px;
   background-color: #f0a500;
 }
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .search-form {
+    /* width: 100%; */
+    /* margin-top: 25px !important; */
+  }
+}
+
 .search-form-selected {
   /* padding: 10px; */
   margin-bottom: 1.5rem;
@@ -62,10 +71,40 @@
   /* margin-right: -24px; */
   border-radius: 5px;
   border: none;
-  margin-right: 15px;
+  /* margin-right: 15px; */
+  margin-left: 15px;
 
   /* width: 18rem; */
 }
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .media-queries {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    margin-right: 15px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .media-queries {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .media-queries {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+}
+
 .location-icon {
   position: absolute;
   left: 0px;
@@ -138,7 +177,17 @@
   border-radius: 5px;
   border: none;
   background-color: white;
+  width: 50px;
+  /* margin-right: 15px; */
 }
+
+@media (max-width: 575.98px) {
+  .select-passenger-section {
+    margin-right: 15px;
+    /* width: 20px; */
+  }
+}
+
 .select-passenger {
   height: 4rem;
   border-radius: 5px;
@@ -164,9 +213,38 @@
   font-size: 20px;
   /* margin-right: 5rem; */
 }
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .btn-search-button {
+    margin-top: 6px;
+    background-color: #003580;
+    border: none;
+    width: 100%;
+    height: 4rem;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .btn-search-button {
+    margin-top: 6px;
+    background-color: #003580;
+    border: none;
+    width: 100%;
+    height: 4rem;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
 .btn-search-button:hover {
   background-color: #00224f;
 }
+
 input::placeholder {
   color: rgb(91, 88, 88);
   /* padding: 10px; */

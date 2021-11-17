@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./SharedRide.css";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
@@ -54,10 +55,12 @@ const SharedRide = () => {
   };
 
   return (
-    <header className="hero">
+    <header className="shared-ride-hero">
       <Container>
-        <Row className="pt-5">
-          <h1 className="heading-h1">Reliable, low cost airport transfers</h1>
+        <Row className="shared-ride-pt-5">
+          <h1 className="shared-ride-heading-h1">
+            Reliable, low cost airport transfers
+          </h1>
 
           <h3>Easy airport transfers to and from your accommodation</h3>
         </Row>
@@ -65,15 +68,19 @@ const SharedRide = () => {
         <Row>
           <Form
             inline
+            className="form-shared-ride-search"
             //  onSubmit={handlerSubmit}
           >
-            <Row className="search-form mt-5 ">
+            <Row className="shared-ride-search-form mt-5 ">
               {/* SEARCH ROUNDTRIP */}
 
-              <div className="d-flex search-roundTrip ">
-                <Col className="input-col">
+              <Row className="shared-ride-d-flex search-roundTrip ">
+                <Col
+                  lg="auto"
+                  className="shared-ride-input-col shared-ride-media-queries  "
+                >
                   <input
-                    className="search-input"
+                    className="shared-ride-search-input"
                     required
                     type="text"
                     name=""
@@ -86,7 +93,7 @@ const SharedRide = () => {
                     }
                   />
 
-                  <ImLocation className="location-icon" />
+                  <ImLocation className="shared-ride-location-icon" />
                 </Col>
                 {state.formSearchTransfer.pickUpSharedRideLocation.length >
                   1 && (
@@ -96,9 +103,12 @@ const SharedRide = () => {
                 )}
 
                 {/* <AutoCompleteDrop /> */}
-                <Col className="input-col">
+                <Col
+                  lg="auto"
+                  className="shared-ride-input-col shared-ride-media-queries "
+                >
                   <input
-                    className="search-input"
+                    className="shared-ride-search-input"
                     type="text"
                     name=""
                     id=""
@@ -110,7 +120,7 @@ const SharedRide = () => {
                     }
                   />
 
-                  <ImLocation className="location-icon" />
+                  <ImLocation className="shared-ride-location-icon" />
                 </Col>
                 {state.formSearchTransfer.dropSharedRideLocation.length > 1 && (
                   <AutoCompleteDropSharedRide
@@ -119,7 +129,7 @@ const SharedRide = () => {
                 )}
 
                 {/* DATE PICKED */}
-                <Col>
+                <Col lg="auto" className="date-picker-col">
                   <DatePicker
                     // showTimeSelect
                     selected={startDate}
@@ -143,7 +153,7 @@ const SharedRide = () => {
                     // dateFormat="Pp"
                     withPortal
                     portalId="root-portal"
-                    className="date-pick"
+                    className="shared-ride-date-pick"
                     required
                     // value={dataToSend.arrivalDate}
                     // onChange={(e) => handlerData("arrivalDate", e.target.value)}
@@ -152,7 +162,7 @@ const SharedRide = () => {
 
                 {/* <Col>
                   <input
-                    className="date-pick"
+                    className="shared-ride-date-pick"
                     type="datetime-local"
                     required
                     name=""
@@ -160,11 +170,14 @@ const SharedRide = () => {
                   />
                 </Col> */}
 
-                <Col className="input-col select-passenger-section">
+                <Col
+                  lg="auto"
+                  className=" shared-ride-select-passenger-section "
+                >
                   <select
                     name="passenger"
                     id="passenger"
-                    className="select-passenger"
+                    className="shared-ride-select-passenger"
                     required
                     value={dataToSend.passengers}
                     onChange={(e) => handlerDataToSend(e.target.value)}
@@ -177,14 +190,17 @@ const SharedRide = () => {
                     <option value="5">5</option>
                     <option value="6">6</option>
                   </select>
-                  <FaUserAlt className="user-icon" />
+                  <FaUserAlt className="shared-ride-user-icon" />
                 </Col>
-                <Col xs={12} md="auto">
-                  <Button type="submit" className="btn-search-button">
+                <Col>
+                  <Button
+                    type="submit"
+                    className="shared-ride-btn-search-button"
+                  >
                     Search
                   </Button>
                 </Col>
-              </div>
+              </Row>
             </Row>
           </Form>
         </Row>

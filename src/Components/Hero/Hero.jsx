@@ -135,8 +135,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
               {/* RETURN SEARCH  */}
               {roundTrip === "roundTrip" ? (
                 <>
-                  <div className="d-flex mb-1 ">
-                    <Col className="input-col">
+                  <Row className="d-flex mb-1 ">
+                    <Col lg="auto" className="input-col media-queries">
                       <input
                         className="search-input"
                         type="text"
@@ -148,9 +148,9 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         // onChange={(e) => setPickupLocation(e.target.value)}
                       />
 
-                      <ImLocation className="location-icon" />
+                      <ImLocation className="location-icon " />
                     </Col>
-                    <Col className="input-col">
+                    <Col lg="auto" className="input-col media-queries">
                       <input
                         className="search-input"
                         type="text"
@@ -178,7 +178,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         required
                       />
                     </Col>
-                    <Col className="input-col select-passenger-section">
+                    <Col className="select-passenger-section">
                       <select
                         name="passenger"
                         id="passenger"
@@ -202,15 +202,15 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     {/* <Col xs={12} md="auto">
      <Button className="btn-search-button">Search</Button>{" "}
    </Col> */}
-                  </div>
+                  </Row>
                 </>
               ) : (
                 ""
               )}
               {/* SEARCH ROUNDTRIP */}
 
-              <div className="d-flex search-roundTrip ">
-                <Col className="input-col">
+              <Row className="d-flex search-roundTrip ">
+                <Col lg="auto" className="input-col media-queries">
                   <input
                     className="search-input"
                     required
@@ -237,7 +237,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                 ) : (
                   ""
                 )}
-                <Col className="input-col">
+                <Col lg="auto" className="input-col media-queries ">
                   <input
                     className="search-input"
                     type="text"
@@ -304,7 +304,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   />
                 </Col>
 
-                <Col className="input-col select-passenger-section">
+                <Col className=" select-passenger-section">
                   <select
                     name="passenger"
                     id="passenger"
@@ -324,12 +324,12 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   <FaUserAlt className="user-icon" />
                 </Col>
 
-                <Col xs={12} md="auto">
+                <Col>
                   <Button type="submit" className="btn-search-button">
                     Search
                   </Button>{" "}
                 </Col>
-              </div>
+              </Row>
             </Row>
           </Form>
         </Row>

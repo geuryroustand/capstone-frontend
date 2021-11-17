@@ -12,7 +12,7 @@ export default function MainNavation() {
             <span className="logo-vacations-text">Vacations</span>Taxi.com
           </Navbar.Brand>
 
-          <Nav className="mr-auto ml-4">
+          <Nav className="mr-auto ml-4 display-nav">
             <NavLink
               className="nav-link-transfer-option nav-link "
               activeClassName="active-link  "
@@ -24,7 +24,7 @@ export default function MainNavation() {
 
             <NavLink
               activeClassName="active-link  "
-              className="nav-link-transfer-option ml-3  nav-link"
+              className="nav-link-transfer-option ml-3   nav-link"
               to="/sharedRide"
               exact
             >
@@ -45,6 +45,29 @@ export default function MainNavation() {
               <Link className="btn-sign-in nav-link" to="/sign">
                 Sign in
               </Link>
+
+              <div
+                style={{ display: "none" }}
+                className="nav-link-small-mobile"
+              >
+                <NavLink
+                  className="nav-link-transfer-option nav-link "
+                  activeClassName="active-link  "
+                  to="/"
+                  exact
+                >
+                  Private Transfers
+                </NavLink>
+
+                <NavLink
+                  activeClassName="active-link  "
+                  className="nav-link-transfer-option ml-3   nav-link"
+                  to="/sharedRide"
+                  exact
+                >
+                  Shared Ride
+                </NavLink>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

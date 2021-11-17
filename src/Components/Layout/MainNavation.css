@@ -26,6 +26,17 @@
   border-top: solid 2px #f0a500;
 }
 
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .display-nav {
+    display: none;
+  }
+  .nav-link-small-mobile {
+    display: inline-block !important;
+  }
+}
+
 .btn-register {
   background-color: #f0a500;
   /* background-color: transparent; */
