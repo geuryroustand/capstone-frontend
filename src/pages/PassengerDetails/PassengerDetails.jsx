@@ -216,7 +216,7 @@ export const PassengerDetails = () => {
                 {/* se */}
 
                 {addReturnTaxi && (
-                  <div className="flight-info ">
+                  <div className="flight-info add-return-form ">
                     <Row>
                       <Col xs={12} md={6} style={{ color: "black" }}>
                         <p>Your transfer is from:</p>
@@ -289,7 +289,7 @@ export const PassengerDetails = () => {
                   {taxiSelected?.pickUpLocation?.toUpperCase()}
                 </h5>
 
-                <div className="flight-info ">
+                <div className="flight-info  ">
                   <Row>
                     <Col xs={12} md={6}>
                       <p>Your transfer is from:</p>
@@ -358,7 +358,7 @@ export const PassengerDetails = () => {
                 Add your return{" "}
               </Button>
             ) : (
-              <Button type="submit" className=" continue-btn">
+              <Button type="submit" className="continue-btn">
                 {" "}
                 Continue
               </Button>

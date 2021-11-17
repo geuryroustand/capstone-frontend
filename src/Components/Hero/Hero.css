@@ -25,6 +25,20 @@
   padding-bottom: 10px;
 }
 
+@media (max-width: 575.98px) {
+  .heading-h1 {
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .heading-h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+}
+
 /* .form-border {
   border: 5px solid #f0a500;
 } */
@@ -43,6 +57,13 @@
   /* border: none; */
   /* color: #00224f; */
 }
+
+@media (max-width: 575.98px) {
+  .form-search-main {
+    width: 95.7%;
+  }
+}
+
 .search-form {
   border: 25px solid #f0a500;
 
@@ -54,8 +75,7 @@
 
 @media (max-width: 575.98px) {
   .search-form {
-    /* width: 100%; */
-    /* margin-top: 25px !important; */
+    margin-top: 25px !important;
   }
 }
 

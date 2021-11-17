@@ -99,11 +99,13 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
         <Row className="pt-5">
           <h1 className="heading-h1">Reliable, low cost airport transfers</h1>
 
-          <h3>Easy airport transfers to and from your accommodation</h3>
+          <h3 className="heading-h3">
+            Easy airport transfers to and from your accommodation
+          </h3>
         </Row>
 
         <Row>
-          <Form inline onSubmit={handlerSubmit}>
+          <Form className="form-search-main" inline onSubmit={handlerSubmit}>
             <Row className="search-form mt-5 ">
               <div className="d-flex search-form-selected">
                 <label className="radio-label">

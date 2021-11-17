@@ -27,6 +27,11 @@
   padding: 10px;
 }
 
+@media (max-width: 575.98px) {
+  .add-return-form {
+    margin-top: 50px !important;
+  }
+}
 .add-btn {
   background-color: #f0a500;
   border: none;
@@ -35,6 +40,19 @@
   width: 20rem;
   font-size: 20px;
   font-weight: bold;
+}
+
+@media (max-width: 575.98px) {
+  .add-btn {
+    background-color: #f0a500;
+    border: none;
+    margin-left: 10px;
+    height: 3.6rem;
+    width: 95%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 6rem !important;
+  }
 }
 
 .add-btn:hover {
@@ -50,6 +68,19 @@
   width: 20rem;
   font-size: 20px;
   font-weight: bold;
+}
+@media (max-width: 575.98px) {
+  .continue-btn {
+    background-color: #003580;
+    border: none;
+    margin-left: 0px;
+    margin-top: 10px;
+    height: 3.6rem;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 60px;
+  }
 }
 
 .continue-btn:hover {

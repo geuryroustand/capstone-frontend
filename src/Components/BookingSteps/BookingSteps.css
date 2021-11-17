@@ -28,6 +28,12 @@
   width: 18.6rem;
 }
 
+@media (max-width: 575.98px) {
+  .border-line {
+    width: 0px;
+  }
+}
+
 .second-step-section {
   position: relative;
 }
@@ -51,6 +57,12 @@
   height: 4px;
   border-bottom: solid 3px#726c6c;
   width: 18.6rem;
+}
+
+@media (max-width: 575.98px) {
+  .border-line-second-step {
+    width: 0px;
+  }
 }
 
 .third-step-section {

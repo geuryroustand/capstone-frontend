@@ -7,7 +7,7 @@
 
 @media (max-width: 575.98px) {
   .shared-ride-hero {
-    width: 100% !important;
+    width: 100%;
   }
 }
 .shared-ride-hero::before {
@@ -30,6 +30,18 @@
   padding-bottom: 10px;
 }
 
+@media (max-width: 575.98px) {
+  .shared-ride-heading-h1 {
+    font-size: 30px;
+    text-align: center;
+  }
+}
+@media (max-width: 575.98px) {
+  .shared-ride-heading-h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+}
 .shared-ride-formSearchTransfer {
   position: relative;
 }
@@ -53,7 +65,8 @@
 
 @media (max-width: 575.98px) {
   .form-shared-ride-search {
-    width: 100%;
+    width: 95.7%;
+    margin-top: 30px;
   }
 }
 

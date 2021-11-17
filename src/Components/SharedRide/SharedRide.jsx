@@ -62,7 +62,9 @@ const SharedRide = () => {
             Reliable, low cost airport transfers
           </h1>
 
-          <h3>Easy airport transfers to and from your accommodation</h3>
+          <h3 className="shared-ride-heading-h3">
+            Easy airport transfers to and from your accommodation
+          </h3>
         </Row>
 
         <Row>
