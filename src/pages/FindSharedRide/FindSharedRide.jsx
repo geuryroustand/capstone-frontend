@@ -25,10 +25,17 @@ const FindSharedRide = () => {
     dispatch(fetchSharedRide(pickupLocation, dropLocation, arrivalDate));
   }, []);
 
+  const clickHandler = (e) => {
+    console.log(e);
+  };
+
   return (
     <Container>
       {searchSharedRide?.map((sharedTransfer) => (
-        <Row className="shared-ride-card">
+        <Row
+          onClick={(e) => clickHandler(sharedTransfer)}
+          className="shared-ride-card"
+        >
           <Col>
             <div className="d-flex sharedLocationName">
               <p>{pickupLocation}</p>

@@ -58,7 +58,7 @@ export const BookingFlightDetails = () => {
       <h3>
         {step2
           ? format(
-              parseISO(
+              new Date(
                 taxiSelected?.arrivalDate
                   ? taxiSelected?.arrivalDate
                   : taxiSelected?.arrivalDate
@@ -67,7 +67,7 @@ export const BookingFlightDetails = () => {
               "EEEE d, MMM  yyyy"
             )
           : format(
-              parseISO(arrivalDate ? arrivalDate : taxiSelected?.arrivalDate),
+              new Date(arrivalDate ? arrivalDate : taxiSelected?.arrivalDate),
               " EEEE d, MMM  yyyy"
             )}
       </h3>
@@ -76,7 +76,7 @@ export const BookingFlightDetails = () => {
         <h3>
           At{" "}
           {format(
-            parseISO(
+            new Date(
               taxiSelected?.arrivalDate
                 ? taxiSelected?.arrivalDate
                 : taxiSelected?.arrivalDate
@@ -89,7 +89,7 @@ export const BookingFlightDetails = () => {
           {" "}
           At{" "}
           {format(
-            parseISO(arrivalDate ? arrivalDate : taxiSelected?.arrivalDate),
+            new Date(arrivalDate ? arrivalDate : taxiSelected?.arrivalDate),
             "k : mm"
           )}
         </h3>
@@ -104,7 +104,7 @@ export const BookingFlightDetails = () => {
           {step2 ? (
             <h3>
               {format(
-                parseISO(
+                new Date(
                   taxiSelected?.departureDate
                     ? taxiSelected?.departureDate
                     : taxiSelected?.departureDate
@@ -115,7 +115,7 @@ export const BookingFlightDetails = () => {
           ) : (
             <h3>
               {format(
-                parseISO(
+                new Date(
                   departureDate ? departureDate : taxiSelected?.departureDate
                 ),
                 "EEEE d, MMM  yyyy"
@@ -127,7 +127,7 @@ export const BookingFlightDetails = () => {
             <h3>
               At{" "}
               {format(
-                parseISO(
+                new Date(
                   taxiSelected?.departureDate
                     ? taxiSelected?.departureDate
                     : taxiSelected?.departureDate
@@ -139,7 +139,7 @@ export const BookingFlightDetails = () => {
             <h3>
               At{" "}
               {format(
-                parseISO(
+                new Date(
                   departureDate ? departureDate : taxiSelected?.departureDate
                 ),
                 "k : mm"
