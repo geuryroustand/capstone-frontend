@@ -2,7 +2,7 @@
 
 First of all, thank you very much for taking the time to see my project.
 
-###live URL 
+### live URL 
 
 https://capstone-frontend-three.vercel.app/
 
@@ -12,7 +12,7 @@ From: Puerto Plata Airport (POP)
 
 To: Bahia Principe Samana
 
-In the checkout page going to ask u for a credit card please use  4242424242424242    ###CVC:  Any 3 digits  ###DATE: Any future date
+In the checkout page going to ask u for a credit card please use  4242424242424242   CVC:  Any 3 digits   DATE: Any future date
 
 ### This is the frontend of the final project of my coding Bootcamp course at Strive School, it is not finished yet I am working to finish it and add the features that it needs.
 
