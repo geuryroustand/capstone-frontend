@@ -47,7 +47,7 @@ export const Checkout = () => {
     const response = await handlerPayment({
       line_items,
       customer_email: taxiSelected.email,
-      taxiSelected,
+      // taxiSelected,
     });
 
     console.log("after fetch", response);

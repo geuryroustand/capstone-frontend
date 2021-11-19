@@ -28,7 +28,7 @@ const SharedRide = () => {
   const [dataToSend, setDataToSend] = useState({
     pickupLocation: "",
     dropLocation: "",
-    arrivalDate: "",
+    arrivalDate: startDate,
     passengers: "",
   });
 
@@ -54,6 +54,16 @@ const SharedRide = () => {
     }
   };
 
+  const history = useHistory();
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+
+    history.push(`
+    /searchSharedRide?pickupLocationName=${dataToSend.pickupLocation}&&date=${dataToSend.arrivalDate}&&dropLocationName=${dataToSend.dropLocation}&&passengers=${dataToSend.passengers}
+`);
+  };
+
   return (
     <header className="shared-ride-hero">
       <Container>
@@ -71,7 +81,7 @@ const SharedRide = () => {
           <Form
             inline
             className="form-shared-ride-search"
-            //  onSubmit={handlerSubmit}
+            onSubmit={handlerSubmit}
           >
             <Row className="shared-ride-search-form mt-5 ">
               {/* SEARCH ROUNDTRIP */}
@@ -182,7 +192,9 @@ const SharedRide = () => {
                     className="shared-ride-select-passenger"
                     required
                     value={dataToSend.passengers}
-                    onChange={(e) => handlerDataToSend(e.target.value)}
+                    onChange={(e) =>
+                      handlerDataToSend("passengers", e.target.value)
+                    }
                   >
                     {/* <option value="passenger">Passenger</option> */}
                     <option value="1">1</option>

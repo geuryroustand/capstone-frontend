@@ -159,3 +159,31 @@ export const selectedSharedRideDropLocation = (drop) => {
     });
   };
 };
+
+// SHARED RIDE
+
+export const fetchSharedRide = (pickupLocation, dropLocation, arrivalDate) => {
+  return async (dispatch) => {
+    console.log("fetch", pickupLocation, dropLocation);
+    try {
+      const response = await fetch(
+        `
+      http://localhost:3001/shared-ride?pickupLocationName=${pickupLocation}&&dropLocationName=${dropLocation}&&arrivalDate=18/11/2021`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (response.ok) {
+        let sharedRides = await response.json();
+
+        dispatch({
+          type: "FETCH_SHARED_RIDE",
+          payload: sharedRides,
+        });
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};
