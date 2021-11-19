@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
+import { format, parseISO } from "date-fns";
 import { fetchSharedRide } from "../../action/index.js";
 import { WiDirectionRight } from "react-icons/wi";
 import "./FindSharedRide.css";
@@ -18,7 +19,7 @@ const FindSharedRide = () => {
 
   const dispatch = useDispatch();
 
-  const state = useSelector((state) => state.searchSharedRide.searchSharedRide);
+  const { searchSharedRide } = useSelector((state) => state.searchSharedRide);
 
   useEffect(() => {
     dispatch(fetchSharedRide(pickupLocation, dropLocation, arrivalDate));
@@ -26,14 +27,42 @@ const FindSharedRide = () => {
 
   return (
     <Container>
-      {state.map((sharedTransfer) => (
+      {searchSharedRide?.map((sharedTransfer) => (
         <Row className="shared-ride-card">
           <Col>
-            <img className="userProfileImg" src={logo} alt="" />
-            <div className="d-flex">
-              <p>{sharedTransfer.pickupLocationName}</p>
-              <WiDirectionRight />
-              <p>{sharedTransfer.dropLocationName}</p>
+            <div className="d-flex sharedLocationName">
+              <p>{pickupLocation}</p>
+              <WiDirectionRight className="direction-icon" />
+              <p>{dropLocation}</p>
+            </div>
+            <p className="date-arrival">
+              {format(new Date(arrivalDate), " EEEE d, MMM  yyyy ")}
+            </p>
+            <p>
+              Depart at: <span className="bold-info"> 13:20 </span>
+            </p>
+            <p>
+              Arrival at: <span className="bold-info"> 13:20 </span>
+            </p>
+            <p>
+              Airline Name:{" "}
+              <span className="bold-info">
+                {sharedTransfer.arrivalAirlineName}{" "}
+              </span>{" "}
+            </p>
+            <p>
+              {" "}
+              Flight Number:{" "}
+              <span className="bold-info">
+                {" "}
+                {sharedTransfer.arrivalFlightNumber}{" "}
+              </span>
+            </p>
+            <div className="profile">
+              <img className="userProfileImg" src={logo} alt="" />
+              <p className="bold-info ml-3">
+                {sharedTransfer.passengersSurname}
+              </p>
             </div>
           </Col>
         </Row>
