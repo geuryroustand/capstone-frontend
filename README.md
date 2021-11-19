@@ -14,8 +14,7 @@ To: Bahia Principe Samana
 
 In the checkout page going to ask u for a credit card please use  4242424242424242   CVC:  Any 3 digits   DATE: Any future date
 
-## This is the frontend of the final project of my coding Bootcamp course at Strive School.
-## it is not finished yet I am working to finish it.
+## This is the frontend of the final project of my coding Bootcamp course at Strive School, it is not finished yet I am working to finish it.
 
 
 
