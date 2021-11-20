@@ -6,7 +6,7 @@ First of all, thank you very much for taking the time to see my project.
 
 https://capstone-frontend-three.vercel.app/
 
-To test this product please put the following names
+To make a booking you can try with the locations below. 
 
 From: Puerto Plata Airport (POP)
 
