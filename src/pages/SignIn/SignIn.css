@@ -28,13 +28,8 @@
   border-radius: 10px;
 }
 
-.register {
+.create-account {
   text-align: center;
-}
-.signIn {
-  width: 22rem;
-  margin: 0 auto;
-  margin-bottom: 14px;
 }
 .form-center {
   width: 22rem;

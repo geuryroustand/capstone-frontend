@@ -3,9 +3,12 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import "./MainNavation.css";
 import logo from "../../../src/logo.svg";
 import { Link, NavLink } from "react-router-dom";
-// import { Profile } from "../Profile/Profile";
+import { Profile } from "../Profile/Profile";
+import { useSelector } from "react-redux";
 
 export default function MainNavation() {
+  const { auth } = useSelector((state) => state?.auth);
+  console.log("aa", auth);
   return (
     <>
       <Navbar className="navbar-bg" expand="lg">
@@ -40,15 +43,19 @@ export default function MainNavation() {
             id="basic-navbar-nav  "
           >
             <Nav className="mr-auto  ">
-              <Link className="btn-register nav-link" to="/register">
-                Register
-              </Link>
+              {!auth && (
+                <>
+                  <Link className="btn-register nav-link" to="/register">
+                    Register
+                  </Link>
 
-              <Link className="btn-sign-in nav-link" to="/sign">
-                Sign in
-              </Link>
+                  <Link className="btn-sign-in nav-link" to="/signIn">
+                    Sign in
+                  </Link>
+                </>
+              )}
 
-              {/* <Profile /> */}
+              {auth && <Profile />}
 
               <div
                 style={{ display: "none" }}

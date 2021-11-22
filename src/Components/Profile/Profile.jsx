@@ -5,13 +5,14 @@ import { NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 export const Profile = () => {
-  const state = useSelector((state) => state.auth);
+  const { auth } = useSelector((state) => state?.auth);
 
-  console.log("aaaa", state);
   return (
     <div className="d-flex">
       <img className="avatar-profile" src={avatar} alt="" />
-      <p className="userName">{/* {name} {surname} */}</p>
+      <p className="userName">
+        {auth?.name} {auth?.surname}
+      </p>
 
       <NavDropdown id="navbarScrollingDropdown">
         <NavDropdown.Item className="profile-dropdown" href="#action/3.1">

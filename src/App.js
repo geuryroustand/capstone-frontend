@@ -8,6 +8,7 @@ import { PassengerDetails } from "./pages/PassengerDetails/PassengerDetails";
 import { Checkout } from "./Components/Checkout/Checkout";
 import SharedRide from "./Components/SharedRide/SharedRide";
 import FindSharedRide from "./pages/FindSharedRide/FindSharedRide";
+import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/register" exact>
           <Register />
+        </Route>
+        <Route path="/:signInId">
+          <SignIn />
         </Route>
         <Route path="/bookingDetails" exact>
           <BookingDetails />
