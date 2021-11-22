@@ -1,0 +1,22 @@
+.avatar-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.avatar-profile {
+  border: 2px solid #f0a500;
+  padding: 1px;
+}
+
+.userName {
+  color: white;
+  margin-left: 6px;
+  margin-top: 4px;
+
+  font-weight: 600;
+}
+
+.profile-dropdown {
+  color: black !important;
+}

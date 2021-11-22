@@ -37,8 +37,6 @@ export const fetchLocations = () => {
 
       if (response.ok) {
         let locations = await response.json();
-
-        console.log("from action ", locations);
         dispatch({
           type: "FETCH_LOCATIONS",
           payload: locations,

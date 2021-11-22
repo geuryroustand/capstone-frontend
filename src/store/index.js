@@ -1,5 +1,6 @@
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { authReducer } from "../reducer/authReducer";
 import getLocationReducer from "../reducer/getLocationReducer";
 import sharedRideReducer from "../reducer/sharedRideReducer";
 
@@ -22,11 +23,13 @@ export const initialState = {
   },
 
   searchSharedRide: [],
+  auth: "",
 };
 
 const bigReducer = combineReducers({
   formSearchTransfer: getLocationReducer,
   searchSharedRide: sharedRideReducer,
+  auth: authReducer,
 });
 
 const configureStore = createStore(

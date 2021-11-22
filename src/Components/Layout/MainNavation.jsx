@@ -3,14 +3,16 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import "./MainNavation.css";
 import logo from "../../../src/logo.svg";
 import { Link, NavLink } from "react-router-dom";
+// import { Profile } from "../Profile/Profile";
+
 export default function MainNavation() {
   return (
     <>
       <Navbar className="navbar-bg" expand="lg">
         <Container>
-          <Navbar.Brand className="logo-main" href="#home">
+          <Link className=" navbar-brand logo-main" to="/">
             <span className="logo-vacations-text">Vacations</span>Taxi.com
-          </Navbar.Brand>
+          </Link>
 
           <Nav className="mr-auto ml-4 display-nav">
             <NavLink
@@ -45,6 +47,8 @@ export default function MainNavation() {
               <Link className="btn-sign-in nav-link" to="/sign">
                 Sign in
               </Link>
+
+              {/* <Profile /> */}
 
               <div
                 style={{ display: "none" }}
