@@ -23,7 +23,9 @@ export const initialState = {
   },
 
   searchSharedRide: [],
-  auth: "",
+  auth: {
+    login: false,
+  },
 };
 
 const bigReducer = combineReducers({

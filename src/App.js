@@ -9,8 +9,16 @@ import { Checkout } from "./Components/Checkout/Checkout";
 import SharedRide from "./Components/SharedRide/SharedRide";
 import FindSharedRide from "./pages/FindSharedRide/FindSharedRide";
 import SignIn from "./pages/SignIn/SignIn";
+import { useEffect } from "react";
+import { verifyUser } from "./action/auth";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(verifyUser());
+  }, [dispatch]);
+
   return (
     <Layout>
       <Switch>

@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import "./Register.css";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 import { ImFacebook2 } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { register } from "../../action/auth";
+import { register, signIn, verifyUser } from "../../action/auth";
+import { useSelector } from "react-redux";
 
 const Register = () => {
+  const state = useSelector((state) => state.auth.login);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { signInId } = useParams();
+
   const [userRegister, setUserRegister] = useState({
     name: "",
     surname: "",
@@ -22,19 +28,36 @@ const Register = () => {
       [key]: value,
     });
   };
-  const dispatch = useDispatch();
-  const { signInId } = useParams();
 
   const handlerRegisterForm = (e) => {
     e.preventDefault();
-    dispatch(register(userRegister));
-    setUserRegister({
-      name: "",
-      surname: "",
-      email: "",
-      password: "",
-    });
-    // history.push("/");
+
+    if (
+      (userRegister.name.length > 3 && userRegister.surname > 0,
+      userRegister.password.length > 0 && userRegister.email > 0)
+    ) {
+      dispatch(register(userRegister));
+    }
+
+    if (userRegister.email.length > 0 && userRegister.password.length > 0) {
+      dispatch(
+        signIn({
+          email: userRegister.email,
+          password: userRegister.password,
+        })
+      );
+    }
+
+    if (state) {
+      console.log("subm", state);
+      history.push("/");
+    }
+    // setUserRegister({
+    //   name: "",
+    //   surname: "",
+    //   email: "",
+    //   password: "",
+    // });
   };
 
   return (
@@ -116,6 +139,20 @@ const Register = () => {
 
             <Button className="btn-create-account mb-3" type="submit">
               {signInId ? <>Sign in</> : <>Continue</>}
+              {state && (
+                <>
+                  <Spinner
+                    className="ml-2"
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    variant="warning"
+                  />
+                  <span className="sr-only">Loading...</span>
+                </>
+              )}
             </Button>
           </Form>
 

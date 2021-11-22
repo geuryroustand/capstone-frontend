@@ -6,7 +6,8 @@ export function authReducer(state = initialState.auth, action) {
       console.log("action", action);
       return {
         ...state,
-        auth: action.payload,
+        login: true,
+        ...action.payload,
       };
 
     default:
