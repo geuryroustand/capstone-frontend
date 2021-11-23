@@ -129,11 +129,17 @@ const Register = () => {
         </h2>
 
         <div className="form-center">
-          <Link to="/#" className="google-icon-login-or-reg mb-2" type="submit">
+          <a
+            href="https://vacationstaxi.herokuapp.com/users/googleLogin"
+            type="submit"
+            className="google-icon-login-or-reg mb-2"
+          >
             <FcGoogle className="icons-login-or-reg" />
-            {signInId ? <> Continue </> : <> Sign up </>}
-            with Google
-          </Link>
+            <span className="btn-social">
+              {signInId ? <> Continue </> : <> Sign up </>}
+              with Google
+            </span>
+          </a>
           <Link to="/#" className="facebook-icon-login-or-reg" type="submit">
             <ImFacebook2 className="icons-login-or-reg" />
             {signInId ? <> Continue </> : <> Sign up </>}
