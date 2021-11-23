@@ -221,7 +221,6 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     name=""
                     id=""
                     placeholder="Enter pick-up location "
-                    required
                     value={dataToSend.pickupLocation}
                     onChange={(e) =>
                       handlerData("pickupLocation", e.target.value)

@@ -98,7 +98,6 @@ const SharedRide = () => {
                     name=""
                     id=""
                     placeholder="Enter pick-up location "
-                    required
                     onChange={(e) =>
                       handlerDataToSend("pickupLocation", e.target.value)
                     }
