@@ -34,17 +34,19 @@ export const signIn = (userInfo) => {
   };
 };
 
-export const verifyUser = () => {
+export const verifyUser = (accessTokenSocial) => {
   return async (dispatch) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      if (accessToken) {
+      if (accessToken || accessTokenSocial) {
         const response = await fetch(
           `${process.env.REACT_APP_API_PROD_URL}/users/me`,
           {
             method: "GET",
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              Authorization: `Bearer ${
+                accessToken ? accessToken : accessTokenSocial
+              }`,
             },
           }
         );

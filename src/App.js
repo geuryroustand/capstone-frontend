@@ -1,6 +1,6 @@
 import "./App.css";
 import Layout from "./Components/Layout/Layout";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register/Register";
 import { BookingDetails } from "./pages/BookingDetails/BookingDetails";
@@ -14,9 +14,13 @@ import { verifyUser } from "./action/auth";
 import { useDispatch } from "react-redux";
 
 function App() {
+  const query = new URLSearchParams(useLocation().search);
+
+  const accessToken = query.get("accessToken");
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(verifyUser());
+    dispatch(verifyUser(accessToken));
   }, [dispatch]);
 
   return (
