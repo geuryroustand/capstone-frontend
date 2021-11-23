@@ -31,9 +31,11 @@ function App() {
         <Route path="/sharedRide" exact>
           <SharedRide />
         </Route>
-        {/* <Route path="/:signInId" exact>
+
+        {/* /:signInId */}
+        <Route path="/signIn" exact>
           <SignIn />
-        </Route> */}
+        </Route>
         <Route path="/bookingDetails" exact>
           <BookingDetails />
         </Route>

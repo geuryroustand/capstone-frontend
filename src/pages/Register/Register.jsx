@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { Form, Button, Spinner } from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams, useLocation } from "react-router-dom";
 import { signIn, register } from "../../action/auth";
 
 import { ImFacebook2 } from "react-icons/im";
@@ -33,7 +33,12 @@ const Register = () => {
   const state = useSelector((state) => state.auth.login);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { signInId } = useParams();
+
+  const query = new URLSearchParams(useLocation().search);
+
+  let signInId = query.get("signIn");
+
+  console.log(signInId);
 
   const [userRegister, setUserRegister] = useState({
     name: "",

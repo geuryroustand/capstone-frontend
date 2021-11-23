@@ -1,13 +1,16 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import "./MainNavation.css";
-
+import { useLocation } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import { Profile } from "../Profile/Profile";
 import { useSelector } from "react-redux";
 
 export default function MainNavation() {
   const { auth } = useSelector((state) => state);
+
+  const query = new URLSearchParams(useLocation().search);
+  const pickUpLocation = query.get("pickUpLocation");
 
   return (
     <>
@@ -17,25 +20,29 @@ export default function MainNavation() {
             <span className="logo-vacations-text">Vacations</span>Taxi.com
           </Link>
 
-          <Nav className="mr-auto ml-4 display-nav">
-            <NavLink
-              className="nav-link-transfer-option nav-link "
-              activeClassName="active-link  "
-              to="/"
-              exact
-            >
-              Private Transfers
-            </NavLink>
+          {!pickUpLocation && (
+            <>
+              <Nav className="mr-auto ml-4 display-nav">
+                <NavLink
+                  className="nav-link-transfer-option nav-link "
+                  activeClassName="active-link  "
+                  to="/"
+                  exact
+                >
+                  Private Transfers
+                </NavLink>
 
-            <NavLink
-              activeClassName="active-link  "
-              className="nav-link-transfer-option ml-3   nav-link"
-              to="/sharedRide"
-              exact
-            >
-              Shared Ride
-            </NavLink>
-          </Nav>
+                <NavLink
+                  activeClassName="active-link  "
+                  className="nav-link-transfer-option ml-3   nav-link"
+                  to="/sharedRide"
+                  exact
+                >
+                  Shared Ride
+                </NavLink>
+              </Nav>
+            </>
+          )}
 
           <Navbar.Toggle aria-controls="basic-navbar-nav  " />
           <Navbar.Collapse
@@ -49,7 +56,10 @@ export default function MainNavation() {
                     Register
                   </Link>
 
-                  <Link className="btn-sign-in nav-link" to="/signIn">
+                  <Link
+                    className="btn-sign-in nav-link"
+                    to="/signIn?signIn=signIn"
+                  >
                     Sign in
                   </Link>
                 </>
