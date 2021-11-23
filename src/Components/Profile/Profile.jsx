@@ -9,7 +9,7 @@ export const Profile = () => {
 
   return (
     <div className="d-flex">
-      <img className="avatar-profile" src={avatar} alt="" />
+      <img className="avatar-profile" src={auth?.avatar} alt="" />
       <p className="userName">
         {auth?.name} {auth?.surname}
       </p>

@@ -73,18 +73,20 @@ const Register = () => {
       );
 
       if (response.ok) {
+        setTimeout(() => {
+          progress.finish();
+        }, 200);
+
         const data = await response.json();
-        localStorage.setItem("accessToken", data.accessToken);
         dispatch(
           signIn({
             name: data.name,
             surname: data.surname,
+            avatar: data.avatar,
           })
         );
 
-        setTimeout(() => {
-          progress.finish();
-        }, 200);
+        localStorage.setItem("accessToken", data.accessToken);
         history.push("/");
       }
     } else {
@@ -105,18 +107,18 @@ const Register = () => {
           progress.finish();
         }, 200);
         const data = await response.json();
+
+        dispatch(
+          register({
+            name: data.name,
+            surname: data.surname,
+            avatar: data.avatar,
+          })
+        );
         localStorage.setItem("accessToken", data.accessToken);
-        dispatch(register({ name: data.name, surname: data.surname }));
         history.push("/");
       }
     }
-
-    // setUserRegister({
-    //   name: "",
-    //   surname: "",
-    //   email: "",
-    //   password: "",
-    // });
   };
 
   return (

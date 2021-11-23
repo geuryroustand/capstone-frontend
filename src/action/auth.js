@@ -3,7 +3,11 @@ export const register = (userInfo) => {
     try {
       dispatch({
         type: "USER_INFO",
-        payload: { name: userInfo.name, surname: userInfo.surname },
+        payload: {
+          name: userInfo.name,
+          surname: userInfo.surname,
+          avatar: userInfo.avatar,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -18,7 +22,11 @@ export const signIn = (userInfo) => {
 
       dispatch({
         type: "USER_INFO",
-        payload: { name: userInfo.name, surname: userInfo.surname },
+        payload: {
+          name: userInfo.name,
+          surname: userInfo.surname,
+          avatar: userInfo.avatar,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -47,7 +55,11 @@ export const verifyUser = () => {
 
           dispatch({
             type: "USER_INFO",
-            payload: { name: data.name, surname: data.surname },
+            payload: {
+              name: data.name,
+              surname: data.surname,
+              avatar: data.avatar,
+            },
           });
         }
       }
