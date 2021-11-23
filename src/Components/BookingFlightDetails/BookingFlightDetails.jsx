@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router";
+import React from "react";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
 
-import { parseISO, format } from "date-fns";
+import { format } from "date-fns";
 import "./BookingFlightDetails.css";
 
 export const BookingFlightDetails = () => {
   const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-
-  const [taxiPrice, setTaxiPrice] = useState("");
 
   const [prices] = state.formSearchTransfer.prices;
   const taxiSelected = state.formSearchTransfer.taxiSelected;
@@ -21,7 +18,6 @@ export const BookingFlightDetails = () => {
   let passengers = query.get("passengers");
   let arrivalDate = query.get("arrivalDate");
   let departureDate = query.get("departureDate");
-  let journey = query.get("journey");
   let step2 = query.get("step2");
   let step3 = query.get("step3");
 

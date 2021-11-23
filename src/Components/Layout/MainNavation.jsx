@@ -1,14 +1,14 @@
 import React from "react";
-import { Container, Navbar, Nav, Button } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import "./MainNavation.css";
-import logo from "../../../src/logo.svg";
+
 import { Link, NavLink } from "react-router-dom";
 import { Profile } from "../Profile/Profile";
 import { useSelector } from "react-redux";
 
 export default function MainNavation() {
-  const { auth } = useSelector((state) => state?.auth);
-  console.log("aa", auth);
+  const { auth } = useSelector((state) => state);
+
   return (
     <>
       <Navbar className="navbar-bg" expand="lg">
@@ -43,7 +43,7 @@ export default function MainNavation() {
             id="basic-navbar-nav  "
           >
             <Nav className="mr-auto  ">
-              {!auth && (
+              {!auth.login && (
                 <>
                   <Link className="btn-register nav-link" to="/register">
                     Register
@@ -55,7 +55,7 @@ export default function MainNavation() {
                 </>
               )}
 
-              {auth && <Profile />}
+              {auth.login && <Profile />}
 
               <div
                 style={{ display: "none" }}

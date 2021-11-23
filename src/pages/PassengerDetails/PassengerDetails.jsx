@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Form, Button, Modal } from "react-bootstrap";
+import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { BookingFlightDetails } from "../../Components/BookingFlightDetails/BookingFlightDetails";

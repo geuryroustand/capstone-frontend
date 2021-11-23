@@ -28,7 +28,10 @@ function App() {
         <Route path="/register" exact>
           <Register />
         </Route>
-        <Route path="/:signInId">
+        <Route path="/sharedRide" exact>
+          <SharedRide />
+        </Route>
+        <Route path="/:signInId" exact>
           <SignIn />
         </Route>
         <Route path="/bookingDetails" exact>
@@ -40,9 +43,7 @@ function App() {
         <Route path="/paymentDetails" exact>
           <Checkout />
         </Route>
-        <Route path="/sharedRide" exact>
-          <SharedRide />
-        </Route>
+
         <Route>
           <FindSharedRide path="/searchSharedRide" exact />
         </Route>

@@ -2,12 +2,32 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Form, Button, Spinner } from "react-bootstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
+import { signIn, register } from "../../action/auth";
 
 import { ImFacebook2 } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { register, signIn, verifyUser } from "../../action/auth";
+
 import { useSelector } from "react-redux";
+
+import ProgressBar from "@badrap/bar-of-progress";
+
+const progress = new ProgressBar({
+  // The size (height) of the progress bar.
+  // Numeric values get converted to px.
+  size: 7,
+
+  // Color of the progress bar.
+  // Also used for the glow around the bar.
+  color: "#F0A500",
+
+  // Class name used for the progress bar element.
+  className: "bar-of-progress",
+
+  // How many milliseconds to wait before the progress bar
+  // animation starts after calling .start().
+  delay: 80,
+});
 
 const Register = () => {
   const state = useSelector((state) => state.auth.login);
@@ -29,29 +49,63 @@ const Register = () => {
     });
   };
 
-  const handlerRegisterForm = (e) => {
+  const handlerRegisterForm = async (e) => {
     e.preventDefault();
-
-    if (
-      (userRegister.name.length > 3 && userRegister.surname > 0,
-      userRegister.password.length > 0 && userRegister.email > 0)
-    ) {
-      dispatch(register(userRegister));
-    }
-
-    if (userRegister.email.length > 0 && userRegister.password.length > 0) {
-      dispatch(
-        signIn({
-          email: userRegister.email,
-          password: userRegister.password,
-        })
+    if (signInId) {
+      progress.start();
+      const response = await fetch(
+        `${process.env.REACT_APP_API_PROD_URL}/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: userRegister.email,
+            password: userRegister.password,
+          }),
+        }
       );
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        dispatch(
+          signIn({
+            name: data.name,
+            surname: data.surname,
+          })
+        );
+
+        setTimeout(() => {
+          progress.finish();
+        }, 200);
+        history.push("/");
+      }
+    } else {
+      progress.start();
+      const response = await fetch(
+        `${process.env.REACT_APP_API_PROD_URL}/users/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userRegister),
+        }
+      );
+
+      if (response.ok) {
+        setTimeout(() => {
+          progress.finish();
+        }, 200);
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        dispatch(register({ name: data.name, surname: data.surname }));
+        history.push("/");
+      }
     }
 
-    if (state) {
-      console.log("subm", state);
-      history.push("/");
-    }
     // setUserRegister({
     //   name: "",
     //   surname: "",
@@ -68,12 +122,12 @@ const Register = () => {
         </h2>
 
         <div className="form-center">
-          <Link className="google-icon-login-or-reg mb-2" type="submit">
+          <Link to="/#" className="google-icon-login-or-reg mb-2" type="submit">
             <FcGoogle className="icons-login-or-reg" />
             {signInId ? <> Continue </> : <> Sign up </>}
             with Google
           </Link>
-          <Link className="facebook-icon-login-or-reg" type="submit">
+          <Link to="/#" className="facebook-icon-login-or-reg" type="submit">
             <ImFacebook2 className="icons-login-or-reg" />
             {signInId ? <> Continue </> : <> Sign up </>}
             with Facebook

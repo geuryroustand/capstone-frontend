@@ -5,7 +5,7 @@ import { NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 export const Profile = () => {
-  const { auth } = useSelector((state) => state?.auth);
+  const { auth } = useSelector((state) => state);
 
   return (
     <div className="d-flex">

@@ -20,8 +20,8 @@ export const BookingDetails = () => {
   const state = useSelector((state) => state);
 
   const [prices] = state.formSearchTransfer.prices;
-  const dropPlace = prices?.dropPlace;
-  const pickupPlace = prices?.pickupPlace;
+  // const dropPlace = prices?.dropPlace;
+  // const pickupPlace = prices?.pickupPlace;
 
   let query = new URLSearchParams(useLocation().search);
 
@@ -38,6 +38,7 @@ export const BookingDetails = () => {
     dispatch(
       fetchPrices(query.get("pickUpLocation"), query.get("dropLocation"))
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const history = useHistory();

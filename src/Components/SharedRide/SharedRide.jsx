@@ -60,8 +60,8 @@ const SharedRide = () => {
     e.preventDefault();
 
     history.push(`
-    /searchSharedRide?pickupLocationName=${dataToSend.pickupLocation}&&date=${dataToSend.arrivalDate}&&dropLocationName=${dataToSend.dropLocation}&&passengers=${dataToSend.passengers}
-`);
+        /searchSharedRide?pickupLocationName=${dataToSend.pickupLocation}&&date=${dataToSend.arrivalDate}&&dropLocationName=${dataToSend.dropLocation}&&passengers=${dataToSend.passengers}
+    `);
   };
 
   return (
@@ -99,10 +99,10 @@ const SharedRide = () => {
                     id=""
                     placeholder="Enter pick-up location "
                     required
-                    value={dataToSend.pickupLocation}
                     onChange={(e) =>
                       handlerDataToSend("pickupLocation", e.target.value)
                     }
+                    value={dataToSend.pickupLocation}
                   />
 
                   <ImLocation className="shared-ride-location-icon" />

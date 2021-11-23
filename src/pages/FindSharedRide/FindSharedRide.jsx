@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { fetchSharedRide } from "../../action/index.js";
 import { WiDirectionRight } from "react-icons/wi";
 import "./FindSharedRide.css";
@@ -15,7 +15,7 @@ const FindSharedRide = () => {
   let pickupLocation = query.get("pickupLocationName");
   let dropLocation = query.get("dropLocationName");
   let arrivalDate = query.get("date");
-  let passengers = query.get("passengers");
+  // let passengers = query.get("passengers");
 
   const dispatch = useDispatch();
 
@@ -23,6 +23,7 @@ const FindSharedRide = () => {
 
   useEffect(() => {
     dispatch(fetchSharedRide(pickupLocation, dropLocation, arrivalDate));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clickHandler = (e) => {
