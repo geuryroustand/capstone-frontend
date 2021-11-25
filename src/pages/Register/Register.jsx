@@ -135,16 +135,18 @@ const Register = () => {
             className="google-icon-login-or-reg mb-2"
           >
             <FcGoogle className="icons-login-or-reg" />
-            <span className="btn-social">
-              {signInId ? <> Continue </> : <> Sign up </>}
-              with Google
-            </span>
+            {signInId ? <> Continue </> : <> Sign up </>}
+            with Google
           </a>
-          <Link to="/#" className="facebook-icon-login-or-reg" type="submit">
+          <a
+            href="https://vacationstaxi.herokuapp.com/users/facebookLogin"
+            className="facebook-icon-login-or-reg"
+            type="submit"
+          >
             <ImFacebook2 className="icons-login-or-reg" />
             {signInId ? <> Continue </> : <> Sign up </>}
             with Facebook
-          </Link>
+          </a>
           <hr />
           <p className="or">or</p>
 

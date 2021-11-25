@@ -12,6 +12,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import { useEffect } from "react";
 import { verifyUser } from "./action/auth";
 import { useDispatch } from "react-redux";
+import ProfileDetails from "./Components/Profile/ProfileDetails";
 
 function App() {
   const query = new URLSearchParams(useLocation().search);
@@ -36,7 +37,9 @@ function App() {
           <SharedRide />
         </Route>
 
-        {/* /:signInId */}
+        <Route path="/me" exact>
+          <ProfileDetails />
+        </Route>
         <Route path="/signIn" exact>
           <SignIn />
         </Route>

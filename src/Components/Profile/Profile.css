@@ -20,3 +20,7 @@
 .profile-dropdown {
   color: black !important;
 }
+
+.profile {
+  cursor: pointer;
+}

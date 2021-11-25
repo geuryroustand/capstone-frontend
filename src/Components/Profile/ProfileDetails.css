@@ -1,0 +1,76 @@
+.profile-title {
+  font-size: 30px;
+}
+.profile-form {
+  margin: 0 auto;
+  width: 65%;
+  margin-top: 40px;
+}
+
+.profile-avatar-center {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.profile-avatar {
+  width: 190px;
+  border-radius: 50%;
+}
+.profile-name {
+  margin-left: 80px;
+}
+.profile-label {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.all-btn-profile {
+  position: absolute;
+  left: 92%;
+  /* left: 700px; */
+}
+.profile-cancel-btn {
+  border: none;
+  background-color: #f7f7f7;
+  color: #f0a500;
+  font-weight: bold;
+}
+.profile-cancel-btn:hover {
+  color: #00224f;
+}
+.profile-save-btn {
+  border: none;
+  background-color: #003580;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 60px;
+}
+
+.profile-save-btn:hover {
+  background-color: #00224f;
+}
+
+.profile-edit-btn {
+  border: none;
+  background-color: #f7f7f7;
+  color: #f0a500;
+  font-weight: bold;
+}
+
+.profile-edit-btn:hover {
+  color: #00224f;
+}
+
+/* secondLine */
+
+.profile-email-address {
+  margin-left: 50px !important;
+}
+
+.profile-btn-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #c0c0c0;
+  /* background-color: #c0c0c0; */
+}

@@ -1,3 +1,22 @@
+import ProgressBar from "@badrap/bar-of-progress";
+
+const progress = new ProgressBar({
+  // The size (height) of the progress bar.
+  // Numeric values get converted to px.
+  size: 7,
+
+  // Color of the progress bar.
+  // Also used for the glow around the bar.
+  color: "#F0A500",
+
+  // Class name used for the progress bar element.
+  className: "bar-of-progress",
+
+  // How many milliseconds to wait before the progress bar
+  // animation starts after calling .start().
+  delay: 80,
+});
+
 export const register = (userInfo) => {
   return async (dispatch) => {
     try {
@@ -18,10 +37,25 @@ export const register = (userInfo) => {
 export const signIn = (userInfo) => {
   return async (dispatch) => {
     try {
-      // progress.start();
-
       dispatch({
         type: "USER_INFO",
+        payload: {
+          name: userInfo.name,
+          surname: userInfo.surname,
+          avatar: userInfo.avatar,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const userUpdated = (userInfo) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: "USER_EDITED",
         payload: {
           name: userInfo.name,
           surname: userInfo.surname,
@@ -61,6 +95,8 @@ export const verifyUser = (accessTokenSocial) => {
               name: data.name,
               surname: data.surname,
               avatar: data.avatar,
+              email: data.email,
+              _id: data._id,
             },
           });
         }
