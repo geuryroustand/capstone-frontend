@@ -46,9 +46,9 @@ const FindSharedRide = () => {
             <p className="date-arrival">
               {format(new Date(arrivalDate), " EEEE d, MMM  yyyy ")}
             </p>
-            <p>
+            {/* <p>
               Depart at: <span className="bold-info"> 13:20 </span>
-            </p>
+            </p> */}
             <p>
               Arrival at: <span className="bold-info"> 13:20 </span>
             </p>

@@ -1,0 +1,189 @@
+.post-shared-ride-bg {
+  background-color: #003580;
+  height: 80vh;
+  color: white;
+}
+
+.post-shared-ride-heading {
+  width: 75%;
+  margin-top: 70px;
+  font-size: 50px;
+}
+
+@media (max-width: 575.98px) {
+  .post-shared-ride-heading {
+    margin-top: 10px;
+    font-size: 30px;
+    width: 80%;
+  }
+}
+.heading-mixed-color {
+  color: #f0a500;
+}
+
+/*  */
+
+.post-form-shared-ride-search {
+  width: 35%;
+  margin-left: 60%;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  .post-form-shared-ride-search {
+    width: 99%;
+    margin-left: 0px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 576px) and (max-width: 768px) {
+  .post-form-shared-ride-search {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
+
+.post-shared-ride-formSearchTransfer {
+  position: relative;
+}
+.post-shared-ride-search-input {
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+.post-shared-ride-input {
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 25px;
+  width: 90%;
+  height: 40px;
+}
+
+.post-shared-ride-search-form {
+  border: 25px solid #f0a500;
+
+  padding: 4px;
+  border-radius: 10px;
+  background-color: #f0a500;
+}
+
+.post-shared-ride-search-form-selected {
+  margin-bottom: 1.5rem;
+  margin-left: 10px;
+}
+.post-shared-ride-input-col {
+  position: relative;
+  background-color: white;
+
+  border-radius: 5px;
+  border: none;
+  margin-right: 15px;
+}
+
+.post-shared-ride-location-icon {
+  position: absolute;
+  left: 0px;
+  font-size: 1.4rem;
+  top: 20px;
+  color: #ccc;
+}
+
+.post-shared-ride-date-pick {
+  height: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.post-shared-ride-select-passenger-section {
+  position: relative;
+  background-color: white;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  margin-right: 15px;
+}
+
+@media (max-width: 575.98px) {
+  .post-shared-ride-select-passenger-section {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .post-shared-ride-select-passenger-section {
+    width: 100%;
+  }
+}
+
+.post-shared-ride-select-passenger {
+  border: none;
+  outline: none;
+  margin-left: 60px;
+  color: rgb(91, 88, 88);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.post-shared-ride-user-icon {
+  position: absolute;
+  color: #ccc;
+  left: 0.5px;
+  font-size: 1rem;
+}
+
+.post-shared-btn {
+  width: 100%;
+}
+.post-shared-ride-btn-search-button {
+  background-color: #003580;
+  border: none;
+  width: 96%;
+  height: 48px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .post-shared-ride-btn-search-button {
+    margin-top: 6px;
+    background-color: #003580;
+    border: none;
+    width: 94%;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+.post-shared-ride-btn-search-button:hover {
+  background-color: #00224f;
+}
+input::placeholder {
+  color: rgb(91, 88, 88);
+  /* padding: 10px; */
+  padding-left: 40px;
+  font-weight: bold;
+}
+
+label,
+input {
+  font-family: sans-serif;
+}
+
+/* MODAL SEARCH */
+.form-post-share-ride-search-label {
+  height: 48px;
+}
+
+/* .modal-main {
+  width: 30%;
+  left: 40%;
+} */

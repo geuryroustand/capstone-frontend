@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { verifyUser } from "./action/auth";
 import { useDispatch } from "react-redux";
 import ProfileDetails from "./Components/Profile/ProfileDetails";
+import PostSharedRide from "./pages/PostSharedRide/PostSharedRide";
 
 function App() {
   const query = new URLSearchParams(useLocation().search);
@@ -36,7 +37,9 @@ function App() {
         <Route path="/sharedRide" exact>
           <SharedRide />
         </Route>
-
+        <Route path="/postSharedRide" exact>
+          <PostSharedRide />
+        </Route>
         <Route path="/me" exact>
           <ProfileDetails />
         </Route>

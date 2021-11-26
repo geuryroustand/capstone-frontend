@@ -20,6 +20,9 @@ export const Profile = () => {
           <Link className="dropdown-item profile-dropdown" to="/me">
             Profile
           </Link>
+          <Link className="dropdown-item profile-dropdown" to="/me">
+            Sign out
+          </Link>
         </NavDropdown>
       </div>
     </div>
