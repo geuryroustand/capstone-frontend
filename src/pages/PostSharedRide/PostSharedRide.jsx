@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./PostSharedRide.css";
@@ -6,18 +6,19 @@ import "./PostSharedRide.css";
 import { Container, Row, Form, Button, Col, Modal } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
-
-// my name is Geury Roustand and im a full stack developer
-// My project its base in real project need , its a like a travel agency
-// where The travelers can search for private airport transfer
-// and also can post
+import { useDispatch, useSelector } from "react-redux";
+import { postSharedRide } from "../../action/postSharedRide";
 
 const PostSharedRide = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [locationsFetch, setLocationsFetch] = useState("");
+  const [locationsFetch, setLocationsFetch] = useState([]);
+  const dispatch = useDispatch();
+
+  const [pickLocation, setPickLocation] = useState("");
+
   const searchLocation = async (e) => {
     try {
+      e.preventDefault();
       let searchPickLocation = e.target.value.trim();
 
       const response = await fetch(
@@ -34,59 +35,23 @@ const PostSharedRide = () => {
       );
 
       if (response.ok) {
-        const location = await response.json();
-
-        console.log(location);
-        // setLocationsFetch(Location);
-        // setLocationsFetch(Location);
+        const getDestinations = await response.json();
+        setLocationsFetch(getDestinations);
+        // dispatch(postSharedRide(getDestinations));
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  // console.log(locationsFetch);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  function MyVerticallyCenteredModal(props) {
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        closeButton
-        className="modal-main"
-      >
-        {/* <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
-        </Modal.Header> */}
-        <Modal.Body>
-          <Form>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                placeholder="From"
-                className="form-post-share-ride-search-label"
-              />
-            </Form.Group>
-          </Form>
-
-          <ul>
-            <li>Samana</li>
-            <li>Samana</li>
-            <li>Samana</li>
-            <li>Samana</li>
-          </ul>
-        </Modal.Body>
-        {/* <Button onClick={props.onHide}>Close</Button> */}
-        {/* <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer> */}
-      </Modal>
-    );
-  }
+  const handlerInput = (LocationSelected) => {
+    setPickLocation(LocationSelected.location);
+    handleClose();
+  };
 
   return (
     <div className="post-shared-ride-bg">
@@ -114,59 +79,32 @@ const PostSharedRide = () => {
               <Row className="  ">
                 <div className="post-shared-ride-input-col  post-shared-ride-search-input">
                   <input
-                    onKeyUp={searchLocation}
+                    onClick={() => setShow(true)}
                     className=" post-shared-ride-input"
                     required
                     type="text"
                     name=""
                     id=""
+                    defaultValue={pickLocation}
                     placeholder="Enter pick-up location "
-
-                    // onChange={(e) =>
-                    //   handlerDataToSend("pickupLocation", e.target.value)
-                    // }
-                    // value={dataToSend.pickupLocation}
                   />
 
                   <ImLocation className="post-shared-ride-location-icon" />
                 </div>
 
-                {/* {state.formSearchTransfer.pickUpSharedRideLocation.length >
-                  1 && (
-                  <AutoCompletePickSharedRide
-                    handlerPickLocationAutoComplete={handlerDataToSend}
-                  />
-                )} */}
-
-                {/* <AutoCompleteDrop /> */}
-                {/* <Col
-                  lg="auto"
-                  className="post-shared-ride-input-col post-shared-ride-media-queries "
-                > */}
-
                 <div className=" mt-3 post-shared-ride-input-col post-shared-ride-search-input">
                   <input
-                    onClick={() => setModalShow(true)}
+                    // onClick={() => setModalShow(true)}
                     className="post-shared-ride-input"
                     type="text"
                     name=""
                     id=""
                     placeholder="Enter destination "
                     required
-                    // value={dataToSend.dropLocation}
-                    // onChange={(e) =>
-                    //   handlerDataToSend("dropLocation", e.target.value)
-                    // }
                   />
 
                   <ImLocation className="post-shared-ride-location-icon" />
                 </div>
-
-                {/* {state.formSearchTransfer.dropSharedRideLocation.length > 1 && (
-                  <AutoCompleteDropSharedRide
-                    handlerDropLocationAutoComplete={handlerDataToSend}
-                  />
-                )} */}
 
                 <div
                   lg="auto"
@@ -204,10 +142,39 @@ const PostSharedRide = () => {
           </Form>
         </Row>
 
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
+        <Modal
+          show={show}
+          onHide={() => setShow(false)}
+          dialogClassName="modal-10w"
+          aria-labelledby="example-custom-modal-styling-title"
+        >
+          {/* <Modal.Header closeButton>
+            <Modal.Title id="example-custom-modal-styling-title"></Modal.Title>
+          </Modal.Header> */}
+          <Modal.Body>
+            <Form>
+              <Form.Group closeButton>
+                <Form.Control
+                  onKeyUp={searchLocation}
+                  type="text"
+                  placeholder="From"
+                  className="form-post-share-ride-search-label"
+                />
+              </Form.Group>
+            </Form>
+            {/* <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button> */}
+
+            <ul>
+              {locationsFetch.map((lo, i) => (
+                <li onClick={() => handlerInput(lo)} key={i}>
+                  {lo.location}
+                </li>
+              ))}
+            </ul>
+          </Modal.Body>
+        </Modal>
       </Container>
     </div>
   );

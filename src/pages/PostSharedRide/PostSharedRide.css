@@ -85,6 +85,12 @@
   margin-right: 15px;
 }
 
+@media (max-width: 575.98px) {
+  .post-shared-ride-input-col {
+    margin-left: 15px;
+  }
+}
+
 .post-shared-ride-location-icon {
   position: absolute;
   left: 0px;
@@ -113,6 +119,7 @@
 @media (max-width: 575.98px) {
   .post-shared-ride-select-passenger-section {
     width: 100%;
+    margin-left: 15px;
   }
 }
 
@@ -163,6 +170,13 @@
   }
 }
 
+@media (max-width: 575.98px) {
+  .post-shared-ride-btn-search-button {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
 .post-shared-ride-btn-search-button:hover {
   background-color: #00224f;
 }
@@ -179,9 +193,13 @@ input {
 }
 
 /* MODAL SEARCH */
-.form-post-share-ride-search-label {
-  height: 48px;
+
+.modal {
+  top: 45%;
 }
+/* .form-post-share-ride-search-label {
+  height: 48px;
+} */
 
 /* .modal-main {
   width: 30%;

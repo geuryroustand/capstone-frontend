@@ -140,7 +140,6 @@ export const taxiOptionSelected = (taxiSelected) => {
 };
 
 export const selectedSharedRidePickLocation = (pickup) => {
-  console.log(pickup, "pickup action");
   return async (dispatch) => {
     dispatch({
       type: "SELECTED_SHARED_RIDE_PICK_UP_LOCATION",

@@ -10,6 +10,10 @@ import { useDispatch } from "react-redux";
 const ProfileDetails = () => {
   const dispatch = useDispatch();
 
+  console.log("", configureStore.getState());
+  configureStore.subscribe(() => {
+    this.forceUpdate();
+  });
   const { avatar, name, surname, email } = useSelector((state) => state.auth);
 
   const [newUserInfo, setNewUserInfo] = useState({
@@ -37,7 +41,6 @@ const ProfileDetails = () => {
     e.preventDefault();
     setClickLabelEmail(!clickLabelEmail);
   };
-
   const handlerUserTypingNewInfo = (key, value) => {
     setNewUserInfo({
       ...newUserInfo,
