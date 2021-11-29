@@ -7,7 +7,7 @@ import { Container, Row, Form, Button, Col, Modal } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { postSharedRide } from "../../action/postSharedRide";
+
 import { useHistory } from "react-router";
 
 const PostSharedRide = () => {
@@ -77,7 +77,7 @@ const PostSharedRide = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    dispatch(postSharedRide({ pickLocation, dropLocation, passenger }));
+    // dispatch(fetShared({ pickLocation, dropLocation, passenger }));
     history.push("/postRide");
   };
 

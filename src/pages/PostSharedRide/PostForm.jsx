@@ -4,17 +4,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Container, Form, Col, Button, Row } from "react-bootstrap";
 import { WiDirectionRight, WiDirectionDown } from "react-icons/wi";
 import "./PostForm.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchSharedRide } from "../../action";
+import { postSharedRide } from "../../action/postSharedRide";
 import { useHistory } from "react-router";
 export const PostForm = () => {
   const [startDate, setStartDate] = useState(new Date());
-
-  const { auth, postSharedRide } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { auth, newPost = postSharedRide } = useSelector((state) => state);
 
   const [post, setPost] = useState({
     ...auth,
-    ...postSharedRide,
+    ...newPost,
     airlineName: "",
     flightNumber: "",
     date: startDate,
@@ -31,7 +32,10 @@ export const PostForm = () => {
   const history = useHistory();
   const handlerSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(postSharedRide(post));
     fetchSharedRide(post.pickLocation, post.dropLocation, post.date);
+
     history.push("/searchSharedRide");
   };
 
