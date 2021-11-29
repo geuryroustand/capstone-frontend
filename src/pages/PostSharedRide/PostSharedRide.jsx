@@ -8,13 +8,18 @@ import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { postSharedRide } from "../../action/postSharedRide";
+import { useHistory } from "react-router";
 
 const PostSharedRide = () => {
-  const [modalShow, setModalShow] = useState(false);
-  const [locationsFetch, setLocationsFetch] = useState([]);
+  const [locationsFetch, setLocationsFetch] = useState({
+    searchResults: [],
+    noSearch: true,
+  });
   const dispatch = useDispatch();
 
   const [pickLocation, setPickLocation] = useState("");
+  const [dropLocation, setDropLocation] = useState("");
+  const [passenger, setPassenger] = useState("");
 
   const searchLocation = async (e) => {
     try {
@@ -36,11 +41,19 @@ const PostSharedRide = () => {
 
       if (response.ok) {
         const getDestinations = await response.json();
-        setLocationsFetch(getDestinations);
-        // dispatch(postSharedRide(getDestinations));
+        setLocationsFetch({
+          ...locationsFetch,
+          searchResults: getDestinations,
+          noSearch: !false,
+        });
       }
     } catch (error) {
       console.log(error);
+
+      setLocationsFetch({
+        noSearch: true,
+      });
+      return;
     }
   };
 
@@ -49,8 +62,23 @@ const PostSharedRide = () => {
   const handleShow = () => setShow(true);
 
   const handlerInput = (LocationSelected) => {
-    setPickLocation(LocationSelected.location);
-    handleClose();
+    if (!pickLocation.length > 0) {
+      setPickLocation(LocationSelected.location);
+      handleClose();
+    }
+
+    if (pickLocation.length) {
+      setDropLocation(LocationSelected.location);
+      handleClose();
+    }
+  };
+
+  const history = useHistory();
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    dispatch(postSharedRide({ pickLocation, dropLocation, passenger }));
+    history.push("/postRide");
   };
 
   return (
@@ -66,12 +94,12 @@ const PostSharedRide = () => {
             </h1>
           </Col>
         </Row>
-        {/* Form  */}
+
         <Row>
           <Form
+            onSubmit={handlerSubmit}
             inline
             className="post-form-shared-ride-search"
-            // onSubmit={handlerSubmit}
           >
             <Row className="post-shared-ride-search-form mt-5 ">
               {/* SEARCH ROUNDTRIP */}
@@ -94,11 +122,12 @@ const PostSharedRide = () => {
 
                 <div className=" mt-3 post-shared-ride-input-col post-shared-ride-search-input">
                   <input
-                    // onClick={() => setModalShow(true)}
+                    onClick={() => setShow(true)}
                     className="post-shared-ride-input"
                     type="text"
                     name=""
                     id=""
+                    defaultValue={dropLocation}
                     placeholder="Enter destination "
                     required
                   />
@@ -111,14 +140,11 @@ const PostSharedRide = () => {
                   className=" mt-3 post-shared-ride-select-passenger-section "
                 >
                   <select
+                    onChange={(e) => setPassenger(e.target.value)}
                     name="passenger"
                     id="passenger"
                     className=" post-shared-ride-select-passenger"
                     required
-                    // value={dataToSend.passengers}
-                    // onChange={(e) =>
-                    //   handlerDataToSend("passengers", e.target.value)
-                    // }
                   >
                     <option value="passenger">Passenger</option>
                     <option value="1">1</option>
@@ -148,30 +174,37 @@ const PostSharedRide = () => {
           dialogClassName="modal-10w"
           aria-labelledby="example-custom-modal-styling-title"
         >
-          {/* <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title"></Modal.Title>
-          </Modal.Header> */}
           <Modal.Body>
             <Form>
               <Form.Group closeButton>
-                <Form.Control
-                  onKeyUp={searchLocation}
-                  type="text"
-                  placeholder="From"
-                  className="form-post-share-ride-search-label"
-                />
+                {!pickLocation ? (
+                  <Form.Control
+                    onKeyUp={searchLocation}
+                    type="text"
+                    placeholder="From"
+                    className="form-post-share-ride-search-label"
+                  />
+                ) : (
+                  <Form.Control
+                    onKeyUp={searchLocation}
+                    type="text"
+                    placeholder="To"
+                    className="form-post-share-ride-search-label"
+                  />
+                )}
               </Form.Group>
             </Form>
-            {/* <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button> */}
 
             <ul>
-              {locationsFetch.map((lo, i) => (
-                <li onClick={() => handlerInput(lo)} key={i}>
-                  {lo.location}
-                </li>
-              ))}
+              {locationsFetch.noSearch ? (
+                locationsFetch.searchResults?.map((lo, i) => (
+                  <li onClick={() => handlerInput(lo)} key={i}>
+                    {lo.location}
+                  </li>
+                ))
+              ) : (
+                <li>Sorry. No Results</li>
+              )}
             </ul>
           </Modal.Body>
         </Modal>

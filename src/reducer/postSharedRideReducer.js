@@ -7,9 +7,8 @@ export default function postSharedRideReducer(
 ) {
   switch (action.type) {
     case "POST_SHARED_RIDE":
-      const loc = action.payload.filter((lo) => lo.location);
       return {
-        // ...loc,
+        ...state,
         ...action.payload,
       };
 
