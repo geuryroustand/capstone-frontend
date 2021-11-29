@@ -7,7 +7,7 @@
 
 @media (max-width: 575.98px) {
   .shared-ride-hero {
-    width: 100%;
+    width: 100% !important;
   }
 }
 .shared-ride-hero::before {

@@ -6,10 +6,56 @@
   border-radius: 10px;
 }
 
+@media (max-width: 575.98px) {
+  .post-form {
+    width: 100%;
+  }
+
+  .direction-icon {
+    display: none;
+  }
+}
+
+.direction-icon-down {
+  font-size: 2.6rem;
+  display: block;
+}
+@media (min-width: 575.98px) {
+  .direction-icon-down {
+    display: none;
+  }
+}
+
 .directions-info {
   margin: 0 auto;
   width: 70%;
   font-size: 30px;
   font-weight: bold;
   margin-top: 50px;
+}
+
+.post-form input {
+  font-weight: bold;
+}
+
+.post-btn {
+  background-color: #f0a500;
+  border: none;
+  font-size: 22px;
+  width: 15rem;
+  height: 50px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.post-btn:hover {
+  background-color: #00224f;
+}
+
+.post-date {
+  height: 40px;
+  margin-top: 9px;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
 }

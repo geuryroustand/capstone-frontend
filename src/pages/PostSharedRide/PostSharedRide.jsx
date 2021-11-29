@@ -161,7 +161,7 @@ const PostSharedRide = () => {
                   type="submit"
                   className="post-shared-ride-btn-search-button"
                 >
-                  Post a share ride
+                  Continue
                 </Button>
               </Row>
             </Row>
