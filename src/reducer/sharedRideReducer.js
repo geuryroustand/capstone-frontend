@@ -1,10 +1,10 @@
 import { initialState } from "../store";
 
-const sharedRideReducer = (state = initialState.searchSharedRide, action) => {
+const sharedRideReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_SHARED_RIDE":
       return {
-        ...state,
+        ...state.searchSharedRide,
         searchSharedRide: action.payload,
       };
 

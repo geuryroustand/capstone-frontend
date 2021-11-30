@@ -1,10 +1,23 @@
 export const postSharedRide = (lo) => {
   return async (dispatch) => {
     try {
+      dispatch({
+        type: "POST_SHARED_RIDE",
+        payload: lo,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postInDBSharedRide = (lo) => {
+  return async (dispatch) => {
+    try {
       const token = localStorage.getItem("accessToken");
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_PROD_URL}/shared-ride`,
+        `${process.env.REACT_APP_API_DEV_URL}/shared-ride`,
         {
           method: "POST",
           headers: {
@@ -22,11 +35,6 @@ export const postSharedRide = (lo) => {
           type: "FETCH_SHARED_RIDE",
           payload: data,
         });
-
-        // dispatch({
-        //   type: "POST_SHARED_RIDE",
-        //   payload: lo,
-        // });
       }
     } catch (error) {
       console.log(error);

@@ -6,23 +6,26 @@ import { WiDirectionRight, WiDirectionDown } from "react-icons/wi";
 import "./PostForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSharedRide } from "../../action";
-import { postSharedRide } from "../../action/postSharedRide";
+import { postInDBSharedRide } from "../../action/postSharedRide";
 import { useHistory } from "react-router";
+import { format } from "date-fns";
 export const PostForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
-  const { auth, newPost = postSharedRide } = useSelector((state) => state);
+  const [startDate, setStartDate] = useState(new Date());
 
+  const state = useSelector((state) => state);
   const [post, setPost] = useState({
-    ...auth,
-    ...newPost,
+    ...state.postSharedRide,
     airlineName: "",
     flightNumber: "",
-    date: startDate,
+    serviceDate: "",
     haveFlight: "Yes",
   });
 
   const handlerInput = (key, value) => {
+    if (key === "serviceDate") {
+      setStartDate(value);
+    }
     setPost({
       ...post,
       [key]: value,
@@ -30,13 +33,20 @@ export const PostForm = () => {
   };
 
   const history = useHistory();
-  const handlerSubmit = (e) => {
-    e.preventDefault();
+  const handlerSubmit = async (e) => {
+    try {
+      e.preventDefault();
 
-    dispatch(postSharedRide(post));
-    fetchSharedRide(post.pickLocation, post.dropLocation, post.date);
+      await dispatch(postInDBSharedRide(post));
 
-    history.push("/searchSharedRide");
+      await dispatch(
+        fetchSharedRide(post.pickLocation, post.dropLocation, post.serviceDate)
+      );
+
+      await history.push("/searchSharedRide");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -44,14 +54,14 @@ export const PostForm = () => {
       <div className="directions-info">
         <Row>
           <Col>
-            <p>{postSharedRide?.pickLocation}</p>
+            <p>{state.postSharedRide?.pickLocation}</p>
           </Col>
 
           <WiDirectionRight className="direction-icon" />
 
           <WiDirectionDown className="direction-icon-down" />
           <Col>
-            <p>{postSharedRide?.dropLocation}</p>
+            <p>{state.postSharedRide?.dropLocation}</p>
           </Col>
         </Row>
       </div>
@@ -61,7 +71,7 @@ export const PostForm = () => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               onChange={(e) => handlerInput("name", e.target.value)}
-              defaultValue={auth?.name}
+              defaultValue={state?.auth.name}
               type="text"
               placeholder="Enter name"
             />
@@ -70,7 +80,7 @@ export const PostForm = () => {
             <Form.Label>Last Name</Form.Label>
             <Form.Control
               onChange={(e) => handlerInput("surname", e.target.value)}
-              defaultValue={auth?.surname}
+              defaultValue={state?.auth.surname}
               type="text"
               placeholder="Enter last name"
             />
@@ -81,7 +91,7 @@ export const PostForm = () => {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             onChange={(e) => handlerInput("email", e.target.value)}
-            defaultValue={auth?.email}
+            defaultValue={state?.auth.email}
             type="email"
             placeholder="Enter email"
           />
@@ -109,7 +119,7 @@ export const PostForm = () => {
             <Form.Control
               onChange={(e) => handlerInput("passenger", e.target.value)}
               as="select"
-              value={postSharedRide?.passenger}
+              value={state.postSharedRide?.passenger}
             >
               <option>1</option>
               <option>2</option>
@@ -126,10 +136,15 @@ export const PostForm = () => {
             Date
             <DatePicker
               className="post-date border"
-              // showTimeSelect
+              showTimeSelect
+              // timeFormat="HH:mm"
               selected={startDate}
+              // timeInputLabel="T:"
               // selected={dataToSend.arrivalDate}
-              onChange={(date) => setStartDate(date)}
+
+              // onChange={(date) => setStartDate(date)}
+              onChange={(date) => handlerInput("serviceDate", date)}
+              // setPost({ serviceDate: date });
               // timeClassName={handleColor}
               minDate={new Date()}
               maxDate={new Date("02-29-2024")}
@@ -139,12 +154,12 @@ export const PostForm = () => {
               yearDropdownItemNumber={1}
               scrollableYearDropdown
               dropdownMode="select"
-              dateFormat="eee d, MMM  yyyy "
+              // dateFormat="eee d, MMM  yyyy "
               // peekNextMonth
               // scrollableYearDropdown
-              // strictParsing
-              // timeIntervals={15}
-              // dateFormat="MMMM d, yyyy h:mm aa"
+              strictParsing
+              timeIntervals={10}
+              dateFormat="eee d, MMM  yyyy h:mm aa"
               // dateFormat="Pp"
               withPortal
               portalId="root-portal"
