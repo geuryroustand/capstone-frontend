@@ -17,29 +17,21 @@ const FindSharedRide = () => {
   let serviceDate = query.get("serviceDate");
   // let passengers = query.get("passengers");
 
+  console.log(pickupLocation, dropLocation);
   const dispatch = useDispatch();
 
   const { searchSharedRide } = useSelector((state) => state?.searchSharedRide);
 
-  // const getInUser = useSelector(
-  //   (state) => state?.searchSharedRide.searchSharedRide
-  // );
-
-  // const findUser = getInUser.map((el) => el.user);
-
-  // const user = findUser.flatMap((u) => u);
-
-  // console.log("a", findUser);
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchSharedRide(
-  //       pickupLocation,
-  //       dropLocation,
-  //       format(new Date(serviceDate), "EEEE d, MMM  yyyy")
-  //     )
-  //   );
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    dispatch(
+      fetchSharedRide(
+        pickupLocation,
+        dropLocation,
+        format(new Date(serviceDate), "EEEE d, MMM  yyyy")
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const clickHandler = (e) => {
     console.log(e);
