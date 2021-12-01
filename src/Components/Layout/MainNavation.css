@@ -64,3 +64,10 @@ a {
 
   flex-grow: 0;
 }
+
+.propose-a-ride {
+  color: #f0a500 !important;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 30px !important;
+}

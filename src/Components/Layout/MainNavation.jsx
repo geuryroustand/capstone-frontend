@@ -50,6 +50,10 @@ export default function MainNavation() {
             id="basic-navbar-nav  "
           >
             <Nav className="mr-auto  ">
+              <Link className="nav-link propose-a-ride" to="/PostSharedRide">
+                Propose a ride
+              </Link>
+
               {!auth.login && (
                 <>
                   <Link className="btn-register nav-link" to="/register">

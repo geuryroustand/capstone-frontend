@@ -14,18 +14,22 @@ export const PostForm = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   const state = useSelector((state) => state);
+
   const [post, setPost] = useState({
     ...state.postSharedRide,
     airlineName: "",
     flightNumber: "",
     serviceDate: "",
     haveFlight: "Yes",
+    totalPrice: null,
+    passenger: "",
   });
 
   const handlerInput = (key, value) => {
     if (key === "serviceDate") {
       setStartDate(value);
     }
+    console.log(key, value);
     setPost({
       ...post,
       [key]: value,
@@ -70,6 +74,7 @@ export const PostForm = () => {
           <Form.Group as={Col}>
             <Form.Label>Name</Form.Label>
             <Form.Control
+              required
               onChange={(e) => handlerInput("name", e.target.value)}
               defaultValue={state?.auth.name}
               type="text"
@@ -79,6 +84,7 @@ export const PostForm = () => {
           <Form.Group as={Col}>
             <Form.Label>Last Name</Form.Label>
             <Form.Control
+              required
               onChange={(e) => handlerInput("surname", e.target.value)}
               defaultValue={state?.auth.surname}
               type="text"
@@ -90,6 +96,7 @@ export const PostForm = () => {
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
+            required
             onChange={(e) => handlerInput("email", e.target.value)}
             defaultValue={state?.auth.email}
             type="email"
@@ -105,6 +112,7 @@ export const PostForm = () => {
           <Form.Group as={Col}>
             <Form.Label>Do you have a flight</Form.Label>
             <Form.Control
+              required
               onChange={(e) => handlerInput("haveFlight", e.target.value)}
               as="select"
               value={post.haveFlight}
@@ -117,9 +125,10 @@ export const PostForm = () => {
           <Form.Group as={Col}>
             <Form.Label>Passenger</Form.Label>
             <Form.Control
+              required
               onChange={(e) => handlerInput("passenger", e.target.value)}
               as="select"
-              value={state.postSharedRide?.passenger}
+              value={post.passenger}
             >
               <option>1</option>
               <option>2</option>
@@ -169,10 +178,21 @@ export const PostForm = () => {
             />
           </Form.Label>
 
+          <Form.Group
+            required
+            onChange={(e) => handlerInput("totalPrice", e.target.value)}
+            defaultValue={post.totalPrice}
+            as={Col}
+          >
+            <Form.Label>Price $USD</Form.Label>
+            <Form.Control />
+          </Form.Group>
+
           {post.haveFlight === "Yes" && (
             <>
               <Form.Group
                 as={Col}
+                required
                 onChange={(e) => handlerInput("airlineName", e.target.value)}
                 defaultValue={post.airlineName}
               >
@@ -181,6 +201,7 @@ export const PostForm = () => {
               </Form.Group>
 
               <Form.Group
+                required
                 onChange={(e) => handlerInput("flightNumber", e.target.value)}
                 defaultValue={post.flightNumber}
                 as={Col}

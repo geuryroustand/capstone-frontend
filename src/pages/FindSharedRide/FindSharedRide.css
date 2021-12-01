@@ -41,3 +41,9 @@
   height: 50px;
   border-radius: 50%;
 }
+
+.sharedTransferPrice {
+  margin-left: 110px;
+  margin-top: 50px;
+  font-weight: bold;
+}
