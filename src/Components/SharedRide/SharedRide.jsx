@@ -69,11 +69,11 @@ const SharedRide = () => {
       <Container>
         <Row className="shared-ride-pt-5">
           <h1 className="shared-ride-heading-h1">
-            Reliable, low cost airport transfers
+            Find your share ride at very low cost
           </h1>
 
           <h3 className="shared-ride-heading-h3">
-            Easy airport transfers to and from your accommodation
+            From and to all destinations with verify drivers
           </h3>
         </Row>
 

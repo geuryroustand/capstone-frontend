@@ -29,7 +29,7 @@ export const PostForm = () => {
     if (key === "serviceDate") {
       setStartDate(value);
     }
-    console.log(key, value);
+
     setPost({
       ...post,
       [key]: value,
@@ -41,7 +41,9 @@ export const PostForm = () => {
     try {
       e.preventDefault();
 
-      await dispatch(postInDBSharedRide(post));
+      console.log(post);
+
+      // await dispatch(postInDBSharedRide(post));
 
       await dispatch(
         fetchSharedRide(post.pickLocation, post.dropLocation, post.serviceDate)

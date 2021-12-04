@@ -161,7 +161,6 @@ export const selectedSharedRideDropLocation = (drop) => {
 
 export const fetchSharedRide = (pickupLocation, dropLocation, serviceDate) => {
   return async (dispatch) => {
-    console.log(pickupLocation, dropLocation);
     // &serviceDate=${serviceDate}
     try {
       const response = await fetch(

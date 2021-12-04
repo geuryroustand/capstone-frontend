@@ -17,21 +17,20 @@ const FindSharedRide = () => {
   let serviceDate = query.get("serviceDate");
   // let passengers = query.get("passengers");
 
-  console.log(pickupLocation, dropLocation);
   const dispatch = useDispatch();
 
-  const { searchSharedRide } = useSelector((state) => state?.searchSharedRide);
+  const { sharedRide } = useSelector((state) => state?.searchSharedRide);
 
-  useEffect(() => {
-    dispatch(
-      fetchSharedRide(
-        pickupLocation,
-        dropLocation,
-        format(new Date(serviceDate), "EEEE d, MMM  yyyy")
-      )
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchSharedRide(
+  //       pickupLocation,
+  //       dropLocation,
+  //       format(new Date(serviceDate), "EEEE d, MMM  yyyy")
+  //     )
+  //   );
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const clickHandler = (e) => {
     console.log(e);
@@ -39,7 +38,7 @@ const FindSharedRide = () => {
 
   return (
     <Container>
-      {searchSharedRide?.map((sharedTransfer, i) => (
+      {sharedRide?.map((sharedTransfer, i) => (
         <Row
           key={i}
           onClick={(e) => clickHandler(sharedTransfer)}
@@ -47,16 +46,10 @@ const FindSharedRide = () => {
         >
           <Col>
             <div className="d-flex sharedLocationName">
-              <p>
-                {pickupLocation ? pickupLocation : sharedTransfer.pickLocation}
-              </p>
+              <p>{sharedTransfer.pickLocation}</p>
               <WiDirectionRight className="direction-icon" />
-              <p>{dropLocation ? dropLocation : sharedTransfer.dropLocation}</p>
+              <p>{sharedTransfer.dropLocation}</p>
             </div>
-
-            {/* <p>
-              Depart at: <span className="bold-info"> 13:20 </span>
-            </p> */}
 
             <div className="d-flex">
               <div>
@@ -64,7 +57,7 @@ const FindSharedRide = () => {
                   Date:{" "}
                   <span className="bold-info">
                     {format(
-                      parseISO(sharedTransfer.serviceDate),
+                      new Date(sharedTransfer.serviceDate),
                       "PPPPpp"
                       // "EEEE d, MMM  yyyy"
                       // "eee d, MMM  yyyy  h:mm aa"
@@ -101,10 +94,8 @@ const FindSharedRide = () => {
               </div>
 
               <div className="sharedTransferPrice">
-                <p>${sharedTransfer.totalPrice}</p>
-
+                <p>{sharedTransfer.totalPrice}</p>
                 <p>
-                  {" "}
                   <FaUserFriends /> {sharedTransfer.passenger}
                 </p>
               </div>

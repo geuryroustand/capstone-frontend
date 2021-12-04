@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import ProfileDetails from "./Components/Profile/ProfileDetails";
 import PostSharedRide from "./pages/PostSharedRide/PostSharedRide";
 import { PostForm } from "./pages/PostSharedRide/PostForm";
+import PostSharedRideDetails from "./pages/PostSharedRideDetails/PostSharedRideDetails";
 
 function App() {
   const query = new URLSearchParams(useLocation().search);
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path="/postSharedRide" exact>
           <PostSharedRide />
+        </Route>
+        <Route path="/postSharedRideDetails" exact>
+          <PostSharedRideDetails />
         </Route>
         <Route path="/postRide" exact>
           <PostForm />

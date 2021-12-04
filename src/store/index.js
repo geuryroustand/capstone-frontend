@@ -23,7 +23,9 @@ export const initialState = {
     dropSharedRideLocation: [],
   },
 
-  searchSharedRide: [],
+  searchSharedRide: {
+    sharedRide: [],
+  },
   auth: {
     login: false,
   },
