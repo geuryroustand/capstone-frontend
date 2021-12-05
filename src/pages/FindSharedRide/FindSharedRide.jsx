@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { format, parse, parseISO } from "date-fns";
 import { fetchSharedRide } from "../../action/index.js";
 import { WiDirectionRight } from "react-icons/wi";
@@ -31,9 +31,9 @@ const FindSharedRide = () => {
   //   );
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
-
+  const history = useHistory();
   const clickHandler = (e) => {
-    console.log(e);
+    // history.push("/postSharedRideDetails");
   };
 
   return (

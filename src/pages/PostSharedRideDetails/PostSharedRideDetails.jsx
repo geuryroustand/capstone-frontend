@@ -10,24 +10,35 @@ import { Link } from "react-router-dom";
 
 const PostSharedRideDetails = () => {
   const { sharedRide } = useSelector((state) => state.searchSharedRide);
+  const [sharedRideInfo] = sharedRide;
   const { auth } = useSelector((state) => state);
 
-  const [comment, setComment] = useState();
+  const [comment, setComment] = useState("");
 
   const handlerCommentsSubmit = async (e) => {
     try {
       e.preventDefault();
+      const token = localStorage.getItem("accessToken");
 
-      const response = await fetch(`${process.env.REACT_APP_API_PROD_URL}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          comments: comment,
-          user: auth._id,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_DEV_URL}/shared-ride/comments`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            comment,
+            postId: sharedRideInfo._id,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setComment("");
+        console.log(response);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -147,6 +158,7 @@ const PostSharedRideDetails = () => {
               </Col>
             </Row>
           </div>
+
           <Form
             xs="12"
             className="postSharedRideForm mt-3"
@@ -165,6 +177,17 @@ const PostSharedRideDetails = () => {
                 rows={3}
               />
             </Form.Group>
+
+            {/* <div>
+              <textarea
+                className="textarea-comment"
+                value={comment}
+                onChange={handlerInput}
+                name=""
+                id=""
+              ></textarea>
+            </div> */}
+
             {auth.login ? (
               <button type="submit" className="btn-postSharedRide">
                 Send

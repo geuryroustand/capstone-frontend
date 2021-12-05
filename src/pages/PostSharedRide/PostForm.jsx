@@ -41,9 +41,7 @@ export const PostForm = () => {
     try {
       e.preventDefault();
 
-      console.log(post);
-
-      // await dispatch(postInDBSharedRide(post));
+      await dispatch(postInDBSharedRide(post));
 
       await dispatch(
         fetchSharedRide(post.pickLocation, post.dropLocation, post.serviceDate)
