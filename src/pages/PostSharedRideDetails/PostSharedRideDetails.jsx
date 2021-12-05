@@ -1,16 +1,37 @@
 import { WiDirectionDown, WiDirectionRight } from "react-icons/wi";
 import { AiOutlineComment } from "react-icons/ai";
 import { Form } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import "./PostSharedRideDetails.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import avatar from "../../avatar.png";
+import { Link } from "react-router-dom";
 
 const PostSharedRideDetails = () => {
-  const state = useSelector((state) => state.searchSharedRide);
+  const { sharedRide } = useSelector((state) => state.searchSharedRide);
+  const { auth } = useSelector((state) => state);
 
-  console.log(state);
+  const [comment, setComment] = useState();
+
+  const handlerCommentsSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const response = await fetch(`${process.env.REACT_APP_API_PROD_URL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          comments: comment,
+          user: auth._id,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
@@ -126,18 +147,33 @@ const PostSharedRideDetails = () => {
               </Col>
             </Row>
           </div>
-          <Form xs="12" className="postSharedRideForm mt-3">
-            <Form.Group controlId="exampleForm.ControlInput1">
+          <Form
+            xs="12"
+            className="postSharedRideForm mt-3"
+            onSubmit={handlerCommentsSubmit}
+          >
+            {/* <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control type="email" placeholder="name@example.com" />
-            </Form.Group>
+            </Form.Group> */}
 
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Control placeholder="Comment..." as="textarea" rows={3} />
+            <Form.Group>
+              <Form.Control
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Comment..."
+                as="textarea"
+                rows={3}
+              />
             </Form.Group>
-
-            <button type="submit" className="btn-postSharedRide">
-              Send
-            </button>
+            {auth.login ? (
+              <button type="submit" className="btn-postSharedRide">
+                Send
+              </button>
+            ) : (
+              <Link className="btn-not-login-user" to="/signIn">
+                Sign in to leave a comment
+              </Link>
+            )}
           </Form>
         </Row>
       </div>

@@ -109,3 +109,8 @@
   color: white;
   width: 80px;
 }
+
+.btn-not-login-user {
+  color: #f0a500 !important;
+  font-weight: bold;
+}
