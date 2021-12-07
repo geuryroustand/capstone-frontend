@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { authReducer } from "../reducer/authReducer";
 import getLocationReducer from "../reducer/getLocationReducer";
 import postSharedRideReducer from "../reducer/postSharedRideReducer";
+import { sharedRideDetailsReducer } from "../reducer/sharedRideDetailsReducer";
 import sharedRideReducer from "../reducer/sharedRideReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,6 +24,8 @@ export const initialState = {
     dropSharedRideLocation: [],
   },
 
+  sharedRideDetails: [],
+
   searchSharedRide: {
     sharedRide: [],
   },
@@ -37,6 +40,7 @@ const bigReducer = combineReducers({
   searchSharedRide: sharedRideReducer,
   auth: authReducer,
   postSharedRide: postSharedRideReducer,
+  sharedRideDetails: sharedRideDetailsReducer,
 });
 
 const configureStore = createStore(

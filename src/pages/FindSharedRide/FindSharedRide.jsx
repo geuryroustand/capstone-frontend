@@ -8,6 +8,7 @@ import { fetchSharedRide } from "../../action/index.js";
 import { WiDirectionRight } from "react-icons/wi";
 import { FaUserFriends } from "react-icons/fa";
 import "./FindSharedRide.css";
+import { sharedRideDetails } from "../../action/sharedRideDetails.js";
 
 const FindSharedRide = () => {
   let query = new URLSearchParams(useLocation().search);
@@ -32,8 +33,9 @@ const FindSharedRide = () => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
   const history = useHistory();
-  const clickHandler = (e) => {
-    // history.push("/postSharedRideDetails");
+  const clickHandler = (post) => {
+    dispatch(sharedRideDetails(post));
+    history.push("/postSharedRideDetails");
   };
 
   return (

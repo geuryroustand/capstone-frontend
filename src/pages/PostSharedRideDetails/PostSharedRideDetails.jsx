@@ -4,16 +4,22 @@ import { Form } from "react-bootstrap";
 import React, { useState } from "react";
 import "./PostSharedRideDetails.css";
 import { Col, Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import avatar from "../../avatar.png";
 import { Link } from "react-router-dom";
+import { sharedRideDetails } from "../../action/sharedRideDetails";
+import format from "date-fns/format/index";
 
 const PostSharedRideDetails = () => {
   const { sharedRide } = useSelector((state) => state.searchSharedRide);
-  const [sharedRideInfo] = sharedRide;
-  const { auth } = useSelector((state) => state);
+  const state = useSelector((state) => state.sharedRideDetails);
 
+  const [sharedRideInfo] = sharedRide;
+
+  const { auth } = useSelector((state) => state);
   const [comment, setComment] = useState("");
+
+  const dispatch = useDispatch();
 
   const handlerCommentsSubmit = async (e) => {
     try {
@@ -37,7 +43,8 @@ const PostSharedRideDetails = () => {
 
       if (response.ok) {
         setComment("");
-        console.log(response);
+        const post = await response.json();
+        dispatch(sharedRideDetails(post));
       }
     } catch (error) {
       console.log(error);
@@ -47,21 +54,26 @@ const PostSharedRideDetails = () => {
   return (
     <Container>
       <div className="container-main">
-        <h2 className="heading-postRideDetails">Sat, 4 December</h2>
+        <h2 className="heading-postRideDetails">
+          {/* Sat, 4 December */}
+          {format(
+            new Date(state.sharedRideDetails.serviceDate),
+            "EEEEEE , PPP"
+          )}
+        </h2>
 
         <div className="d-flex mt-5 mb-4 postRideLocationInfo">
-          <p>Samana Airport</p>
+          <p>{state.sharedRideDetails.pickLocation}</p>
           <WiDirectionRight className="postRide-direction-icon" />
           {/* <WiDirectionDown /> */}
-          <p className="ml-2">Bahia Principe</p>
+          <p className="ml-2">{state.sharedRideDetails.dropLocation}</p>
         </div>
 
         <Row className="postRideDetails-main">
           <Col>
             <div className="d-flex mt-4 postRideDetails ">
               <p>
-                Arriving to{" "}
-                <span className="arriving-info"> Samana Airport </span>{" "}
+                Arriving <span className="arriving-info"> on flight</span>{" "}
               </p>
             </div>
             {/* <p className="postRideDetails-border-line"></p> */}
@@ -75,10 +87,15 @@ const PostSharedRideDetails = () => {
             <div className="postSharedRideFlightInfo">
               <p>
                 Airline Name:
-                <span className="ml-2"></span> Air Canada
+                <span className="ml-2">
+                  {state.sharedRideDetails.airlineName}
+                </span>
               </p>
-              <p>Flight Number: 4523</p>
-              <span>At: 20:50</span>
+              <p>Flight Number: {state.sharedRideDetails.flightNumber}</p>
+              <span>
+                At:
+                {format(new Date(state.sharedRideDetails.serviceDate), "HH:mm")}
+              </span>
             </div>
           </Col>
           <hr />
@@ -88,15 +105,19 @@ const PostSharedRideDetails = () => {
 
         <Row className="postSharedRide-user-info">
           <Col className="d-flex">
-            <img className="postSharedRide-profile" src={avatar} alt="" />
-            <p className="ml-2 mt-3  postSharedRide-user-name">Luis Martinez</p>
+            <img
+              className="postSharedRide-profile"
+              src={state.sharedRideDetails.user.avatar}
+              alt=""
+            />
+            <p className="ml-2 mt-3  postSharedRide-user-name">
+              {state.sharedRideDetails.user.name}{" "}
+              {state.sharedRideDetails.user.surname}
+            </p>
           </Col>
 
           <Col>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste,
-              dolores.
-            </p>
+            <p>{state.sharedRideDetails.travelerCommentRequest}</p>
           </Col>
         </Row>
         <hr />
@@ -106,58 +127,33 @@ const PostSharedRideDetails = () => {
             <AiOutlineComment className="commentsPostSharedRideIcon" />
             Comments
           </div>
+          {state?.sharedRideDetails.comments.length > 0 && (
+            <div className="postSharedRideCommentsList">
+              {state?.sharedRideDetails.comments.map((com, i) => (
+                <>
+                  <Row key={i} className="bg-comment-section">
+                    <Col xs="12" md="12" lg="4">
+                      <div className="d-flex">
+                        <img
+                          className="postSharedRide-profile"
+                          src={com.avatar}
+                          alt=""
+                        />
+                        <p className="ml-2 mt-3  postSharedRide-user-name">
+                          {com.name} {com.surname}
+                        </p>
+                      </div>
+                    </Col>
 
-          <div className="postSharedRideCommentsList">
-            <Row className="bg-comment-section">
-              <Col xs="12" md="12" lg="4">
-                <div className="d-flex">
-                  <img className="postSharedRide-profile" src={avatar} alt="" />
-                  <p className="ml-2 mt-3  postSharedRide-user-name">
-                    Luis Martinez
-                  </p>
-                </div>
-              </Col>
-
-              <Col xs="12" md="12" lg="8" className="mt-3">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque,
-                unde?
-              </Col>
-            </Row>
-            <hr />
-
-            <Row className="bg-comment-section">
-              <Col xs="12" md="12">
-                <div className="d-flex">
-                  <img className="postSharedRide-profile" src={avatar} alt="" />
-                  <p className="ml-2 mt-3  postSharedRide-user-name">
-                    Luis Martinez
-                  </p>
-                </div>
-              </Col>
-
-              <Col xs="12" md="12" lg="" className="mt-3">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque,
-                unde?
-              </Col>
-            </Row>
-            <hr />
-
-            <Row className="bg-comment-section">
-              <Col xs="12" md="12">
-                <div className="d-flex">
-                  <img className="postSharedRide-profile" src={avatar} alt="" />
-                  <p className="ml-2 mt-3  postSharedRide-user-name">
-                    Luis Martinez
-                  </p>
-                </div>
-              </Col>
-
-              <Col xs="12" md="12" className="mt-3">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque,
-                unde?
-              </Col>
-            </Row>
-          </div>
+                    <Col xs="12" md="12" lg="8" className="mt-3">
+                      {com.comment}
+                    </Col>
+                  </Row>
+                  <hr />
+                </>
+              ))}
+            </div>
+          )}
 
           <Form
             xs="12"

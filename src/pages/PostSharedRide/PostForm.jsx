@@ -23,6 +23,7 @@ export const PostForm = () => {
     haveFlight: "Yes",
     totalPrice: null,
     passenger: "",
+    travelerCommentRequest: "",
   });
 
   const handlerInput = (key, value) => {
@@ -212,6 +213,18 @@ export const PostForm = () => {
             </>
           )}
         </Form.Row>
+        <Form.Group>
+          <Form.Label>Leave a comment for other travelers</Form.Label>
+          <Form.Control
+            onChange={(e) =>
+              handlerInput("travelerCommentRequest", e.target.value)
+            }
+            defaultValue={post.travelerCommentRequest}
+            placeholder="comment..."
+            as="textarea"
+            rows={3}
+          />
+        </Form.Group>
 
         <Button className="post-btn" type="submit">
           Post your share ride
