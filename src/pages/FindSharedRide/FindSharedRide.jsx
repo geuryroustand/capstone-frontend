@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { format, parse, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { fetchSharedRide } from "../../action/index.js";
 import { WiDirectionRight } from "react-icons/wi";
 import { FaUserFriends } from "react-icons/fa";
@@ -22,21 +22,24 @@ const FindSharedRide = () => {
 
   const { sharedRide } = useSelector((state) => state?.searchSharedRide);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchSharedRide(
-  //       pickupLocation,
-  //       dropLocation,
-  //       format(new Date(serviceDate), "EEEE d, MMM  yyyy")
-  //     )
-  //   );
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
   const history = useHistory();
   const clickHandler = (post) => {
     dispatch(sharedRideDetails(post));
     history.push("/postSharedRideDetails");
   };
+
+  useEffect(() => {
+    if (pickupLocation && dropLocation) {
+      dispatch(
+        fetchSharedRide(
+          pickupLocation,
+          dropLocation,
+          format(new Date(serviceDate), "EEEE d, MMM  yyyy")
+        )
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container>

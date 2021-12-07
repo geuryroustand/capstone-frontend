@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSharedRide } from "../../action";
 import { postInDBSharedRide } from "../../action/postSharedRide";
 import { useHistory } from "react-router";
-import { format } from "date-fns";
+
 export const PostForm = () => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());

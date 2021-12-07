@@ -163,6 +163,7 @@ export const fetchSharedRide = (pickupLocation, dropLocation, serviceDate) => {
   return async (dispatch) => {
     // &serviceDate=${serviceDate}
     try {
+      progress.start();
       const response = await fetch(
         `
         http://localhost:3001/shared-ride?pickLocation=${pickupLocation}&dropLocation=${dropLocation}`,
@@ -173,11 +174,14 @@ export const fetchSharedRide = (pickupLocation, dropLocation, serviceDate) => {
       );
       if (response.ok) {
         let sharedRides = await response.json();
-        console.log("fetc", sharedRides);
         dispatch({
           type: "FETCH_SHARED_RIDE",
           payload: sharedRides,
         });
+
+        setTimeout(() => {
+          progress.finish();
+        }, 500);
       }
     } catch (error) {
       console.log("error");

@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useState } from "react";
+
 import "./PostSharedRide.css";
 // keyup
 import { Container, Row, Form, Button, Col, Modal } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { postSharedRide } from "../../action/postSharedRide";
 import { useHistory } from "react-router";
@@ -60,7 +59,6 @@ const PostSharedRide = () => {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handlerInput = (LocationSelected) => {
     if (!pickLocation.length > 0) {

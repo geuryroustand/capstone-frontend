@@ -1,4 +1,3 @@
-import React from "react";
 import { initialState } from "../store";
 
 export default function postSharedRideReducer(

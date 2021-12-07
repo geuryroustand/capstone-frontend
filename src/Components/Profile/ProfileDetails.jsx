@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container, Form, Row, Button, Spinner, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Form, Row, Col } from "react-bootstrap";
 import "./ProfileDetails.css";
 import configureStore from "../../store";
 
 import { useSelector } from "react-redux";
-import { signIn, userUpdated } from "../../action/auth";
+import { userUpdated } from "../../action/auth";
 import { useDispatch } from "react-redux";
 
 const ProfileDetails = () => {

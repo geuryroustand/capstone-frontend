@@ -1,11 +1,10 @@
-import { WiDirectionDown, WiDirectionRight } from "react-icons/wi";
+import { WiDirectionRight } from "react-icons/wi";
 import { AiOutlineComment } from "react-icons/ai";
 import { Form } from "react-bootstrap";
 import React, { useState } from "react";
 import "./PostSharedRideDetails.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import avatar from "../../avatar.png";
 import { Link } from "react-router-dom";
 import { sharedRideDetails } from "../../action/sharedRideDetails";
 import format from "date-fns/format/index";

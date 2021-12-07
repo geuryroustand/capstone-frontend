@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { Form, Button, Spinner } from "react-bootstrap";
-import { Link, useHistory, useParams, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { signIn, register } from "../../action/auth";
 
 import { ImFacebook2 } from "react-icons/im";

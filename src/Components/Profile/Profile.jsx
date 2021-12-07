@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "../../avatar.png";
+
 import "./Profile.css";
 import { NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
