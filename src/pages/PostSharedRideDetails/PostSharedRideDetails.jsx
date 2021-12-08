@@ -13,6 +13,7 @@ const PostSharedRideDetails = () => {
   const { sharedRide } = useSelector((state) => state.searchSharedRide);
   const state = useSelector((state) => state.sharedRideDetails);
 
+  console.log(state.sharedRideDetails);
   const [sharedRideInfo] = sharedRide;
 
   const { auth } = useSelector((state) => state);
@@ -35,7 +36,7 @@ const PostSharedRideDetails = () => {
           },
           body: JSON.stringify({
             comment,
-            postId: sharedRideInfo._id,
+            postId: state.sharedRideDetails._id,
           }),
         }
       );
@@ -54,7 +55,6 @@ const PostSharedRideDetails = () => {
     <Container>
       <div className="container-main">
         <h2 className="heading-postRideDetails">
-          {/* Sat, 4 December */}
           {format(
             new Date(state.sharedRideDetails.serviceDate),
             "EEEEEE , PPP"
@@ -64,7 +64,7 @@ const PostSharedRideDetails = () => {
         <div className="d-flex mt-5 mb-4 postRideLocationInfo">
           <p>{state.sharedRideDetails.pickLocation}</p>
           <WiDirectionRight className="postRide-direction-icon" />
-          {/* <WiDirectionDown /> */}
+
           <p className="ml-2">{state.sharedRideDetails.dropLocation}</p>
         </div>
 
@@ -75,11 +75,6 @@ const PostSharedRideDetails = () => {
                 Arriving <span className="arriving-info"> on flight</span>{" "}
               </p>
             </div>
-            {/* <p className="postRideDetails-border-line"></p> */}
-            {/* <div className="d-flex  postRideDetails">
-            <p>08:00</p>
-            <p className="ml-5">Bahia Principe Samana</p>
-          </div> */}
           </Col>
 
           <Col>
@@ -104,14 +99,9 @@ const PostSharedRideDetails = () => {
 
         <Row className="postSharedRide-user-info">
           <Col className="d-flex">
-            <img
-              className="postSharedRide-profile"
-              src={state.sharedRideDetails.user.avatar}
-              alt=""
-            />
+            <img className="postSharedRide-profile" src={auth.avatar} alt="" />
             <p className="ml-2 mt-3  postSharedRide-user-name">
-              {state.sharedRideDetails.user.name}{" "}
-              {state.sharedRideDetails.user.surname}
+              {auth.name} {auth.surname}
             </p>
           </Col>
 
@@ -135,16 +125,21 @@ const PostSharedRideDetails = () => {
                       <div className="d-flex">
                         <img
                           className="postSharedRide-profile"
-                          src={com.avatar}
+                          src={com.user?.avatar}
                           alt=""
                         />
                         <p className="ml-2 mt-3  postSharedRide-user-name">
-                          {com.name} {com.surname}
+                          {com.user?.name} {com.user?.surname}
                         </p>
                       </div>
                     </Col>
 
-                    <Col xs="12" md="12" lg="8" className="mt-3">
+                    <Col
+                      xs="12"
+                      md="12"
+                      lg="8"
+                      className="mt-3 commentsSection"
+                    >
                       {com.comment}
                     </Col>
                   </Row>
@@ -159,10 +154,6 @@ const PostSharedRideDetails = () => {
             className="postSharedRideForm mt-3"
             onSubmit={handlerCommentsSubmit}
           >
-            {/* <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control type="email" placeholder="name@example.com" />
-            </Form.Group> */}
-
             <Form.Group>
               <Form.Control
                 value={comment}
@@ -172,16 +163,6 @@ const PostSharedRideDetails = () => {
                 rows={3}
               />
             </Form.Group>
-
-            {/* <div>
-              <textarea
-                className="textarea-comment"
-                value={comment}
-                onChange={handlerInput}
-                name=""
-                id=""
-              ></textarea>
-            </div> */}
 
             {auth.login ? (
               <button type="submit" className="btn-postSharedRide">

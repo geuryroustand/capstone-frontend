@@ -1,7 +1,7 @@
 import "./Hero.css";
 import React, { useState, useEffect } from "react";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 // import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
@@ -30,13 +30,14 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
   const state = useSelector((state) => state);
   const [roundTrip, setRoundTrip] = useState("OneWay");
 
-  // const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [startDateDeparture, setStartDateDeparture] = useState(new Date());
 
   const [dataToSend, setDataToSend] = useState({
     pickupLocation: "",
     dropLocation: "",
-    arrivalDate: "",
-    departureDate: "",
+    arrivalDate: startDate,
+    departureDate: startDateDeparture,
     passengers: "",
   });
 
@@ -145,7 +146,6 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         type="text"
                         name=""
                         id=""
-                        disabled
                         placeholder="Enter pick-up location "
                         value={dataToSend.pickupLocation}
                         // onChange={(e) => setPickupLocation(e.target.value)}
@@ -158,7 +158,6 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         className="search-input"
                         type="text"
                         name=""
-                        disabled
                         id=""
                         placeholder="Enter destination "
                         required
@@ -168,7 +167,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                       <ImLocation className="location-icon" />
                     </Col>
 
-                    <Col>
+                    {/* <Col>
                       <input
                         className="date-pick"
                         type="datetime-local"
@@ -180,7 +179,40 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         id=""
                         required
                       />
+                    </Col> */}
+
+                    {/* DATE PICKED */}
+                    <Col lg="auto" className="date-picker-col">
+                      <DatePicker
+                        // showTimeSelect
+                        selected={startDateDeparture}
+                        // selected={dataToSend.arrivalDate}
+                        onChange={(date) => setStartDateDeparture(date)}
+                        // timeClassName={handleColor}
+                        minDate={new Date()}
+                        maxDate={new Date("02-29-2024")}
+                        showPopperArrow={false}
+                        showMonthDropdown
+                        showYearDropdown
+                        yearDropdownItemNumber={1}
+                        scrollableYearDropdown
+                        dropdownMode="select"
+                        dateFormat="eee d, MMM  yyyy "
+                        // peekNextMonth
+                        // scrollableYearDropdown
+                        // strictParsing
+                        // timeIntervals={15}
+                        // dateFormat="MMMM d, yyyy h:mm aa"
+                        // dateFormat="Pp"
+                        withPortal
+                        portalId="root-portal"
+                        className="shared-ride-date-pick"
+                        required
+                        // value={dataToSend.arrivalDate}
+                        // onChange={(e) => handlerData("arrivalDate", e.target.value)}
+                      />
                     </Col>
+
                     <Col className="select-passenger-section">
                       <select
                         name="passenger"
@@ -195,8 +227,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         {/* <option value="passenger">Passenger</option> */}
                         <option value="1">1</option>
                         <option value="2">2</option>
+                        <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
                       </select>
@@ -266,35 +298,38 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                 )}
 
                 {/* DATE PICKED */}
-
-                {/* <Col>
+                <Col lg="auto" className="date-picker-col">
                   <DatePicker
-                    showTimeSelect
+                    // showTimeSelect
                     selected={startDate}
                     // selected={dataToSend.arrivalDate}
                     onChange={(date) => setStartDate(date)}
                     // timeClassName={handleColor}
                     minDate={new Date()}
+                    maxDate={new Date("02-29-2024")}
                     showPopperArrow={false}
                     showMonthDropdown
                     showYearDropdown
+                    yearDropdownItemNumber={1}
+                    scrollableYearDropdown
                     dropdownMode="select"
-                    yearDropdownItemNumber={5}
+                    dateFormat="eee d, MMM  yyyy "
                     // peekNextMonth
                     // scrollableYearDropdown
                     // strictParsing
-                    timeIntervals={15}
+                    // timeIntervals={15}
                     // dateFormat="MMMM d, yyyy h:mm aa"
-                    dateFormat="Pp"
+                    // dateFormat="Pp"
                     withPortal
-                    className="date-pick"
+                    portalId="root-portal"
+                    className="shared-ride-date-pick"
                     required
                     // value={dataToSend.arrivalDate}
                     // onChange={(e) => handlerData("arrivalDate", e.target.value)}
                   />
-                </Col> */}
+                </Col>
 
-                <Col>
+                {/* <Col>
                   <input
                     className="date-pick"
                     type="datetime-local"
@@ -304,7 +339,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     value={dataToSend.arrivalDate}
                     onChange={(e) => handlerData("arrivalDate", e.target.value)}
                   />
-                </Col>
+                </Col> */}
 
                 <Col className=" select-passenger-section">
                   <select
@@ -318,9 +353,10 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     {/* <option value="passenger">Passenger</option> */}
                     <option value="1">1</option>
                     <option value="2">2</option>
+                    <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                    <option value="5">5</option>
+
                     <option value="6">6</option>
                   </select>
                   <FaUserAlt className="user-icon" />
