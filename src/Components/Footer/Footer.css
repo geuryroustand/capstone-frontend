@@ -1,0 +1,45 @@
+.footer-main {
+  background: #003580;
+  height: 300px;
+  margin-top: 6.2%;
+}
+
+@media (max-width: 575.98px) {
+  .footer-main {
+    margin-top: 100%;
+    height: 100%;
+    /* text-align: center;
+    font-size: 30px; */
+  }
+
+  .copy-right {
+    margin-top: 30px !important;
+    text-align: center;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .footer-main {
+    margin-top: 50%;
+    height: 600px;
+    width: 100%;
+    /* text-align: center;
+    font-size: 30px; */
+  }
+
+  .copy-right {
+    margin-top: 30px !important;
+    text-align: center;
+  }
+}
+
+.footer ul {
+  margin-top: 40px;
+}
+
+.copy-right {
+  color: #f0a500;
+  margin-top: 50px;
+}

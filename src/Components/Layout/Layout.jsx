@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 
 import MainNavation from "./MainNavation";
 
@@ -7,6 +8,7 @@ export const Layout = (props) => {
     <div>
       <MainNavation />
       <main>{props.children}</main>
+      <Footer />
     </div>
   );
 };

@@ -36,8 +36,9 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
   const [dataToSend, setDataToSend] = useState({
     pickupLocation: "",
     dropLocation: "",
-    arrivalDate: startDate,
-    departureDate: startDateDeparture,
+
+    // arrivalDate: startDate,
+    // departureDate: startDateDeparture,
     passengers: "",
   });
 
@@ -80,7 +81,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
       e.preventDefault();
 
       history.push(
-        `/bookingDetails?pickUpLocation=${dataToSend.pickupLocation}&dropLocation=${dataToSend.dropLocation}&arrivalDate=${dataToSend.arrivalDate}&departureDate=${dataToSend.departureDate}&journey=${roundTrip}&passengers=${dataToSend.passengers}`
+        `/bookingDetails?pickUpLocation=${dataToSend.pickupLocation}&dropLocation=${dataToSend.dropLocation}&arrivalDate=${startDate}&departureDate=${startDateDeparture}&journey=${roundTrip}&passengers=${dataToSend.passengers}`
       );
     } catch (error) {
       console.log(error);
@@ -130,7 +131,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     onChange={(e) =>
                       setRoundTrip("roundTrip", e.target.checked)
                     }
-                    // defaultChecked={dataToSend.roundTrip}
+                    // defaultChecked={roundTrip === "roundTrip" ? roundTrip : ""}
                     // onChange={(e) => handlerData("roundTrip")}
                   />
                   <span className="checkmark"></span>
@@ -303,6 +304,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                     // showTimeSelect
                     selected={startDate}
                     // selected={dataToSend.arrivalDate}
+
                     onChange={(date) => setStartDate(date)}
                     // timeClassName={handleColor}
                     minDate={new Date()}

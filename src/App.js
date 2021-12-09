@@ -23,8 +23,10 @@ function App() {
   const accessToken = query.get("accessToken");
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(verifyUser(accessToken));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
