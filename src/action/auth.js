@@ -50,6 +50,7 @@ export const userUpdated = (userInfo) => {
 };
 
 export const verifyUser = (accessTokenSocial) => {
+  console.log(accessTokenSocial);
   return async (dispatch) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
