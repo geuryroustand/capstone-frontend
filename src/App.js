@@ -39,7 +39,7 @@ function App() {
         <Route path="/register" exact>
           <Register />
         </Route>
-        <Route path="/sharedRide" exact>
+        <Route path="/sharedRide">
           <SharedRide />
         </Route>
         <Route path="/postSharedRide" exact>
