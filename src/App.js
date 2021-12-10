@@ -28,7 +28,7 @@ function App() {
     dispatch(verifyUser(accessToken));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [accessToken]);
 
   return (
     <Layout>
