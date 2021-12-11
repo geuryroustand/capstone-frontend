@@ -13,7 +13,6 @@ const PostSharedRideDetails = () => {
   const { sharedRide } = useSelector((state) => state.searchSharedRide);
   const state = useSelector((state) => state.sharedRideDetails);
 
-  console.log(state.sharedRideDetails);
   const [sharedRideInfo] = sharedRide;
 
   const { auth } = useSelector((state) => state);
@@ -44,7 +43,21 @@ const PostSharedRideDetails = () => {
       if (response.ok) {
         setComment("");
         const post = await response.json();
-        dispatch(sharedRideDetails(post));
+
+        const getPost = await fetch(
+          `${process.env.REACT_APP_API_DEV_URL}/shared-ride/comments/${post._id}`,
+          {
+            method: "GET",
+            headers: {
+              // Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const getNewPost = await getPost.json();
+
+        dispatch(sharedRideDetails(getNewPost));
       }
     } catch (error) {
       console.log(error);
@@ -99,9 +112,14 @@ const PostSharedRideDetails = () => {
 
         <Row className="postSharedRide-user-info">
           <Col className="d-flex">
-            <img className="postSharedRide-profile" src={auth.avatar} alt="" />
+            <img
+              className="postSharedRide-profile"
+              src={state.sharedRideDetails.user.avatar}
+              alt=""
+            />
             <p className="ml-2 mt-3  postSharedRide-user-name">
-              {auth.name} {auth.surname}
+              {state.sharedRideDetails.user.name}{" "}
+              {state.sharedRideDetails.user.surname}
             </p>
           </Col>
 
