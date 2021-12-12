@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Form, Button, Spinner } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { signIn, register } from "../../action/auth";
+import { signIn, register, verifyUser } from "../../action/auth";
 
 import { ImFacebook2 } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
@@ -37,8 +37,6 @@ const Register = () => {
   const query = new URLSearchParams(useLocation().search);
 
   let signInId = query.get("signIn");
-
-  console.log(signInId);
 
   const [userRegister, setUserRegister] = useState({
     name: "",
@@ -87,6 +85,13 @@ const Register = () => {
         );
 
         localStorage.setItem("accessToken", data.accessToken);
+        const lastPath = localStorage.getItem("lastPath");
+
+        if (lastPath) {
+          dispatch(verifyUser(data.accessToken));
+          history.push(`${lastPath}`);
+          return;
+        }
         history.push("/");
       }
     } else {
@@ -115,7 +120,9 @@ const Register = () => {
             avatar: data.avatar,
           })
         );
+
         localStorage.setItem("accessToken", data.accessToken);
+
         history.push("/");
       }
     }

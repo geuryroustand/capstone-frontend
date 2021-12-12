@@ -1,6 +1,6 @@
 import "./App.css";
 import Layout from "./Components/Layout/Layout";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register/Register";
 import { BookingDetails } from "./pages/BookingDetails/BookingDetails";
@@ -11,7 +11,7 @@ import FindSharedRide from "./pages/FindSharedRide/FindSharedRide";
 import SignIn from "./pages/SignIn/SignIn";
 import { useEffect } from "react";
 import { verifyUser } from "./action/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileDetails from "./Components/Profile/ProfileDetails";
 import PostSharedRide from "./pages/PostSharedRide/PostSharedRide";
 import { PostForm } from "./pages/PostSharedRide/PostForm";
@@ -19,6 +19,8 @@ import PostSharedRideDetails from "./pages/PostSharedRideDetails/PostSharedRideD
 
 function App() {
   const query = new URLSearchParams(useLocation().search);
+
+  const state = useSelector((state) => state.state);
 
   const accessToken = query.get("accessToken");
 
@@ -67,8 +69,12 @@ function App() {
           <Checkout />
         </Route>
 
-        <Route>
-          <FindSharedRide path="/searchSharedRide" exact />
+        <Route path="/searchSharedRide" exact>
+          <FindSharedRide />
+        </Route>
+
+        <Route path="*">
+          <Redirect to="/" />
         </Route>
       </Switch>
     </Layout>

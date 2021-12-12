@@ -6,9 +6,11 @@ import { Container, Row, Form, Button, Col, Modal } from "react-bootstrap";
 import { ImLocation } from "react-icons/im";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { postSharedRide } from "../../action/postSharedRide";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const PostSharedRide = () => {
   const [locationsFetch, setLocationsFetch] = useState({
@@ -72,11 +74,32 @@ const PostSharedRide = () => {
     }
   };
 
-  const history = useHistory();
+  const { login } = useSelector((state) => state.auth);
 
+  const history = useHistory();
+  const location = useLocation();
+  const selectedInfo = localStorage.getItem("selectedInfo");
+  const parseSelectedInfo = JSON.parse(selectedInfo);
+
+  console.log(parseSelectedInfo);
   const handlerSubmit = (e) => {
     e.preventDefault();
     dispatch(postSharedRide({ pickLocation, dropLocation, passenger }));
+
+    if (!login) {
+      localStorage.setItem("lastPath", location.pathname);
+      localStorage.setItem(
+        "selectedInfo",
+        JSON.stringify({
+          pickLocation,
+          dropLocation,
+          passenger,
+        })
+      );
+
+      history.push("/signIn?signIn=signIn");
+      return;
+    }
     history.push("/postRide");
   };
 
@@ -112,7 +135,11 @@ const PostSharedRide = () => {
                     type="text"
                     name=""
                     id=""
-                    defaultValue={pickLocation}
+                    defaultValue={
+                      pickLocation
+                        ? pickLocation
+                        : parseSelectedInfo?.pickLocation
+                    }
                     placeholder="Enter pick-up location "
                   />
 
@@ -126,7 +153,11 @@ const PostSharedRide = () => {
                     type="text"
                     name=""
                     id=""
-                    defaultValue={dropLocation}
+                    defaultValue={
+                      dropLocation
+                        ? dropLocation
+                        : parseSelectedInfo?.dropLocation
+                    }
                     placeholder="Enter destination "
                     required
                   />
@@ -140,6 +171,7 @@ const PostSharedRide = () => {
                 >
                   <select
                     onChange={(e) => setPassenger(e.target.value)}
+                    value={passenger ? passenger : parseSelectedInfo?.passenger}
                     name="passenger"
                     id="passenger"
                     className=" post-shared-ride-select-passenger"

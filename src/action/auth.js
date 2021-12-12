@@ -69,7 +69,6 @@ export const verifyUser = (accessTokenSocial) => {
         if (response.ok) {
           const data = await response.json();
           localStorage.setItem("accessToken", data.accessToken);
-
           dispatch({
             type: "USER_INFO",
             payload: {
