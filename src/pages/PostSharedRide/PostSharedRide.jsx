@@ -29,7 +29,10 @@ const PostSharedRide = () => {
       let searchPickLocation = e.target.value.trim();
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_DEV_URL}/locations/search`,
+        `${
+          process.env.REACT_APP_API_PROD_URL ||
+          process.env.REACT_APP_API_DEV_URL
+        }/locations/search`,
 
         {
           method: "POST",
