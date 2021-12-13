@@ -1,9 +1,10 @@
 .autoComplete {
   position: absolute;
+
   bottom: 1.9rem;
   display: inline-block;
 
-  z-index: 50px;
+  z-index: 10px !important;
   margin-left: 0px;
   background-color: white;
   color: black;

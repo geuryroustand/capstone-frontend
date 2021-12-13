@@ -137,112 +137,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   <span className="checkmark"></span>
                 </label>
               </div>
-              {/* RETURN SEARCH  */}
-              {roundTrip === "roundTrip" ? (
-                <>
-                  <Row className="d-flex mb-1 ">
-                    <Col lg="auto" className="input-col media-queries">
-                      <input
-                        className="search-input"
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Enter pick-up location "
-                        value={dataToSend.pickupLocation}
-                        // onChange={(e) => setPickupLocation(e.target.value)}
-                      />
 
-                      <ImLocation className="location-icon " />
-                    </Col>
-                    <Col lg="auto" className="input-col media-queries">
-                      <input
-                        className="search-input"
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Enter destination "
-                        required
-                        value={dataToSend.dropLocation}
-                        // onChange={(e) => setDropLocation(e.target.value)}
-                      />
-                      <ImLocation className="location-icon" />
-                    </Col>
-
-                    {/* <Col>
-                      <input
-                        className="date-pick"
-                        type="datetime-local"
-                        value={dataToSend.departureDate}
-                        onChange={(e) =>
-                          handlerData("departureDate", e.target.value)
-                        }
-                        name=""
-                        id=""
-                        required
-                      />
-                    </Col> */}
-
-                    {/* DATE PICKED */}
-                    <Col lg="auto" className="date-picker-col">
-                      <DatePicker
-                        // showTimeSelect
-                        selected={startDateDeparture}
-                        // selected={dataToSend.arrivalDate}
-                        onChange={(date) => setStartDateDeparture(date)}
-                        // timeClassName={handleColor}
-                        minDate={new Date()}
-                        maxDate={new Date("02-29-2024")}
-                        showPopperArrow={false}
-                        showMonthDropdown
-                        showYearDropdown
-                        yearDropdownItemNumber={1}
-                        scrollableYearDropdown
-                        dropdownMode="select"
-                        dateFormat="eee d, MMM  yyyy "
-                        // peekNextMonth
-                        // scrollableYearDropdown
-                        // strictParsing
-                        // timeIntervals={15}
-                        // dateFormat="MMMM d, yyyy h:mm aa"
-                        // dateFormat="Pp"
-                        withPortal
-                        portalId="root-portal"
-                        className="shared-ride-date-pick"
-                        required
-                        // value={dataToSend.arrivalDate}
-                        // onChange={(e) => handlerData("arrivalDate", e.target.value)}
-                      />
-                    </Col>
-
-                    <Col className="select-passenger-section">
-                      <select
-                        name="passenger"
-                        id="passenger"
-                        className="select-passenger"
-                        required
-                        value={dataToSend.passengers}
-                        onChange={(e) =>
-                          handlerData("passengers", e.target.value)
-                        }
-                      >
-                        {/* <option value="passenger">Passenger</option> */}
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                      </select>
-                      <FaUserAlt className="user-icon" />
-                    </Col>
-                    {/* <Col xs={12} md="auto">
-     <Button className="btn-search-button">Search</Button>{" "}
-   </Col> */}
-                  </Row>
-                </>
-              ) : (
-                ""
-              )}
               {/* SEARCH ROUNDTRIP */}
 
               <Row className="d-flex search-roundTrip ">
@@ -363,13 +258,127 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   </select>
                   <FaUserAlt className="user-icon" />
                 </Col>
-
-                <Col>
-                  <Button type="submit" className="btn-search-button">
-                    Search
-                  </Button>{" "}
-                </Col>
               </Row>
+
+              {/* RETURN SEARCH  */}
+              {roundTrip === "roundTrip" ? (
+                <>
+                  <Row className="d-flex mt-1 ">
+                    <Col
+                      lg="auto"
+                      className="input-col media-queries return-search-info-disable-main"
+                    >
+                      <input
+                        className="search-input  return-search-info-disable"
+                        type="text"
+                        name=""
+                        id=""
+                        placeholder="Enter pick-up location "
+                        value={dataToSend.pickupLocation}
+                        // onChange={(e) => setPickupLocation(e.target.value)}
+                      />
+
+                      <ImLocation className="location-icon " />
+                    </Col>
+                    <Col
+                      lg="auto"
+                      className="input-col media-queries return-search-info-disable-main"
+                    >
+                      <input
+                        className="search-input return-search-info-disable"
+                        type="text"
+                        name=""
+                        id=""
+                        placeholder="Enter destination "
+                        required
+                        value={dataToSend.dropLocation}
+                        // onChange={(e) => setDropLocation(e.target.value)}
+                      />
+                      <ImLocation className="location-icon" />
+                    </Col>
+
+                    {/* <Col>
+                      <input
+                        className="date-pick"
+                        type="datetime-local"
+                        value={dataToSend.departureDate}
+                        onChange={(e) =>
+                          handlerData("departureDate", e.target.value)
+                        }
+                        name=""
+                        id=""
+                        required
+                      />
+                    </Col> */}
+
+                    {/* DATE PICKED */}
+                    <Col lg="auto" className="date-picker-col   ">
+                      <DatePicker
+                        // showTimeSelect
+                        selected={startDateDeparture}
+                        // selected={dataToSend.arrivalDate}
+                        onChange={(date) => setStartDateDeparture(date)}
+                        // timeClassName={handleColor}
+                        minDate={new Date()}
+                        maxDate={new Date("02-29-2024")}
+                        showPopperArrow={false}
+                        showMonthDropdown
+                        showYearDropdown
+                        yearDropdownItemNumber={1}
+                        scrollableYearDropdown
+                        dropdownMode="select"
+                        dateFormat="eee d, MMM  yyyy "
+                        // peekNextMonth
+                        // scrollableYearDropdown
+                        // strictParsing
+                        // timeIntervals={15}
+                        // dateFormat="MMMM d, yyyy h:mm aa"
+                        // dateFormat="Pp"
+                        withPortal
+                        portalId="root-portal"
+                        className="shared-ride-date-pick"
+                        required
+                        // value={dataToSend.arrivalDate}
+                        // onChange={(e) => handlerData("arrivalDate", e.target.value)}
+                      />
+                    </Col>
+
+                    <Col className="select-passenger-section return-search-info-disable-main   ">
+                      <select
+                        name="passenger"
+                        id="passenger "
+                        className="select-passenger return-search-info-disable return-search-info-disable-main "
+                        required
+                        value={dataToSend.passengers}
+                        onChange={(e) =>
+                          handlerData("passengers", e.target.value)
+                        }
+                      >
+                        {/* <option value="passenger">Passenger</option> */}
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                      </select>
+                      <FaUserAlt className="user-icon" />
+                    </Col>
+
+                    <Col>
+                      <Button type="submit" className="btn-search-button">
+                        Search
+                      </Button>{" "}
+                    </Col>
+
+                    {/* <Col xs={12} md="auto">
+     <Button className="btn-search-button">Search</Button>{" "}
+   </Col> */}
+                  </Row>
+                </>
+              ) : (
+                ""
+              )}
             </Row>
           </Form>
         </Row>

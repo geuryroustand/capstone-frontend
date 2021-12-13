@@ -53,6 +53,17 @@
   margin-left: 7px;
   width: 18rem;
 }
+.return-search-info-disable-main {
+  background-color: #e4dcdc !important;
+  z-index: -1 !important;
+}
+.return-search-info-disable {
+  cursor: not-allowed;
+  pointer-events: none;
+
+  background-color: #e4dcdc;
+}
+
 .search-input:hover {
   /* border: none; */
   /* color: #00224f; */
