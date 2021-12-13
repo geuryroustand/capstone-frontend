@@ -76,6 +76,7 @@ const Register = () => {
         }, 200);
 
         const data = await response.json();
+
         dispatch(
           signIn({
             name: data.name,
