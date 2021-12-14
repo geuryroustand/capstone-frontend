@@ -258,6 +258,14 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                   </select>
                   <FaUserAlt className="user-icon" />
                 </Col>
+
+                {roundTrip === "OneWay" && (
+                  <Col>
+                    <Button type="submit" className="btn-search-button">
+                      Search
+                    </Button>{" "}
+                  </Col>
+                )}
               </Row>
 
               {/* RETURN SEARCH  */}
@@ -274,7 +282,7 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         name=""
                         id=""
                         placeholder="Enter pick-up location "
-                        value={dataToSend.pickupLocation}
+                        value={dataToSend.dropLocation}
                         // onChange={(e) => setPickupLocation(e.target.value)}
                       />
 
@@ -291,7 +299,8 @@ const Hero = ({ fetchPickLocation, sendPickLocation, sendDropLocation }) => {
                         id=""
                         placeholder="Enter destination "
                         required
-                        value={dataToSend.dropLocation}
+                        value={dataToSend.pickupLocation}
+
                         // onChange={(e) => setDropLocation(e.target.value)}
                       />
                       <ImLocation className="location-icon" />
