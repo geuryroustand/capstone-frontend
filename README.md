@@ -12,9 +12,9 @@ Im in the process of finishing this project , its a webiste where paople can boo
 
 To make a booking you can try with the locations below. 
 
-From: Puerto Plata Airport (POP)
+From: Santo Domingo Airport (SDQ)
 
-To: Samana Airport (AZS)
+To: Bahia Principe Portillo
 
 In the checkout page going to ask u for a credit card please use  4242424242424242   CVC:  Any 3 digits   DATE: Any future date
 
