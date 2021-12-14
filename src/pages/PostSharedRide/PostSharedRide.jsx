@@ -89,7 +89,6 @@ const PostSharedRide = () => {
     e.preventDefault();
 
     if (!login) {
-      const { pickLocation, dropLocation, passenger } = parseSelectedInfo;
       localStorage.setItem("lastPath", location.pathname);
       localStorage.setItem(
         "selectedInfo",
@@ -102,8 +101,15 @@ const PostSharedRide = () => {
       history.push("/signIn?signIn=signIn");
       return;
     }
-    const { pickLocation, dropLocation, passenger } = parseSelectedInfo;
-    dispatch(postSharedRide({ pickLocation, dropLocation, passenger }));
+
+    dispatch(
+      postSharedRide({
+        pickLocation: parseSelectedInfo.pickLocation,
+        dropLocation: parseSelectedInfo.dropLocation,
+        passenger: parseSelectedInfo.passenger,
+      })
+    );
+
     history.push("/postRide");
   };
 
