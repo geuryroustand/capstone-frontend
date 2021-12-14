@@ -121,8 +121,14 @@ const Register = () => {
             avatar: data.avatar,
           })
         );
-
         localStorage.setItem("accessToken", data.accessToken);
+        const lastPath = localStorage.getItem("lastPath");
+
+        if (lastPath) {
+          dispatch(verifyUser(data.accessToken));
+          history.push(`${lastPath}`);
+          return;
+        }
 
         history.push("/");
       }
