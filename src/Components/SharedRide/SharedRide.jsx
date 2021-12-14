@@ -59,9 +59,9 @@ const SharedRide = () => {
   const handlerSubmit = (e) => {
     e.preventDefault();
 
-    history.push(`
-        /searchSharedRide?pickupLocation=${dataToSend.pickupLocation}&serviceDate=${dataToSend.arrivalDate}&dropLocation=${dataToSend.dropLocation}&passengers=${dataToSend.passengers}
-    `);
+    history.push(
+      `/searchSharedRide?pickupLocation=${dataToSend.pickupLocation}&serviceDate=${dataToSend.arrivalDate}&dropLocation=${dataToSend.dropLocation}&passengers=${dataToSend.passengers}`
+    );
   };
 
   return (

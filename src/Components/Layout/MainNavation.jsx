@@ -38,7 +38,7 @@ export default function MainNavation() {
                   to="/sharedRide"
                   exact
                 >
-                  Shared Ride
+                  Search Shared Ride
                 </NavLink>
               </Nav>
             </>

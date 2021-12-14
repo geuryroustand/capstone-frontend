@@ -72,10 +72,9 @@ function App() {
         <Route path="/searchSharedRide" exact>
           <FindSharedRide />
         </Route>
-
-        <Route path="*">
+        {/* <Route path="*">
           <Redirect to="/" />
-        </Route>
+        </Route> */}
       </Switch>
     </Layout>
   );

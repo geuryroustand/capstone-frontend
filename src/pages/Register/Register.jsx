@@ -122,13 +122,6 @@ const Register = () => {
           })
         );
         localStorage.setItem("accessToken", data.accessToken);
-        const lastPath = localStorage.getItem("lastPath");
-
-        if (lastPath) {
-          dispatch(verifyUser(data.accessToken));
-          history.push(`${lastPath}`);
-          return;
-        }
 
         history.push("/");
       }
