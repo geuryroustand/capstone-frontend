@@ -6,6 +6,7 @@ import { BookingFlightDetails } from "../../Components/BookingFlightDetails/Book
 import { BookingSteps } from "../../Components/BookingSteps/BookingSteps";
 import "./PassengerDetails.css";
 import { taxiOptionSelected } from "../../action";
+import { useEffect } from "react";
 
 export const PassengerDetails = () => {
   const state = useSelector((state) => state);
@@ -17,11 +18,14 @@ export const PassengerDetails = () => {
   const { taxiSelected, prices } = state.formSearchTransfer;
   const [pricesTaxi] = prices;
 
+  const [sharedRideYesOrNo, setSharedRideYesOrNo] = useState("No");
+
   const [transferDetails, setTransfersDetails] = useState({
     name: "",
     surname: "",
     email: "",
     phoneNumber: "",
+    sharedRideYesOrNo,
 
     arrivalAirlineName: "",
     arrivalFlightNumber: "",
@@ -35,6 +39,24 @@ export const PassengerDetails = () => {
     ...taxiSelected,
   });
 
+  useEffect(() => {
+    if (sharedRideYesOrNo === "Yes") {
+      if (taxiSelected.taxiOption === "taxiOneOption") {
+        setTransfersDetails({
+          ...transferDetails,
+          sharedRideYesOrNo: "Yes",
+          price: (taxiSelected.price / 4) * taxiSelected.passengers,
+        });
+      }
+    } else {
+      setTransfersDetails({
+        ...transferDetails,
+        price: taxiSelected.price,
+      });
+    }
+  }, [sharedRideYesOrNo]);
+
+  console.log(transferDetails);
   const handlerReturnTransferAndModal = (e) => {
     e.preventDefault();
     setAddReturnTaxi(!addReturnTaxi);
@@ -45,10 +67,8 @@ export const PassengerDetails = () => {
   };
 
   const handlerSubmit = (e) => {
-    console.log(e);
     e.preventDefault();
     dispatch(taxiOptionSelected(transferDetails));
-
     history.push("/paymentDetails?step3=true&&step2=true");
   };
 
@@ -57,12 +77,38 @@ export const PassengerDetails = () => {
       <Row>
         <BookingSteps />
         <Col xs={12} md={4}>
-          <BookingFlightDetails />
+          <BookingFlightDetails transferSelected={transferDetails} />
         </Col>
 
         <Col xs={12} md={8}>
           <h3 className="mb-5 mt-3">Passenger details</h3>
           <Form onSubmit={handlerSubmit}>
+            <div className="d-flex search-form-selected">
+              <p>Would you like to share your transfer with other travelers?</p>
+              <label className="radio-label ml-4">
+                Yes
+                <input
+                  type="radio"
+                  name="radio"
+                  onChange={(e) =>
+                    setSharedRideYesOrNo("Yes", e.target.checked)
+                  }
+                  // defaultChecked={sharedRideYesOrNo}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="radio-label">
+                No
+                <input
+                  type="radio"
+                  name="radio"
+                  defaultChecked={sharedRideYesOrNo}
+                  onChange={(e) => setSharedRideYesOrNo("No", e.target.checked)}
+                />
+                <span className="checkmark"></span>
+              </label>
+            </div>
+
             <div className="form-passenger">
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">

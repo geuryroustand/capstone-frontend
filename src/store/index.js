@@ -17,7 +17,7 @@ export const initialState = {
     dropLocation: [],
 
     taxiSelected: {
-      passengers: "1",
+      passengers: 1,
     },
     locationNotFound: true,
     pickUpSharedRideLocation: [],

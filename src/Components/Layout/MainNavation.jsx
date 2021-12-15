@@ -29,7 +29,7 @@ export default function MainNavation() {
                   to="/"
                   exact
                 >
-                  Private Transfers
+                  Transfers
                 </NavLink>
 
                 <NavLink

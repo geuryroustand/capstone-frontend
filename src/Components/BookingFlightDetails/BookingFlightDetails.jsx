@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import { format } from "date-fns";
 import "./BookingFlightDetails.css";
 
-export const BookingFlightDetails = () => {
+export const BookingFlightDetails = ({ transferSelected }) => {
   const state = useSelector((state) => state);
 
   const [prices] = state.formSearchTransfer.prices;
@@ -161,12 +161,12 @@ export const BookingFlightDetails = () => {
           <p>Total Price</p>
           {taxiSelected.taxiOption === "taxiOneOption" &&
             taxiSelected.journey === "OneWay" && (
-              <h3>$ {prices?.oneWayPriceTex1}</h3>
+              <h3>$ {transferSelected?.price || prices?.oneWayPriceTex1}</h3>
             )}
 
           {taxiSelected.taxiOption === "taxiTwoOption" &&
             taxiSelected.journey === "OneWay" && (
-              <h3>$ {prices?.oneWayPriceTex2}</h3>
+              <h3>$ {transferSelected?.price || prices?.oneWayPriceTex2}</h3>
             )}
 
           {/* {taxiSelected.taxiSelectedInfo?.taxiOption === "taxiOneOption" &&
@@ -178,12 +178,16 @@ export const BookingFlightDetails = () => {
 
           {taxiSelected.taxiOption === "taxiOneOption" &&
             taxiSelected.journey === "roundTrip" && (
-              <h3>$ {prices?.roundTripPriceTaxi1}</h3>
+              <h3>
+                $ {transferSelected?.price || prices?.roundTripPriceTaxi1}
+              </h3>
             )}
 
           {taxiSelected.taxiOption === "taxiTwoOption" &&
             taxiSelected.journey === "roundTrip" && (
-              <h3>$ {prices?.roundTripPriceTaxi2}</h3>
+              <h3>
+                $ {transferSelected?.price || prices?.roundTripPriceTaxi2}
+              </h3>
             )}
         </>
       ) : (
@@ -192,25 +196,29 @@ export const BookingFlightDetails = () => {
           {taxiSelected.taxiSelectedInfo?.taxiOption === "taxiOneOption" &&
             taxiSelected.taxiSelectedInfo?.journey === "OneWay" && (
               <>
-                <h3>$ {prices?.oneWayPriceTex1}</h3>
+                <h3>$ {transferSelected?.price || prices?.oneWayPriceTex1}</h3>
               </>
             )}
 
           {taxiSelected?.taxiSelectedInfo?.taxiOption === "taxiTwoOption" &&
             taxiSelected?.taxiSelectedInfo?.journey === "OneWay" && (
-              <h3>$ {prices?.oneWayPriceTex2}</h3>
+              <h3>$ {transferSelected?.price || prices?.oneWayPriceTex2}</h3>
             )}
 
           {/* RoundTrip */}
 
           {taxiSelected?.taxiSelectedInfo?.taxiOption === "taxiOneOption" &&
             taxiSelected?.taxiSelectedInfo?.journey === "roundTrip" && (
-              <h3>$ {prices?.roundTripPriceTaxi1}</h3>
+              <h3>
+                $ {transferSelected?.price || prices?.roundTripPriceTaxi1}
+              </h3>
             )}
 
           {taxiSelected?.taxiSelectedInfo?.taxiOption === "taxiTwoOption" &&
             taxiSelected?.taxiSelectedInfo?.journey === "roundTrip" && (
-              <h3>$ {prices?.roundTripPriceTaxi2}</h3>
+              <h3>
+                $ {transferSelected?.price || prices?.roundTripPriceTaxi2}
+              </h3>
             )}
         </>
       )}

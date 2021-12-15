@@ -9,7 +9,6 @@ export const BookingSteps = () => {
   let step2 = query.get("step2");
   let step3 = query.get("step3");
 
-  console.log("ddd", step2);
   // console.log(step2);
   // let step2 = "step2";
 

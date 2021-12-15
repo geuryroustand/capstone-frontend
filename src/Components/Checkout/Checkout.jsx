@@ -66,7 +66,7 @@ export const Checkout = () => {
       <Row>
         <BookingSteps />
         <Col xs={12} md={5}>
-          <BookingFlightDetails />
+          <BookingFlightDetails transferSelected={taxiSelected} />
         </Col>
         <Col xs={12} className="mt-3" md={7}>
           <h2>How would you like to pay?</h2>
