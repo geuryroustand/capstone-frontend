@@ -60,7 +60,7 @@ const SharedRide = () => {
     e.preventDefault();
 
     history.push(
-      `/searchSharedRide?pickupLocation=${dataToSend.pickupLocation}&serviceDate=${dataToSend.arrivalDate}&dropLocation=${dataToSend.dropLocation}&passengers=${dataToSend.passengers}`
+      `/searchSharedRide?pickLocation=${dataToSend.pickupLocation}&serviceDate=${dataToSend.arrivalDate}&dropLocation=${dataToSend.dropLocation}&passengers=${dataToSend.passengers}`
     );
   };
 

@@ -159,14 +159,14 @@ export const selectedSharedRideDropLocation = (drop) => {
 
 // SHARED RIDE
 
-export const fetchSharedRide = (pickupLocation, dropLocation, serviceDate) => {
+export const fetchSharedRide = (pickLocation, dropLocation, serviceDate) => {
   return async (dispatch) => {
     // &serviceDate=${serviceDate}
     try {
       progress.start();
       const response = await fetch(
         `
-        http://localhost:3001/shared-ride?pickLocation=${pickupLocation}&dropLocation=${dropLocation}`,
+        http://localhost:3001/shared-ride?pickLocation=${pickLocation}&dropLocation=${dropLocation}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -174,6 +174,8 @@ export const fetchSharedRide = (pickupLocation, dropLocation, serviceDate) => {
       );
       if (response.ok) {
         let sharedRides = await response.json();
+
+        console.log(sharedRides);
         dispatch({
           type: "FETCH_SHARED_RIDE",
           payload: sharedRides,

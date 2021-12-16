@@ -24,6 +24,8 @@ function App() {
 
   const accessToken = query.get("accessToken");
 
+  console.log(accessToken);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

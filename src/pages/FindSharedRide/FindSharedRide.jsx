@@ -13,7 +13,7 @@ import { sharedRideDetails } from "../../action/sharedRideDetails.js";
 const FindSharedRide = () => {
   let query = new URLSearchParams(useLocation().search);
 
-  let pickupLocation = query.get("pickupLocation");
+  let pickLocation = query.get("pickLocation");
   let dropLocation = query.get("dropLocation");
   let serviceDate = query.get("serviceDate");
   // let passengers = query.get("passengers");
@@ -29,10 +29,10 @@ const FindSharedRide = () => {
   };
 
   useEffect(() => {
-    if (pickupLocation && dropLocation) {
+    if (pickLocation && dropLocation) {
       dispatch(
         fetchSharedRide(
-          pickupLocation,
+          pickLocation,
           dropLocation,
           format(new Date(serviceDate), "EEEE d, MMM  yyyy")
         )
