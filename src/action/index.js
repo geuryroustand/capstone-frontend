@@ -177,7 +177,7 @@ export const fetchSharedRide = (pickLocation, dropLocation, serviceDate) => {
       );
       if (response.ok) {
         let sharedRides = await response.json();
-        console.log(sharedRides);
+
         dispatch({
           type: "FETCH_SHARED_RIDE",
           payload: sharedRides,
