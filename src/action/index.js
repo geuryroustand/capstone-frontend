@@ -166,7 +166,10 @@ export const fetchSharedRide = (pickLocation, dropLocation, serviceDate) => {
       progress.start();
       const response = await fetch(
         `
-        http://localhost:3001/shared-ride?pickLocation=${pickLocation}&dropLocation=${dropLocation}`,
+        ${
+          process.env.REACT_APP_API_PROD_URL ||
+          process.env.REACT_APP_API_DEV_URL
+        }/shared-ride?pickLocation=${pickLocation}&dropLocation=${dropLocation}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -174,7 +177,6 @@ export const fetchSharedRide = (pickLocation, dropLocation, serviceDate) => {
       );
       if (response.ok) {
         let sharedRides = await response.json();
-
         console.log(sharedRides);
         dispatch({
           type: "FETCH_SHARED_RIDE",

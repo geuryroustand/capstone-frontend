@@ -23,6 +23,7 @@ const FindSharedRide = () => {
   const { sharedRide } = useSelector((state) => state?.searchSharedRide);
 
   const history = useHistory();
+
   const clickHandler = (post) => {
     dispatch(sharedRideDetails(post));
     history.push("/postSharedRideDetails");
