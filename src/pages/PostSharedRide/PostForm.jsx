@@ -42,13 +42,13 @@ export const PostForm = () => {
     try {
       e.preventDefault();
 
-      await dispatch(postInDBSharedRide(post));
+      dispatch(postInDBSharedRide(post));
 
-      await dispatch(
+      dispatch(
         fetchSharedRide(post.pickLocation, post.dropLocation, post.serviceDate)
       );
 
-      await history.push("/searchSharedRide");
+      history.push("/searchSharedRide");
     } catch (error) {
       console.log(error);
     }

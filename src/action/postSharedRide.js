@@ -16,26 +16,14 @@ export const postInDBSharedRide = (lo) => {
     try {
       const token = localStorage.getItem("accessToken");
 
-      const response = await fetch(
-        `${process.env.REACT_APP_API_DEV_URL}/shared-ride`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(lo),
-        }
-      );
-
-      if (response.ok) {
-        const data = response.json();
-
-        dispatch({
-          type: "FETCH_SHARED_RIDE",
-          payload: data,
-        });
-      }
+      await fetch(`${process.env.REACT_APP_API_DEV_URL}/shared-ride`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(lo),
+      });
     } catch (error) {
       console.log(error);
     }

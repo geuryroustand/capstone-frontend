@@ -10,10 +10,7 @@ import { sharedRideDetails } from "../../action/sharedRideDetails";
 import format from "date-fns/format/index";
 
 const PostSharedRideDetails = () => {
-  const { sharedRide } = useSelector((state) => state.searchSharedRide);
   const state = useSelector((state) => state.sharedRideDetails);
-
-  const [sharedRideInfo] = sharedRide;
 
   const { auth } = useSelector((state) => state);
   const [comment, setComment] = useState("");

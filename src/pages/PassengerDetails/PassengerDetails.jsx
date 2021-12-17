@@ -54,6 +54,8 @@ export const PassengerDetails = () => {
         price: taxiSelected.price,
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sharedRideYesOrNo]);
 
   console.log(transferDetails);

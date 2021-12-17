@@ -22,6 +22,7 @@ const FindSharedRide = () => {
 
   const { sharedRide } = useSelector((state) => state?.searchSharedRide);
 
+  console.log(sharedRide);
   const history = useHistory();
 
   const clickHandler = (post) => {
