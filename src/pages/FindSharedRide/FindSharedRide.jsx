@@ -101,7 +101,7 @@ const FindSharedRide = () => {
               </div>
 
               <div className="sharedTransferPrice">
-                <p>{sharedTransfer.totalPrice}</p>
+                <p> &euro; {sharedTransfer.totalPrice}</p>
                 <p>
                   <FaUserFriends /> {sharedTransfer.passenger}
                 </p>
