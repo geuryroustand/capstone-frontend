@@ -190,12 +190,12 @@ const PostSharedRide = () => {
                     <option value="passenger">Passenger</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
+                    <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
                   </select>
-                  <FaUserAlt className=" mt-2 post-shared-ride-user-icon" />
+                  <FaUserAlt className=" mt-3 ml-1 post-shared-ride-user-icon" />
                 </div>
 
                 <Button
