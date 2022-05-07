@@ -35,7 +35,7 @@ const PostSharedRide = () => {
         }/locations/search`,
 
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
